@@ -1,0 +1,495 @@
+{
+  "phase": "Phase 3: Walk-Forward Evaluation",
+  "dataset": {
+    "total_aligned_pairs": 1254,
+    "n_us_sectors": 11,
+    "n_jp_sectors": 17,
+    "date_range_start": "2021-03-29",
+    "date_range_end": "2026-03-25"
+  },
+  "walk_forward_config": {
+    "train_window": 252,
+    "test_window": 21,
+    "K": 3,
+    "L": 60,
+    "lambda_decay": 0.9
+  },
+  "results": {
+    "n_folds": 47,
+    "total_test_samples": 987,
+    "direction_accuracy_mean": 0.497765,
+    "direction_accuracy_std": 0.036246,
+    "correlation_mean": 0.018336,
+    "correlation_std": 0.09975,
+    "rmse_mean": 0.01136386,
+    "rmse_std": 0.00300553,
+    "positive_accuracy_folds_pct": 44.68
+  },
+  "strategy_gross": {
+    "sharpe_ratio": 0.5418,
+    "annualized_return": 0.0377,
+    "annualized_volatility": 0.069583,
+    "max_drawdown": -0.090403,
+    "total_return": 0.148252,
+    "n_trading_days": 987,
+    "pct_positive_days": 51.77
+  },
+  "per_fold": [
+    {
+      "fold_id": 0,
+      "train_period": "2021-03-29 to 2022-03-25",
+      "test_period": "2022-03-28 to 2022-04-26",
+      "direction_accuracy": 0.481793,
+      "mean_correlation": -0.114441,
+      "rmse": 0.01115435
+    },
+    {
+      "fold_id": 1,
+      "train_period": "2021-04-28 to 2022-04-26",
+      "test_period": "2022-04-27 to 2022-05-25",
+      "direction_accuracy": 0.518207,
+      "mean_correlation": 0.07527,
+      "rmse": 0.01217377
+    },
+    {
+      "fold_id": 2,
+      "train_period": "2021-05-27 to 2022-05-25",
+      "test_period": "2022-05-26 to 2022-06-27",
+      "direction_accuracy": 0.521008,
+      "mean_correlation": 0.19403,
+      "rmse": 0.01064201
+    },
+    {
+      "fold_id": 3,
+      "train_period": "2021-06-28 to 2022-06-27",
+      "test_period": "2022-06-28 to 2022-07-27",
+      "direction_accuracy": 0.498599,
+      "mean_correlation": 0.006235,
+      "rmse": 0.01057745
+    },
+    {
+      "fold_id": 4,
+      "train_period": "2021-07-28 to 2022-07-27",
+      "test_period": "2022-07-28 to 2022-08-25",
+      "direction_accuracy": 0.504202,
+      "mean_correlation": 0.03165,
+      "rmse": 0.00871669
+    },
+    {
+      "fold_id": 5,
+      "train_period": "2021-08-26 to 2022-08-25",
+      "test_period": "2022-08-26 to 2022-09-26",
+      "direction_accuracy": 0.484594,
+      "mean_correlation": 0.070287,
+      "rmse": 0.00834337
+    },
+    {
+      "fold_id": 6,
+      "train_period": "2021-09-27 to 2022-09-26",
+      "test_period": "2022-09-27 to 2022-10-25",
+      "direction_accuracy": 0.473389,
+      "mean_correlation": -0.042439,
+      "rmse": 0.0104202
+    },
+    {
+      "fold_id": 7,
+      "train_period": "2021-10-26 to 2022-10-25",
+      "test_period": "2022-10-26 to 2022-11-23",
+      "direction_accuracy": 0.467787,
+      "mean_correlation": 0.079872,
+      "rmse": 0.00859912
+    },
+    {
+      "fold_id": 8,
+      "train_period": "2021-11-24 to 2022-11-23",
+      "test_period": "2022-11-25 to 2022-12-23",
+      "direction_accuracy": 0.456583,
+      "mean_correlation": 0.06828,
+      "rmse": 0.01055961
+    },
+    {
+      "fold_id": 9,
+      "train_period": "2021-12-27 to 2022-12-23",
+      "test_period": "2022-12-27 to 2023-01-26",
+      "direction_accuracy": 0.417367,
+      "mean_correlation": -0.199249,
+      "rmse": 0.0108697
+    },
+    {
+      "fold_id": 10,
+      "train_period": "2022-01-26 to 2023-01-26",
+      "test_period": "2023-01-27 to 2023-02-27",
+      "direction_accuracy": 0.487395,
+      "mean_correlation": 0.001798,
+      "rmse": 0.00806726
+    },
+    {
+      "fold_id": 11,
+      "train_period": "2022-02-25 to 2023-02-27",
+      "test_period": "2023-02-28 to 2023-03-28",
+      "direction_accuracy": 0.484594,
+      "mean_correlation": 0.002077,
+      "rmse": 0.00965772
+    },
+    {
+      "fold_id": 12,
+      "train_period": "2022-03-28 to 2023-03-28",
+      "test_period": "2023-03-29 to 2023-04-27",
+      "direction_accuracy": 0.535014,
+      "mean_correlation": 0.076253,
+      "rmse": 0.0073322
+    },
+    {
+      "fold_id": 13,
+      "train_period": "2022-04-27 to 2023-04-27",
+      "test_period": "2023-04-28 to 2023-05-26",
+      "direction_accuracy": 0.442577,
+      "mean_correlation": -0.151825,
+      "rmse": 0.0094409
+    },
+    {
+      "fold_id": 14,
+      "train_period": "2022-05-26 to 2023-05-26",
+      "test_period": "2023-05-30 to 2023-06-28",
+      "direction_accuracy": 0.481793,
+      "mean_correlation": -0.100587,
+      "rmse": 0.01133712
+    },
+    {
+      "fold_id": 15,
+      "train_period": "2022-06-28 to 2023-06-28",
+      "test_period": "2023-06-29 to 2023-07-28",
+      "direction_accuracy": 0.54902,
+      "mean_correlation": 0.001655,
+      "rmse": 0.00835084
+    },
+    {
+      "fold_id": 16,
+      "train_period": "2022-07-28 to 2023-07-28",
+      "test_period": "2023-07-31 to 2023-08-28",
+      "direction_accuracy": 0.498599,
+      "mean_correlation": -0.0719,
+      "rmse": 0.00926077
+    },
+    {
+      "fold_id": 17,
+      "train_period": "2022-08-26 to 2023-08-28",
+      "test_period": "2023-08-29 to 2023-09-27",
+      "direction_accuracy": 0.512605,
+      "mean_correlation": 0.006529,
+      "rmse": 0.00950602
+    },
+    {
+      "fold_id": 18,
+      "train_period": "2022-09-27 to 2023-09-27",
+      "test_period": "2023-09-28 to 2023-10-26",
+      "direction_accuracy": 0.464986,
+      "mean_correlation": -0.042889,
+      "rmse": 0.01222278
+    },
+    {
+      "fold_id": 19,
+      "train_period": "2022-10-26 to 2023-10-26",
+      "test_period": "2023-10-27 to 2023-11-27",
+      "direction_accuracy": 0.509804,
+      "mean_correlation": 0.038562,
+      "rmse": 0.01188005
+    },
+    {
+      "fold_id": 20,
+      "train_period": "2022-11-25 to 2023-11-27",
+      "test_period": "2023-11-28 to 2023-12-27",
+      "direction_accuracy": 0.467787,
+      "mean_correlation": -0.07116,
+      "rmse": 0.01019104
+    },
+    {
+      "fold_id": 21,
+      "train_period": "2022-12-27 to 2023-12-27",
+      "test_period": "2023-12-28 to 2024-01-29",
+      "direction_accuracy": 0.490196,
+      "mean_correlation": -0.115711,
+      "rmse": 0.01182596
+    },
+    {
+      "fold_id": 22,
+      "train_period": "2023-01-27 to 2024-01-29",
+      "test_period": "2024-01-30 to 2024-02-28",
+      "direction_accuracy": 0.526611,
+      "mean_correlation": 0.027832,
+      "rmse": 0.01021406
+    },
+    {
+      "fold_id": 23,
+      "train_period": "2023-02-28 to 2024-02-28",
+      "test_period": "2024-02-29 to 2024-03-28",
+      "direction_accuracy": 0.495798,
+      "mean_correlation": 0.025317,
+      "rmse": 0.0126674
+    },
+    {
+      "fold_id": 24,
+      "train_period": "2023-03-29 to 2024-03-28",
+      "test_period": "2024-04-01 to 2024-04-29",
+      "direction_accuracy": 0.462185,
+      "mean_correlation": -0.086582,
+      "rmse": 0.01361319
+    },
+    {
+      "fold_id": 25,
+      "train_period": "2023-04-28 to 2024-04-29",
+      "test_period": "2024-04-30 to 2024-05-29",
+      "direction_accuracy": 0.445378,
+      "mean_correlation": -0.131523,
+      "rmse": 0.01045758
+    },
+    {
+      "fold_id": 26,
+      "train_period": "2023-05-30 to 2024-05-29",
+      "test_period": "2024-05-30 to 2024-06-28",
+      "direction_accuracy": 0.571429,
+      "mean_correlation": 0.202976,
+      "rmse": 0.00963927
+    },
+    {
+      "fold_id": 27,
+      "train_period": "2023-06-29 to 2024-06-28",
+      "test_period": "2024-07-01 to 2024-07-30",
+      "direction_accuracy": 0.473389,
+      "mean_correlation": 0.055287,
+      "rmse": 0.01332728
+    },
+    {
+      "fold_id": 28,
+      "train_period": "2023-07-31 to 2024-07-30",
+      "test_period": "2024-07-31 to 2024-08-28",
+      "direction_accuracy": 0.546218,
+      "mean_correlation": 0.272148,
+      "rmse": 0.02375728
+    },
+    {
+      "fold_id": 29,
+      "train_period": "2023-08-29 to 2024-08-28",
+      "test_period": "2024-08-29 to 2024-09-27",
+      "direction_accuracy": 0.436975,
+      "mean_correlation": -0.039145,
+      "rmse": 0.01392299
+    },
+    {
+      "fold_id": 30,
+      "train_period": "2023-09-28 to 2024-09-27",
+      "test_period": "2024-09-30 to 2024-10-28",
+      "direction_accuracy": 0.459384,
+      "mean_correlation": 0.120844,
+      "rmse": 0.01266894
+    },
+    {
+      "fold_id": 31,
+      "train_period": "2023-10-27 to 2024-10-28",
+      "test_period": "2024-10-29 to 2024-11-26",
+      "direction_accuracy": 0.563025,
+      "mean_correlation": 0.021198,
+      "rmse": 0.01103074
+    },
+    {
+      "fold_id": 32,
+      "train_period": "2023-11-28 to 2024-11-26",
+      "test_period": "2024-11-27 to 2024-12-27",
+      "direction_accuracy": 0.52381,
+      "mean_correlation": 0.023807,
+      "rmse": 0.01003803
+    },
+    {
+      "fold_id": 33,
+      "train_period": "2023-12-28 to 2024-12-27",
+      "test_period": "2024-12-30 to 2025-01-30",
+      "direction_accuracy": 0.537815,
+      "mean_correlation": 0.010129,
+      "rmse": 0.01064487
+    },
+    {
+      "fold_id": 34,
+      "train_period": "2024-01-30 to 2025-01-30",
+      "test_period": "2025-01-31 to 2025-03-03",
+      "direction_accuracy": 0.54902,
+      "mean_correlation": 0.162256,
+      "rmse": 0.01008091
+    },
+    {
+      "fold_id": 35,
+      "train_period": "2024-02-29 to 2025-03-03",
+      "test_period": "2025-03-04 to 2025-04-01",
+      "direction_accuracy": 0.467787,
+      "mean_correlation": 0.041344,
+      "rmse": 0.01236341
+    },
+    {
+      "fold_id": 36,
+      "train_period": "2024-04-01 to 2025-04-01",
+      "test_period": "2025-04-02 to 2025-05-01",
+      "direction_accuracy": 0.459384,
+      "mean_correlation": -0.010541,
+      "rmse": 0.01862931
+    },
+    {
+      "fold_id": 37,
+      "train_period": "2024-04-30 to 2025-05-01",
+      "test_period": "2025-05-02 to 2025-06-02",
+      "direction_accuracy": 0.498599,
+      "mean_correlation": 0.135288,
+      "rmse": 0.01024265
+    },
+    {
+      "fold_id": 38,
+      "train_period": "2024-05-30 to 2025-06-02",
+      "test_period": "2025-06-03 to 2025-07-02",
+      "direction_accuracy": 0.52381,
+      "mean_correlation": 0.114513,
+      "rmse": 0.00810757
+    },
+    {
+      "fold_id": 39,
+      "train_period": "2024-07-01 to 2025-07-02",
+      "test_period": "2025-07-03 to 2025-08-01",
+      "direction_accuracy": 0.515406,
+      "mean_correlation": 0.121116,
+      "rmse": 0.00948398
+    },
+    {
+      "fold_id": 40,
+      "train_period": "2024-07-31 to 2025-08-01",
+      "test_period": "2025-08-04 to 2025-09-02",
+      "direction_accuracy": 0.554622,
+      "mean_correlation": 0.149038,
+      "rmse": 0.00964862
+    },
+    {
+      "fold_id": 41,
+      "train_period": "2024-08-29 to 2025-09-02",
+      "test_period": "2025-09-03 to 2025-10-01",
+      "direction_accuracy": 0.445378,
+      "mean_correlation": -0.167582,
+      "rmse": 0.01037768
+    },
+    {
+      "fold_id": 42,
+      "train_period": "2024-09-30 to 2025-10-01",
+      "test_period": "2025-10-02 to 2025-10-30",
+      "direction_accuracy": 0.484594,
+      "mean_correlation": -0.047958,
+      "rmse": 0.01255155
+    },
+    {
+      "fold_id": 43,
+      "train_period": "2024-10-29 to 2025-10-30",
+      "test_period": "2025-10-31 to 2025-12-01",
+      "direction_accuracy": 0.518207,
+      "mean_correlation": 0.032147,
+      "rmse": 0.0144872
+    },
+    {
+      "fold_id": 44,
+      "train_period": "2024-11-27 to 2025-12-01",
+      "test_period": "2025-12-02 to 2025-12-31",
+      "direction_accuracy": 0.52381,
+      "mean_correlation": 0.112156,
+      "rmse": 0.01209614
+    },
+    {
+      "fold_id": 45,
+      "train_period": "2024-12-30 to 2025-12-31",
+      "test_period": "2026-01-02 to 2026-02-02",
+      "direction_accuracy": 0.52381,
+      "mean_correlation": -0.010488,
+      "rmse": 0.01288869
+    },
+    {
+      "fold_id": 46,
+      "train_period": "2025-01-31 to 2026-02-02",
+      "test_period": "2026-02-03 to 2026-03-04",
+      "direction_accuracy": 0.540616,
+      "mean_correlation": -0.014085,
+      "rmse": 0.02003306
+    }
+  ],
+  "per_sector": {
+    "1617.T": {
+      "direction_accuracy": 0.521783,
+      "correlation": 0.12458
+    },
+    "1618.T": {
+      "direction_accuracy": 0.511651,
+      "correlation": 0.071825
+    },
+    "1619.T": {
+      "direction_accuracy": 0.473151,
+      "correlation": -0.010718
+    },
+    "1620.T": {
+      "direction_accuracy": 0.493414,
+      "correlation": 0.006904
+    },
+    "1621.T": {
+      "direction_accuracy": 0.47923,
+      "correlation": -0.086027
+    },
+    "1622.T": {
+      "direction_accuracy": 0.506586,
+      "correlation": 0.011658
+    },
+    "1623.T": {
+      "direction_accuracy": 0.496454,
+      "correlation": 0.032952
+    },
+    "1624.T": {
+      "direction_accuracy": 0.500507,
+      "correlation": -0.023781
+    },
+    "1625.T": {
+      "direction_accuracy": 0.494428,
+      "correlation": -0.032999
+    },
+    "1626.T": {
+      "direction_accuracy": 0.493414,
+      "correlation": 0.013068
+    },
+    "1627.T": {
+      "direction_accuracy": 0.50152,
+      "correlation": 0.032838
+    },
+    "1628.T": {
+      "direction_accuracy": 0.497467,
+      "correlation": 0.08765
+    },
+    "1629.T": {
+      "direction_accuracy": 0.506586,
+      "correlation": -0.015177
+    },
+    "1630.T": {
+      "direction_accuracy": 0.518744,
+      "correlation": 0.099677
+    },
+    "1631.T": {
+      "direction_accuracy": 0.473151,
+      "correlation": -0.029161
+    },
+    "1632.T": {
+      "direction_accuracy": 0.50152,
+      "correlation": 0.004544
+    },
+    "1633.T": {
+      "direction_accuracy": 0.492401,
+      "correlation": 0.023878
+    }
+  },
+  "validation_checks": {
+    "n_folds_positive": true,
+    "no_nan_predictions": true,
+    "no_inf_predictions": true,
+    "correct_pred_shape": true,
+    "all_folds_have_metrics": true,
+    "no_overlap": true,
+    "monotonic_folds": true
+  },
+  "all_checks_passed": true
+}
