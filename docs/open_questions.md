@@ -28,6 +28,14 @@
 
 11. **Sector heterogeneity in predictability**: Foods (1617.T, acc=52.2%) and Finance ex-Banks (1630.T, acc=51.9%) show the strongest predictability. Construction (1619.T) and Real Estate (1631.T) are hardest to predict. This may relate to global vs. domestic sector exposure.
 
-12. **Train window sensitivity**: The current 252-day train window is fixed. Shorter windows might capture regime changes faster; longer windows might provide more stable estimates. This needs systematic testing in Phase 6.
+12. ~~**Train window sensitivity**~~: **Resolved in Phase 6** — Nested walk-forward optimization tested L ∈ {20, 40, 60, 80, 120}. L=120 was selected in 29/35 folds; longer lookbacks provide more stable covariance estimates and better inner-loop Sharpe. The sensitivity analysis shows a monotonic improvement from L=20 to L=120.
 
 13. **Equal-weight strategy limitation**: The current strategy uses equal weights across all sectors. A volatility-weighted or signal-strength-weighted approach could improve the Sharpe ratio.
+
+## Phase 6
+
+14. **Optimal parameters favor more components and no decay**: The optimizer consistently selected K=5 (17/35 folds), L=120 (29/35), λ=1.0 (33/35). λ=1.0 means equal weighting (no exponential decay), suggesting the covariance structure is stable enough that recent-weighting hurts more than it helps. This contradicts the paper's default λ=0.9.
+
+15. **In-sample vs OOS gap in optimization**: Inner-loop Sharpe ratios reach 3–4+ in later folds while OOS accuracy stays around 51%. This gap suggests the inner-loop metric may overfit to specific market regimes, though the nested design prevents this from contaminating OOS evaluation.
+
+16. **Parameter non-stationarity**: Early folds (2023) selected K=4, while later folds (2024–2026) shifted to K=5. This time-varying optimal dimensionality suggests the cross-market factor structure evolves, supporting periodic re-optimization.
