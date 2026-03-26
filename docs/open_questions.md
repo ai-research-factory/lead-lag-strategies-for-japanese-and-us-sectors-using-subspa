@@ -39,3 +39,19 @@
 15. **In-sample vs OOS gap in optimization**: Inner-loop Sharpe ratios reach 3–4+ in later folds while OOS accuracy stays around 51%. This gap suggests the inner-loop metric may overfit to specific market regimes, though the nested design prevents this from contaminating OOS evaluation.
 
 16. **Parameter non-stationarity**: Early folds (2023) selected K=4, while later folds (2024–2026) shifted to K=5. This time-varying optimal dimensionality suggests the cross-market factor structure evolves, supporting periodic re-optimization.
+
+## Phase 7
+
+17. ~~**Parameter sensitivity magnitude**~~: **Resolved** — One-at-a-time sensitivity shows K has the largest impact on Sharpe (spread ~0.9 across K=1..7), λ has moderate impact (spread ~0.7), and L has smallest impact (spread ~0.08). Model is most sensitive to dimensionality choice.
+
+18. ~~**Regime dependence confirmed**~~: **Resolved** — Model performs better in low-volatility regimes (SR=0.72 vs 0.47 in high-vol) and up-market days (SR=1.31 vs -0.18 in down-market). The lead-lag signal is directionally asymmetric — stronger when JP market goes up.
+
+19. ~~**Temporal stability**~~: **Resolved** — Slight positive accuracy trend over time (slope +0.0007/fold). However, max consecutive losing streak (7 folds below 50%) indicates sustained drawdown periods are expected. Sub-period analysis shows 2022–2023 were poor (negative Sharpe) while 2024 was strong (SR=1.22).
+
+20. ~~**Sector-level robustness**~~: **Resolved** — Foods (1617.T, acc=52.2%, SR=1.22) and Finance ex-Banks (1630.T, acc=51.9%, SR=1.21) are consistently the most predictable sectors. Real Estate (1631.T) and Construction (1619.T) remain near or below 50%. Selective sector trading on top-predictable sectors is a promising avenue.
+
+21. ~~**Statistical significance**~~: **Resolved** — Block bootstrap (2000 resamples) gives baseline Sharpe 90% CI of [-0.45, 1.40] with P(SR>0)=82%. Optimized params show stronger significance. The wide CI reflects regime dependence; the signal exists but is noisy.
+
+22. **Optimized vs baseline gap**: Optimized params (K=5, L=120, λ=1.0) deliver SR=2.18 vs baseline SR=0.54, but this may reflect in-sample fitting to the 2021–2026 period. True out-of-sample validation on new data is needed to confirm the improvement is genuine.
+
+23. **Selective sector strategy**: Given consistent sector-level variation, a strategy that only trades the most predictable sectors (Foods, Finance ex-Banks, Energy Resources, Trading Companies) could improve risk-adjusted returns and reduce noise from unpredictable sectors.
