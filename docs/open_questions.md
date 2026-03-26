@@ -189,14 +189,39 @@
       with net Sharpe 0.63 (0.59 with 75 bps borrow costs). Signal-weighting and adaptive
       EMA do not improve upon the simple configuration.
 
-29. **OPEN**: Dynamic sector selection — could the set of traded sectors change over time
+29. **RESOLVED**: Dynamic sector selection — could the set of traded sectors change over time
     based on rolling predictability scores instead of fixed top-5?
+    - No improvement. Best dynamic config (lookback=126d, minAcc=0.51, 3-5 sectors, monthly
+      rebalance) achieves net Sharpe 0.29 vs fixed top-5 at 0.63. Dynamic selection increases
+      turnover (0.08 vs 0.05) and reduces return (+9.8% vs +23.5%). The fixed top-5 sectors
+      maintain stable predictability across the full evaluation period; re-ranking adds noise
+      and missed opportunities from premature sector exclusion.
 
-30. **OPEN**: Multi-horizon signals — could combining predictions at different horizons
+30. **RESOLVED**: Multi-horizon signals — could combining predictions at different horizons
     (1-day, 5-day, 21-day) improve signal quality?
+    - No improvement. All multi-horizon ensembles underperform raw 1-day predictions.
+      Best ensemble (1d+5d weighted 70/30) achieves net Sharpe 0.51 vs 1d-only at 0.63.
+      Longer horizons (10d, 21d) further degrade performance. The PCA_SUB signal is strongest
+      at the 1-day horizon; moving-average aggregation delays signal capture without
+      meaningful noise reduction. The EMA-20 smoothing already provides optimal noise
+      filtering — stacking additional averaging on top over-smooths the signal.
 
 31. **OPEN**: Factor-timing overlay — could timing exposure to specific PCA factors based
     on regime indicators improve returns?
 
 32. **OPEN**: Intraday execution — could splitting orders across the trading day reduce
     market impact and improve fill prices?
+
+### Cycle 14: Dynamic Sector Selection & Multi-Horizon Signals
+
+33. **OPEN**: Ensemble model diversity — could combining PCA_SUB with other model types
+    (Ridge, elastic net) improve signal quality beyond single-model multi-horizon averaging?
+
+34. **OPEN**: Regime detection — could an explicit regime classifier (bull/bear/sideways)
+    improve sector selection timing instead of rolling accuracy?
+
+35. **OPEN**: Transaction cost optimization — could dynamic selection be modified to penalize
+    unnecessary sector switches, reducing turnover while maintaining adaptivity?
+
+36. **OPEN**: Out-of-sample validation — all improvements (Cycles 12-14) should be tested on
+    truly unseen data (post-2026) to confirm they are not overfit to the 2021-2026 period.
