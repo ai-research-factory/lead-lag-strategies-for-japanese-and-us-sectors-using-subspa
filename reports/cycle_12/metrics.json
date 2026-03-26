@@ -1,0 +1,318 @@
+{
+  "phase": 12,
+  "description": "Turnover optimization and cost-aware strategy evaluation",
+  "timestamp": "2026-03-27",
+  "baseline_performance": {
+    "sharpe_gross": 2.1756,
+    "sharpe_net": -1.2431,
+    "avg_daily_turnover": 0.8583,
+    "total_return_gross": 0.699435,
+    "total_return_net": -0.27085,
+    "max_drawdown_net": -0.307499
+  },
+  "optimized_performance": {
+    "sharpe_gross": 0.782,
+    "sharpe_net": 0.6349,
+    "avg_daily_turnover": 0.054,
+    "total_return_gross": 0.302334,
+    "total_return_net": 0.234944,
+    "max_drawdown_net": -0.112374,
+    "annualized_return_net": 0.058074,
+    "annualized_volatility_net": 0.091473,
+    "pct_positive_days_net": 53.7
+  },
+  "best_strategy_params": {
+    "ema_halflife": 20,
+    "signal_threshold": 0.0,
+    "sector_selection": "top_5_sectors",
+    "max_position_change": null
+  },
+  "turnover_reduction": {
+    "baseline_turnover": 0.8583,
+    "optimized_turnover": 0.054,
+    "reduction_pct": 93.7
+  },
+  "sharpe_improvement": {
+    "baseline_net_sharpe": -1.2431,
+    "optimized_net_sharpe": 0.6349,
+    "improvement": 1.878
+  },
+  "top_5_predictable_sectors": {
+    "1623.T": {
+      "name": "Steel & Nonferrous",
+      "accuracy": 0.5502
+    },
+    "1618.T": {
+      "name": "Energy Resources",
+      "accuracy": 0.5289
+    },
+    "1629.T": {
+      "name": "Trading Companies",
+      "accuracy": 0.5279
+    },
+    "1630.T": {
+      "name": "Finance (ex Banks)",
+      "accuracy": 0.5228
+    },
+    "1621.T": {
+      "name": "Pharmaceuticals",
+      "accuracy": 0.5218
+    }
+  },
+  "grid_search": {
+    "total_configs_tested": 400,
+    "top_10_configs": [
+      {
+        "ema_halflife": 20,
+        "signal_threshold": 0.0,
+        "sector_selection": "top_5_sectors",
+        "max_position_change": null,
+        "sharpe_gross": 0.782,
+        "sharpe_net": 0.6349,
+        "turnover": 0.054,
+        "total_return_net": 0.234944
+      },
+      {
+        "ema_halflife": 20,
+        "signal_threshold": 0.0,
+        "sector_selection": "top_8_sectors",
+        "max_position_change": null,
+        "sharpe_gross": 0.6949,
+        "sharpe_net": 0.5088,
+        "turnover": 0.0598,
+        "total_return_net": 0.159562
+      },
+      {
+        "ema_halflife": 20,
+        "signal_threshold": 0.0003,
+        "sector_selection": "top_5_sectors",
+        "max_position_change": null,
+        "sharpe_gross": 0.762,
+        "sharpe_net": 0.4546,
+        "turnover": 0.1343,
+        "total_return_net": 0.187312
+      },
+      {
+        "ema_halflife": 20,
+        "signal_threshold": 0.0,
+        "sector_selection": "top_8_sectors",
+        "max_position_change": 0.2,
+        "sharpe_gross": 0.6301,
+        "sharpe_net": 0.4125,
+        "turnover": 0.0707,
+        "total_return_net": 0.126147
+      },
+      {
+        "ema_halflife": 20,
+        "signal_threshold": 0.0003,
+        "sector_selection": "top_5_sectors",
+        "max_position_change": 0.2,
+        "sharpe_gross": 0.6637,
+        "sharpe_net": 0.3831,
+        "turnover": 0.1203,
+        "total_return_net": 0.149185
+      },
+      {
+        "ema_halflife": 20,
+        "signal_threshold": 0.0,
+        "sector_selection": "top_5_sectors",
+        "max_position_change": 0.2,
+        "sharpe_gross": 0.5969,
+        "sharpe_net": 0.3654,
+        "turnover": 0.0872,
+        "total_return_net": 0.125064
+      },
+      {
+        "ema_halflife": 20,
+        "signal_threshold": 0.0003,
+        "sector_selection": "top_5_sectors",
+        "max_position_change": 0.1,
+        "sharpe_gross": 0.5811,
+        "sharpe_net": 0.3566,
+        "turnover": 0.0953,
+        "total_return_net": 0.135205
+      },
+      {
+        "ema_halflife": null,
+        "signal_threshold": 0.0,
+        "sector_selection": "top_5_sectors",
+        "max_position_change": 0.1,
+        "sharpe_gross": 1.1635,
+        "sharpe_net": 0.3406,
+        "turnover": 0.2957,
+        "total_return_net": 0.110391
+      },
+      {
+        "ema_halflife": 20,
+        "signal_threshold": 0.0,
+        "sector_selection": "top_10_sectors",
+        "max_position_change": null,
+        "sharpe_gross": 0.5051,
+        "sharpe_net": 0.3355,
+        "turnover": 0.0527,
+        "total_return_net": 0.095051
+      },
+      {
+        "ema_halflife": 20,
+        "signal_threshold": 0.0,
+        "sector_selection": "top_10_sectors",
+        "max_position_change": 0.2,
+        "sharpe_gross": 0.5051,
+        "sharpe_net": 0.3355,
+        "turnover": 0.0527,
+        "total_return_net": 0.095051
+      }
+    ]
+  },
+  "strategy_comparison": [
+    {
+      "strategy": "Baseline (no smoothing)",
+      "sharpe_gross": 2.1756,
+      "sharpe_net": -1.2431,
+      "turnover": 0.8583,
+      "total_return_net": -0.27085,
+      "max_drawdown_net": -0.307499,
+      "pct_positive_days_net": 44.58
+    },
+    {
+      "strategy": "EMA-5",
+      "sharpe_gross": 0.8026,
+      "sharpe_net": 0.1499,
+      "turnover": 0.1772,
+      "total_return_net": 0.031434,
+      "max_drawdown_net": -0.157631,
+      "pct_positive_days_net": 50.76
+    },
+    {
+      "strategy": "EMA-10",
+      "sharpe_gross": 0.3545,
+      "sharpe_net": 0.0157,
+      "turnover": 0.0935,
+      "total_return_net": -0.005207,
+      "max_drawdown_net": -0.142187,
+      "pct_positive_days_net": 50.86
+    },
+    {
+      "strategy": "EMA-20",
+      "sharpe_gross": 0.1819,
+      "sharpe_net": -0.0209,
+      "turnover": 0.0543,
+      "total_return_net": -0.014351,
+      "max_drawdown_net": -0.106054,
+      "pct_positive_days_net": 51.17
+    },
+    {
+      "strategy": "Threshold 0.03%",
+      "sharpe_gross": 2.1571,
+      "sharpe_net": -1.6682,
+      "turnover": 1.0153,
+      "total_return_net": -0.359734,
+      "max_drawdown_net": -0.388151,
+      "pct_positive_days_net": 43.67
+    },
+    {
+      "strategy": "Threshold 0.05%",
+      "sharpe_gross": 2.1012,
+      "sharpe_net": -1.7812,
+      "turnover": 1.0982,
+      "total_return_net": -0.39798,
+      "max_drawdown_net": -0.428562,
+      "pct_positive_days_net": 42.96
+    },
+    {
+      "strategy": "Threshold 0.1%",
+      "sharpe_gross": 1.9229,
+      "sharpe_net": -2.0654,
+      "turnover": 1.2769,
+      "total_return_net": -0.486177,
+      "max_drawdown_net": -0.508129,
+      "pct_positive_days_net": 43.77
+    },
+    {
+      "strategy": "EMA-10 + Threshold 0.03%",
+      "sharpe_gross": 0.4416,
+      "sharpe_net": -0.1731,
+      "turnover": 0.1971,
+      "total_return_net": -0.065239,
+      "max_drawdown_net": -0.192134,
+      "pct_positive_days_net": 50.25
+    },
+    {
+      "strategy": "EMA-10 + MaxChg 0.1",
+      "sharpe_gross": 0.2999,
+      "sharpe_net": -0.07,
+      "turnover": 0.1027,
+      "total_return_net": -0.028376,
+      "max_drawdown_net": -0.150534,
+      "pct_positive_days_net": 50.46
+    },
+    {
+      "strategy": "Position limit 0.05",
+      "sharpe_gross": 1.729,
+      "sharpe_net": -0.4583,
+      "turnover": 0.565,
+      "total_return_net": -0.117553,
+      "max_drawdown_net": -0.189285,
+      "pct_positive_days_net": 46.81
+    },
+    {
+      "strategy": "Position limit 0.1",
+      "sharpe_gross": 2.2216,
+      "sharpe_net": -1.2375,
+      "turnover": 0.877,
+      "total_return_net": -0.271935,
+      "max_drawdown_net": -0.299538,
+      "pct_positive_days_net": 44.17
+    },
+    {
+      "strategy": "Top-5 sectors",
+      "sharpe_gross": 2.336,
+      "sharpe_net": 0.0028,
+      "turnover": 0.8333,
+      "total_return_net": -0.014871,
+      "max_drawdown_net": -0.305857,
+      "pct_positive_days_net": 50.56
+    },
+    {
+      "strategy": "Top-5 + EMA-10",
+      "sharpe_gross": 0.4819,
+      "sharpe_net": 0.253,
+      "turnover": 0.0856,
+      "total_return_net": 0.078529,
+      "max_drawdown_net": -0.19758,
+      "pct_positive_days_net": 52.18
+    },
+    {
+      "strategy": "Top-8 sectors",
+      "sharpe_gross": 2.5899,
+      "sharpe_net": -0.2237,
+      "turnover": 0.8649,
+      "total_return_net": -0.076612,
+      "max_drawdown_net": -0.300405,
+      "pct_positive_days_net": 47.62
+    },
+    {
+      "strategy": "Top-8 + EMA-10",
+      "sharpe_gross": 0.36,
+      "sharpe_net": 0.0604,
+      "turnover": 0.0999,
+      "total_return_net": 0.006034,
+      "max_drawdown_net": -0.18326,
+      "pct_positive_days_net": 50.25
+    }
+  ],
+  "walk_forward_params": {
+    "K": 5,
+    "L": 120,
+    "lambda_decay": 1.0,
+    "train_window": 252,
+    "test_window": 21,
+    "n_folds": 47,
+    "total_test_samples": 987,
+    "direction_accuracy": 0.5119
+  },
+  "cost_assumption": {
+    "one_way_cost_bps": 10.0,
+    "description": "10 basis points one-way (commission + slippage)"
+  }
+}

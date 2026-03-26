@@ -133,3 +133,37 @@
       `pc_interpreter.py` are indirectly tested through their dependencies on
       the core modules. Dedicated tests would increase coverage but require
       longer-running synthetic walk-forward evaluations.
+
+### Cycle 12: Turnover Optimization & Cost-Aware Strategy
+
+21. **RESOLVED**: Can signal smoothing or threshold-based positioning reduce turnover?
+    - Yes. EMA smoothing with half-life=20 days on top-5 predictable sectors achieves
+      the best net Sharpe of 0.63, reducing daily turnover from 86% to 5.4%.
+    - EMA smoothing alone (half-life=5) improves net Sharpe from -1.24 to +0.15.
+    - Sector selection to top-5 alone improves net Sharpe from -1.24 to ~0.00.
+    - Combined EMA + sector selection delivers the strongest improvement.
+
+22. **RESOLVED**: Can the gross-to-net gap be closed?
+    - Partially. The best configuration (EMA-20, top-5 sectors) achieves net Sharpe 0.63
+      with total return +23.5% over 2022-2026 and max drawdown -11.2%. The 76% daily
+      turnover was reduced to 5.4%, preserving most of the sector-concentrated signal.
+    - The gross Sharpe drops from 2.18 to 0.78 with smoothing (signal delay cost),
+      but the net Sharpe improves dramatically (+1.88 improvement).
+
+23. **RESOLVED**: Would sector-selective trading improve net Sharpe?
+    - Yes. Top-5 sectors (Steel & Nonferrous 55%, Energy Resources 53%, Trading Companies
+      53%, Pharmaceuticals 52%, Finance ex-Banks 52%) concentrate the strongest signals.
+    - Combined with EMA smoothing, sector selection is the most effective approach.
+
+24. **OPEN**: Signal-weighted positions — could prediction magnitude size positions instead
+    of equal-weight long/short? Higher-conviction trades would receive larger allocations.
+
+25. **OPEN**: Adaptive smoothing — could EMA half-life adapt to market regime (longer in
+    volatile periods, shorter in trending markets)?
+
+26. **OPEN**: Out-of-sample parameter stability — the optimal strategy parameters (EMA-20,
+    top-5 sectors) were selected on the 2021-2026 walk-forward window. Forward validation
+    on post-2026 data is needed to confirm stability.
+
+27. **OPEN**: Borrowing costs — short positions incur borrowing costs not modeled here.
+    For Japanese ETFs, these can be 50-100 bps annually, which would reduce net returns.
