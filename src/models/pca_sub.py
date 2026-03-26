@@ -8,6 +8,65 @@ import numpy as np
 from numpy.linalg import eigh
 
 
+def ledoit_wolf_shrinkage(X: np.ndarray, weights: np.ndarray | None = None) -> tuple[np.ndarray, float]:
+    """Ledoit-Wolf optimal shrinkage estimator for the covariance matrix.
+
+    Shrinks the sample covariance toward a scaled identity matrix.
+    Returns (shrunk_cov, shrinkage_intensity).
+
+    Parameters
+    ----------
+    X : ndarray of shape (T, p)
+        Data matrix (centered or uncentered — will be centered internally).
+    weights : ndarray of shape (T,), optional
+        Observation weights. If None, uses equal weights.
+
+    Returns
+    -------
+    shrunk_cov : ndarray of shape (p, p)
+    shrinkage : float
+        Optimal shrinkage intensity in [0, 1].
+    """
+    T, p = X.shape
+
+    if weights is not None:
+        X_centered = X - np.average(X, axis=0, weights=weights)
+        S = (X_centered * weights[:, None]).T @ X_centered
+    else:
+        X_centered = X - X.mean(axis=0)
+        S = X_centered.T @ X_centered / T
+
+    # Target: scaled identity (average eigenvalue * I)
+    mu = np.trace(S) / p
+    F = mu * np.eye(p)
+
+    # Compute optimal shrinkage intensity
+    # delta = ||S - F||^2 / p^2  (squared Frobenius distance)
+    delta = np.sum((S - F) ** 2) / p
+
+    if weights is not None:
+        # Weighted version: approximate using effective sample size
+        eff_n = 1.0 / np.sum(weights ** 2)
+        # Estimate squared bias term
+        X2 = X_centered ** 2
+        beta_terms = np.zeros((p, p))
+        for i in range(p):
+            for j in range(p):
+                beta_terms[i, j] = np.sum(weights ** 2 * X_centered[:, i] ** 2 * X_centered[:, j] ** 2)
+        beta = np.sum(beta_terms - S ** 2 / eff_n) / p
+    else:
+        # Standard Ledoit-Wolf formula
+        X2 = X_centered ** 2
+        beta = np.sum(X2.T @ X2 / T - S ** 2) / (T * p)
+
+    beta = min(beta, delta)
+    shrinkage = beta / delta if delta > 1e-12 else 0.0
+    shrinkage = max(0.0, min(1.0, shrinkage))
+
+    shrunk_cov = shrinkage * F + (1 - shrinkage) * S
+    return shrunk_cov, shrinkage
+
+
 class PCASub:
     """Subspace regularization PCA for cross-market return prediction.
 
@@ -23,6 +82,10 @@ class PCASub:
         Pre-computed eigenvectors from a fixed covariance period (Cfull mode).
         When provided, fit() skips PCA estimation and uses these eigenvectors
         directly, only re-estimating the regression coefficients.
+    shrinkage : str or None
+        Covariance shrinkage method. Options:
+        - None: standard sample covariance (default)
+        - "ledoit_wolf": Ledoit-Wolf optimal shrinkage toward scaled identity
     """
 
     def __init__(
@@ -31,11 +94,13 @@ class PCASub:
         L: int = 60,
         lambda_decay: float = 0.9,
         fixed_eigvecs: np.ndarray | None = None,
+        shrinkage: str | None = None,
     ):
         self.K = K
         self.L = L
         self.lambda_decay = lambda_decay
         self.fixed_eigvecs = fixed_eigvecs
+        self.shrinkage = shrinkage
 
         # Fitted attributes
         self.eigvecs_ = None  # (n_us, K) principal component loadings
@@ -98,10 +163,15 @@ class PCASub:
         if self.fixed_eigvecs is not None:
             # Cfull mode: use pre-computed eigenvectors from fixed period
             self.eigvecs_ = self.fixed_eigvecs
+            self.shrinkage_intensity_ = None
         else:
             # Rolling mode: compute covariance and PCA from training window
-            # Step 1: Weighted covariance of U.S. returns
-            cov = self._weighted_covariance(X, weights)
+            if self.shrinkage == "ledoit_wolf":
+                cov, self.shrinkage_intensity_ = ledoit_wolf_shrinkage(X, weights)
+            else:
+                # Step 1: Weighted covariance of U.S. returns
+                cov = self._weighted_covariance(X, weights)
+                self.shrinkage_intensity_ = None
 
             # Step 2: Eigen-decomposition, take top-K components
             eigenvalues, eigenvectors = eigh(cov)

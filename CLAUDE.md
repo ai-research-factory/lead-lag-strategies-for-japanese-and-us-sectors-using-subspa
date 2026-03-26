@@ -7,7 +7,7 @@ proj_2ff0333b
 PCA, StatArb
 
 ## Current Cycle
-16
+17
 
 ## Objective
 Implement, validate, and iteratively improve the paper's approach with production-quality standards.

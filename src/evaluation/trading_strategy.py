@@ -50,6 +50,16 @@ class TradingStrategy:
         0.0 means no bias (standard long-short). A value of 1.0 means
         long-only. Values between scale the short positions down:
         short_weight *= (1 - long_bias).
+    cost_aware_rebalance : bool
+        If True, skip position changes for individual sectors when the
+        magnitude of the change is below a threshold derived from
+        transaction costs. Only rebalance when the expected alpha from
+        the position change exceeds the round-trip cost.
+    cost_aware_multiplier : float
+        Multiplier for the cost-aware threshold. The threshold is
+        cost_bps / 10000 * multiplier. Higher values are more
+        conservative (skip more trades). Default 2.0 means we require
+        the signal change to be at least 2x the one-way cost.
     """
 
     def __init__(
@@ -66,6 +76,8 @@ class TradingStrategy:
         risk_parity: bool = False,
         risk_parity_lookback: int = 63,
         long_bias: float | None = None,
+        cost_aware_rebalance: bool = False,
+        cost_aware_multiplier: float = 2.0,
     ):
         self.ema_halflife = ema_halflife
         self.signal_threshold = signal_threshold
@@ -79,6 +91,8 @@ class TradingStrategy:
         self.risk_parity = risk_parity
         self.risk_parity_lookback = risk_parity_lookback
         self.long_bias = long_bias
+        self.cost_aware_rebalance = cost_aware_rebalance
+        self.cost_aware_multiplier = cost_aware_multiplier
 
     def _ema_smooth(self, predictions: np.ndarray, actuals: np.ndarray | None = None) -> np.ndarray:
         """Apply exponential moving average smoothing to predictions.
@@ -227,6 +241,61 @@ class TradingStrategy:
 
         return limited
 
+    def _apply_cost_aware_rebalance(self, weights: np.ndarray) -> np.ndarray:
+        """Skip per-sector position changes when they are too small to justify the cost.
+
+        For each sector on each day, if the absolute change in weight is below
+        the cost threshold, keep the previous day's weight for that sector.
+        Then re-normalize so total absolute weight = 1.
+        """
+        if not self.cost_aware_rebalance:
+            return weights
+
+        threshold = (self.cost_bps / 10000.0) * self.cost_aware_multiplier
+        filtered = weights.copy()
+
+        for t in range(1, len(filtered)):
+            delta = filtered[t] - filtered[t - 1]
+            # Keep previous weight for sectors where change is below threshold
+            small_change = np.abs(delta) < threshold
+            filtered[t] = np.where(small_change, filtered[t - 1], filtered[t])
+            # Re-normalize
+            total = np.abs(filtered[t]).sum()
+            if total > 1e-12:
+                filtered[t] /= total
+
+        return filtered
+
+    def _apply_signal_deadband(self, signals: np.ndarray) -> np.ndarray:
+        """Apply deadband filter to smoothed signals before position computation.
+
+        When cost_aware_rebalance is enabled, keep the previous signal value for
+        sectors where the change in smoothed signal magnitude is small. This
+        prevents unnecessary sign flips when the signal is near zero or oscillating.
+
+        The deadband threshold is the median absolute signal value times the
+        cost_aware_multiplier fraction, ensuring it scales with signal magnitude.
+        """
+        if not self.cost_aware_rebalance:
+            return signals
+
+        filtered = signals.copy()
+        # Use a fraction of typical signal magnitude as deadband
+        median_abs = np.median(np.abs(signals[signals != 0])) if np.any(signals != 0) else 1e-6
+        deadband = median_abs * self.cost_aware_multiplier * 0.1
+
+        for t in range(1, len(filtered)):
+            for j in range(filtered.shape[1]):
+                # If signal change is small AND a sign flip would occur, keep old signal
+                old_sign = np.sign(filtered[t - 1, j])
+                new_sign = np.sign(filtered[t, j])
+                change = abs(filtered[t, j] - filtered[t - 1, j])
+
+                if change < deadband and old_sign != 0:
+                    filtered[t, j] = filtered[t - 1, j]
+
+        return filtered
+
     def run(
         self,
         predictions: np.ndarray,
@@ -256,11 +325,17 @@ class TradingStrategy:
         # Step 3: Apply signal threshold
         filtered = self._apply_threshold(smoothed)
 
+        # Step 3b: Apply signal deadband (cost-aware at signal level)
+        filtered = self._apply_signal_deadband(filtered)
+
         # Step 4: Compute positions
         weights = self._compute_positions(filtered, actuals)
 
         # Step 5: Apply position change limits
         weights = self._apply_position_limits(weights)
+
+        # Step 6: Cost-aware rebalancing (skip small trades)
+        weights = self._apply_cost_aware_rebalance(weights)
 
         # Compute daily returns
         daily_returns_gross = (weights * actuals).sum(axis=1)
@@ -328,6 +403,8 @@ class TradingStrategy:
             "adaptive_ema": self.adaptive_ema,
             "risk_parity": self.risk_parity,
             "long_bias": self.long_bias,
+            "cost_aware_rebalance": self.cost_aware_rebalance,
+            "cost_aware_multiplier": self.cost_aware_multiplier,
             "daily_returns_gross": daily_returns_gross,
             "daily_returns_net": daily_returns_net,
             "weights": weights,

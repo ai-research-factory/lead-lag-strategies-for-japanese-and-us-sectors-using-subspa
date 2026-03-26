@@ -69,6 +69,9 @@ class WalkForwardEvaluator:
         Lookback window for PCASub (uses min of L and train_window).
     lambda_decay : float
         Exponential decay rate for PCASub.
+    expanding : bool
+        If True, use expanding window (start fixed at 0, train_end grows).
+        The train_window parameter becomes the minimum initial window size.
     """
 
     def __init__(
@@ -78,12 +81,14 @@ class WalkForwardEvaluator:
         K: int = 3,
         L: int = 60,
         lambda_decay: float = 0.9,
+        expanding: bool = False,
     ):
         self.train_window = train_window
         self.test_window = test_window
         self.K = K
         self.L = L
         self.lambda_decay = lambda_decay
+        self.expanding = expanding
 
     def _compute_fold_metrics(
         self, Y_true: np.ndarray, Y_pred: np.ndarray
@@ -152,11 +157,17 @@ class WalkForwardEvaluator:
         start = 0
 
         while start + self.train_window + self.test_window <= T:
-            train_end = start + self.train_window
+            if self.expanding:
+                # Expanding window: always start from 0, grow train_end
+                train_start = 0
+                train_end = start + self.train_window
+            else:
+                train_start = start
+                train_end = start + self.train_window
             test_end = min(train_end + self.test_window, T)
 
-            X_train = X_us[start:train_end]
-            Y_train = Y_jp[start:train_end]
+            X_train = X_us[train_start:train_end]
+            Y_train = Y_jp[train_start:train_end]
             X_test = X_us[train_end:test_end]
             Y_test = Y_jp[train_end:test_end]
 
@@ -181,11 +192,11 @@ class WalkForwardEvaluator:
 
             fold_result = FoldResult(
                 fold_id=fold_id,
-                train_start=start,
+                train_start=train_start if self.expanding else start,
                 train_end=train_end - 1,
                 test_start=train_end,
                 test_end=test_end - 1,
-                train_start_date=_date_str(start),
+                train_start_date=_date_str(train_start if self.expanding else start),
                 train_end_date=_date_str(train_end - 1),
                 test_start_date=_date_str(train_end),
                 test_end_date=_date_str(test_end - 1),

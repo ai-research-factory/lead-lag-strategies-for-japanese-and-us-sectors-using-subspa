@@ -272,8 +272,43 @@
 42. **OPEN**: Sector-specific long bias — could each sector have a different optimal
     long/short asymmetry based on its individual signal characteristics?
 
-43. **OPEN**: Transaction cost-aware rebalancing — could the strategy skip small position
+43. **RESOLVED**: Transaction cost-aware rebalancing — could the strategy skip small position
     changes when the expected alpha is below the trading cost?
+    - Marginal improvement. Signal-level deadband filtering (multiplier=1.0) achieves net
+      Sharpe 0.654 vs C12 0.635 (+0.019). However, with sign-based positions and EMA-20
+      smoothing, turnover is already low (5.4%) and most position changes are large sign
+      flips, not small adjustments. The deadband only catches ~13% of position changes,
+      reducing turnover to 4.7%. Higher multipliers over-filter and degrade performance.
 
-44. **OPEN**: Out-of-sample validation — all improvements (Cycles 12-16) should be tested
+44. **OPEN**: Out-of-sample validation — all improvements (Cycles 12-17) should be tested
     on truly unseen data (post-2026) to confirm they are not overfit to the 2021-2026 period.
+
+### Cycle 17: Cost-Aware Rebalancing, Shrinkage & Expanding Window
+
+45. **RESOLVED**: Ledoit-Wolf covariance shrinkage — could regularizing the sample covariance
+    used in PCA improve eigenvector stability and prediction quality?
+    - No improvement. With L=120 and only p=11 US sector features, the sample-to-feature
+      ratio (T/p ≈ 11) is sufficient for a well-conditioned covariance matrix. The
+      Ledoit-Wolf shrinkage intensity converges to near zero, producing identical
+      eigenvectors. Shrinkage would only help with many more features or much shorter windows.
+
+46. **RESOLVED**: Expanding training window — could using all available history instead of
+    a fixed 252-day rolling window improve model stability?
+    - **Major improvement**. Expanding window with L=full (all available training data)
+      achieves net Sharpe **0.868** vs C12 rolling 0.635 (+0.233). The key insight: with
+      L=120, expanding window is identical to rolling (PCASub only uses last L observations).
+      But with L=full, the model uses all history for covariance and regression estimation,
+      producing more stable eigenvectors. Turnover drops to 2.4% (from 5.4%) as predictions
+      become smoother. Direction accuracy improves modestly (51.47% vs 51.19%).
+      Note: L=252 (mid-range) actually degrades performance (net SR=-0.32), suggesting
+      a non-monotonic relationship — either short recent windows or full history works,
+      but intermediate ranges add noise from partial regime inclusion.
+
+47. **OPEN**: Time-varying shrinkage — could the Ledoit-Wolf shrinkage intensity itself be
+    used as a regime indicator? High shrinkage = unstable covariance structure.
+
+48. **OPEN**: Sector-specific EMA half-lives — different sectors may have different optimal
+    signal smoothing periods based on their predictability characteristics.
+
+49. **OPEN**: Execution simulation — model market impact and realistic fill prices for
+    the strategy's typical position sizes.
