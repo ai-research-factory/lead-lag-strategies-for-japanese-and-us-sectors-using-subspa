@@ -2,7 +2,7 @@
 
 ## Phase 1
 
-1. **Covariance estimation period (Cfull)**: The paper uses a fixed period (2010–2014) for covariance estimation. How does this compare to the rolling window approach implemented here? This is the focus of Phase 5.
+1. ~~**Covariance estimation period (Cfull)**~~: **Resolved in Phase 5** — Compared fixed Cfull (126d, 252d, 504d) vs rolling covariance. See reports/cycle_5/ for detailed results and analysis.
 
 2. ~~**Open-to-close vs close-to-close returns for Japan**~~: **Resolved in Phase 2** — JP returns now use open-to-close calculation `(close - open) / open`.
 

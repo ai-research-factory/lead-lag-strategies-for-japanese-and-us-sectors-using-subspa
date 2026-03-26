@@ -19,12 +19,23 @@ class PCASub:
         Lookback window length for fitting.
     lambda_decay : float
         Exponential decay rate for weighting recent observations.
+    fixed_eigvecs : ndarray, optional
+        Pre-computed eigenvectors from a fixed covariance period (Cfull mode).
+        When provided, fit() skips PCA estimation and uses these eigenvectors
+        directly, only re-estimating the regression coefficients.
     """
 
-    def __init__(self, K: int = 3, L: int = 60, lambda_decay: float = 0.9):
+    def __init__(
+        self,
+        K: int = 3,
+        L: int = 60,
+        lambda_decay: float = 0.9,
+        fixed_eigvecs: np.ndarray | None = None,
+    ):
         self.K = K
         self.L = L
         self.lambda_decay = lambda_decay
+        self.fixed_eigvecs = fixed_eigvecs
 
         # Fitted attributes
         self.eigvecs_ = None  # (n_us, K) principal component loadings
@@ -84,14 +95,19 @@ class PCASub:
 
         weights = self._compute_decay_weights(L_eff)
 
-        # Step 1: Weighted covariance of U.S. returns
-        cov = self._weighted_covariance(X, weights)
+        if self.fixed_eigvecs is not None:
+            # Cfull mode: use pre-computed eigenvectors from fixed period
+            self.eigvecs_ = self.fixed_eigvecs
+        else:
+            # Rolling mode: compute covariance and PCA from training window
+            # Step 1: Weighted covariance of U.S. returns
+            cov = self._weighted_covariance(X, weights)
 
-        # Step 2: Eigen-decomposition, take top-K components
-        eigenvalues, eigenvectors = eigh(cov)
-        # eigh returns ascending order; take last K columns
-        idx = np.argsort(eigenvalues)[::-1][:self.K]
-        self.eigvecs_ = eigenvectors[:, idx]  # (n_us, K)
+            # Step 2: Eigen-decomposition, take top-K components
+            eigenvalues, eigenvectors = eigh(cov)
+            # eigh returns ascending order; take last K columns
+            idx = np.argsort(eigenvalues)[::-1][:self.K]
+            self.eigvecs_ = eigenvectors[:, idx]  # (n_us, K)
 
         # Step 3: Project U.S. returns onto principal component subspace
         scores = X @ self.eigvecs_  # (L_eff, K)
@@ -114,6 +130,37 @@ class PCASub:
         self.intercept_ = params[self.K]   # (n_jp,)
 
         return self
+
+    @staticmethod
+    def compute_cfull_eigvecs(
+        X_us_cfull: np.ndarray, K: int, lambda_decay: float = 0.9
+    ) -> np.ndarray:
+        """Compute eigenvectors from a fixed covariance estimation period (Cfull).
+
+        Parameters
+        ----------
+        X_us_cfull : ndarray of shape (T_cfull, n_us)
+            U.S. sector returns from the fixed estimation period.
+        K : int
+            Number of principal components to retain.
+        lambda_decay : float
+            Exponential decay rate for weighting.
+
+        Returns
+        -------
+        eigvecs : ndarray of shape (n_us, K)
+            Top-K eigenvectors of the decay-weighted covariance matrix.
+        """
+        T = X_us_cfull.shape[0]
+        weights = np.array([lambda_decay ** (T - 1 - t) for t in range(T)])
+        weights /= weights.sum()
+
+        X_centered = X_us_cfull - np.average(X_us_cfull, axis=0, weights=weights)
+        cov = (X_centered * weights[:, None]).T @ X_centered
+
+        eigenvalues, eigenvectors = eigh(cov)
+        idx = np.argsort(eigenvalues)[::-1][:K]
+        return eigenvectors[:, idx]
 
     def predict(self, X_us_new: np.ndarray) -> np.ndarray:
         """Predict Japanese sector returns from new U.S. returns.
