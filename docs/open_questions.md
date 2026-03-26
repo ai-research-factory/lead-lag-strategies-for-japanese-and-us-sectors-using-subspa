@@ -113,3 +113,23 @@
     - Inner-loop Sharpe has been trending upward (from 1.5 to 4.4) over 2023-2026
       folds, but this may reflect regime-specific fitting. True forward validation
       on post-2026 data is needed to confirm parameter stability.
+
+### Phase 11: Executive Summary and Code Quality
+
+18. **RESOLVED**: Is the project accessible to non-technical stakeholders?
+    - Yes. An executive summary (`docs/executive_summary.md`) was created covering
+      model explanation, key results, the critical turnover challenge, and recommended
+      next steps in plain language.
+
+19. **RESOLVED**: Is test coverage adequate for the core modules?
+    - 83 unit tests now cover the 4 most critical modules: PCA_SUB model, 6 baseline
+      models, walk-forward evaluator, and data pipeline. All tests pass in <1 second
+      with no external API dependencies. Tests verify mathematical properties
+      (orthonormality, positive semi-definiteness), interface contracts, output shapes,
+      edge cases, and lookahead-bias prevention.
+
+20. **OPEN**: Should higher-level evaluation modules also have dedicated unit tests?
+    - Modules like `robustness_analyzer.py`, `hyperparam_optimizer.py`, and
+      `pc_interpreter.py` are indirectly tested through their dependencies on
+      the core modules. Dedicated tests would increase coverage but require
+      longer-running synthetic walk-forward evaluations.
