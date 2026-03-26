@@ -70,3 +70,27 @@
 10. **OPEN**: Do transmission channel strengths predict strategy performance?
     - Periods with stronger, more stable transmission may correspond to
       higher strategy returns — worth investigating in future cycles.
+
+### Phase 9: Baseline Comparison
+
+11. **RESOLVED**: Does PCA_SUB outperform simpler baselines?
+    - On gross metrics, optimized PCA_SUB (K=5, L=120, λ=1.0) achieves the highest
+      Sharpe (2.18) and direction accuracy (51.2%), outperforming Direct OLS (1.95),
+      Simple PCA (0.92), and Ridge regression (0.14).
+    - All models have negative net Sharpe due to ~76% daily turnover from the
+      naive sign-based strategy construction.
+
+12. **RESOLVED**: Does exponential decay weighting add value?
+    - Simple PCA (no decay) performs comparably to PCA_SUB with decay (λ=0.9).
+      The difference is not statistically significant (p=0.49). The value of
+      PCA_SUB comes from PCA dimensionality reduction, not decay weighting.
+
+13. **OPEN**: Can signal smoothing or threshold-based positioning reduce turnover?
+    - The 76% daily turnover destroys all gross alpha. EMA smoothing on predictions,
+      minimum signal thresholds, or position change limits could dramatically
+      improve net performance. This is the single most important improvement needed.
+
+14. **OPEN**: Would sector-selective trading improve net Sharpe?
+    - Steel & Nonferrous (55% accuracy), Energy Resources (53%), and Pharmaceuticals
+      (52%) show strongest signals. Trading only high-signal sectors would reduce
+      turnover and concentrate on the most predictable cross-market relationships.
