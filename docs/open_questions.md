@@ -214,14 +214,35 @@
 
 ### Cycle 14: Dynamic Sector Selection & Multi-Horizon Signals
 
-33. **OPEN**: Ensemble model diversity — could combining PCA_SUB with other model types
+33. **RESOLVED**: Ensemble model diversity — could combining PCA_SUB with other model types
     (Ridge, elastic net) improve signal quality beyond single-model multi-horizon averaging?
+    - No improvement over PCA_SUB alone. Best ensemble (PCA-heavy sign vote, 60/20/20 weights)
+      achieves net Sharpe 0.51 vs C12 baseline 0.63. Ridge and ElasticNet individually perform
+      worse (net SR -0.20 and -0.15) with direction accuracy below 50%. PCA_SUB's dimensionality
+      reduction captures the cross-market signal better than direct regression approaches.
+      Adding weaker models dilutes the PCA_SUB signal rather than complementing it.
 
-34. **OPEN**: Regime detection — could an explicit regime classifier (bull/bear/sideways)
+34. **RESOLVED**: Regime detection — could an explicit regime classifier (bull/bear/sideways)
     improve sector selection timing instead of rolling accuracy?
+    - No improvement. Best regime-aware config (vol lookback=42d, 2 regimes, mild scaling)
+      achieves net Sharpe 0.61 vs C12 0.63. Volatility-based exposure scaling modestly reduces
+      drawdowns but also reduces returns proportionally. The lead-lag signal, while weaker in
+      high-vol regimes (Phase 7), still contributes enough alpha that reducing exposure hurts
+      more than it helps on a Sharpe basis.
 
 35. **OPEN**: Transaction cost optimization — could dynamic selection be modified to penalize
     unnecessary sector switches, reducing turnover while maintaining adaptivity?
 
-36. **OPEN**: Out-of-sample validation — all improvements (Cycles 12-14) should be tested on
+36. **OPEN**: Out-of-sample validation — all improvements (Cycles 12-15) should be tested on
     truly unseen data (post-2026) to confirm they are not overfit to the 2021-2026 period.
+
+### Cycle 15: Ensemble Model Diversity & Regime-Aware Positioning
+
+37. **OPEN**: Online model selection — could the strategy dynamically switch between PCA_SUB
+    and ensemble models based on recent OOS performance, rather than using fixed weights?
+
+38. **OPEN**: Factor timing — could exposure to specific PCA factors (PC1 market, PC2 rotation)
+    be timed based on regime indicators, rather than blanket position scaling?
+
+39. **OPEN**: Regime transition smoothing — could position changes during regime transitions
+    be smoothed to avoid unnecessary turnover from sudden exposure changes?

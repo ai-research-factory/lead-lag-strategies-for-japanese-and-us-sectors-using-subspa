@@ -122,6 +122,7 @@ class WalkForwardEvaluator:
         X_us: np.ndarray,
         Y_jp: np.ndarray,
         dates_us: pd.DatetimeIndex | None = None,
+        model_factory=None,
     ) -> WalkForwardResult:
         """Run walk-forward evaluation.
 
@@ -133,6 +134,9 @@ class WalkForwardEvaluator:
             Full array of Japanese sector returns (aligned).
         dates_us : DatetimeIndex, optional
             Dates corresponding to rows of X_us for reporting.
+        model_factory : callable, optional
+            A callable that returns a fresh model instance with fit/predict
+            interface. If None, uses PCASub with the evaluator's parameters.
 
         Returns
         -------
@@ -157,7 +161,10 @@ class WalkForwardEvaluator:
             Y_test = Y_jp[train_end:test_end]
 
             # Fit model on training window
-            model = PCASub(K=self.K, L=self.L, lambda_decay=self.lambda_decay)
+            if model_factory is not None:
+                model = model_factory()
+            else:
+                model = PCASub(K=self.K, L=self.L, lambda_decay=self.lambda_decay)
             model.fit(X_train, Y_train)
 
             # Predict on test window
