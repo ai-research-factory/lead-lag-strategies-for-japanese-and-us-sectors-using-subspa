@@ -1,0 +1,130 @@
+{
+  "phase": 10,
+  "description": "Final integrated report and visualization \u2014 all phases consolidated",
+  "timestamp": "2026-03-27T02:15:30.973562",
+  "data": {
+    "total_aligned_observations": 1254,
+    "date_range_start": "2021-03-29",
+    "date_range_end": "2026-03-25",
+    "n_us_sectors": 11,
+    "n_jp_sectors": 17
+  },
+  "phases_completed": [
+    "cycle_1",
+    "cycle_3",
+    "cycle_4",
+    "cycle_5",
+    "cycle_6",
+    "cycle_7",
+    "cycle_8",
+    "cycle_9"
+  ],
+  "n_phases": 8,
+  "phase_1_core_algorithm": {
+    "description": "PCA_SUB core implementation validated with real data",
+    "status": "completed"
+  },
+  "phase_2_data_pipeline": {
+    "description": "Real data pipeline with ARF Data API, proper returns, lead-lag alignment",
+    "status": "completed",
+    "aligned_observations": 1254
+  },
+  "phase_3_walk_forward": {
+    "description": "Walk-forward evaluation framework with 47 folds",
+    "status": "completed",
+    "baseline_accuracy": 0.497765,
+    "baseline_sharpe_gross": 0.5418
+  },
+  "phase_5_cfull_validation": {
+    "description": "Fixed vs rolling covariance period comparison",
+    "status": "completed",
+    "best_method": "cfull_504d",
+    "best_sharpe": 1.0452
+  },
+  "phase_6_optimization": {
+    "description": "Nested walk-forward hyperparameter optimization",
+    "status": "completed",
+    "optimal_K": 5,
+    "optimal_L": 120,
+    "optimal_lambda": 1.0,
+    "optimized_sharpe": 1.3907,
+    "improvement_over_baseline": "61% Sharpe improvement (0.86 \u2192 1.39)"
+  },
+  "phase_7_robustness": {
+    "description": "Sensitivity analysis, regime analysis, bootstrap CIs",
+    "status": "completed",
+    "most_sensitive_param": "K (number of PCs)",
+    "regime_finding": "Low-vol outperforms high-vol; up-market stronger than down-market"
+  },
+  "phase_8_interpretation": {
+    "description": "Principal component economic interpretation",
+    "status": "completed",
+    "pc1": "Broad market factor (~57% variance)",
+    "pc2": "Value vs Growth rotation (~18% variance)",
+    "pc3": "Sector-specific dynamics (~9% variance)"
+  },
+  "phase_9_baselines": {
+    "description": "Comprehensive baseline comparison (9 models)",
+    "status": "completed",
+    "best_model": "PCA_SUB (K=5, L=120, \u03bb=1.0)",
+    "best_gross_sharpe": 2.18,
+    "best_net_sharpe": -1.24,
+    "critical_issue": "76% daily turnover from sign-based positioning destroys net alpha"
+  },
+  "final_model_performance": {
+    "model": "PCA_SUB (K=5, L=120, \u03bb=1.0)",
+    "walk_forward_config": {
+      "train_window": 252,
+      "test_window": 21
+    },
+    "n_folds": 47,
+    "total_oos_samples": 987,
+    "direction_accuracy": {
+      "mean": 0.51189,
+      "std": 0.036752
+    },
+    "correlation": {
+      "mean": 0.069664,
+      "std": 0.102244
+    },
+    "strategy_metrics": {
+      "sharpe_ratio_gross": 2.1756,
+      "annualized_return_gross": 0.137423,
+      "annualized_volatility": 0.063166,
+      "max_drawdown": -0.098074,
+      "total_return": 0.699435,
+      "pct_positive_days": 56.74
+    },
+    "positive_accuracy_folds_pct": 68.09
+  },
+  "key_findings": [
+    "Cross-market lead-lag signal exists: US sector returns predict JP sector returns with 51.2% accuracy (above 50% random)",
+    "PCA dimensionality reduction (PCA_SUB) outperforms direct regression on gross metrics",
+    "Optimized parameters (K=5, L=120, \u03bb=1.0) significantly outperform paper defaults (K=3, L=60, \u03bb=0.9), p=0.014",
+    "\u03bb=1.0 (no decay) consistently selected \u2014 covariance structure is stable over lookback windows",
+    "Signal is regime-dependent: stronger in low-volatility periods and JP up-market days",
+    "PC1 captures broad market factor (~57% variance), PC2-3 capture sector rotation themes",
+    "Best predictable sectors: Steel & Nonferrous (55%), Energy Resources (53%), Pharmaceuticals (52%)",
+    "CRITICAL: 76% daily turnover from naive sign-based positioning destroys all net alpha",
+    "Net Sharpe is negative (-1.24) for the best model despite positive gross Sharpe (2.18)",
+    "Signal smoothing or threshold-based position management is essential for practical deployment"
+  ],
+  "recommendations": [
+    "Implement EMA signal smoothing to reduce turnover below 10%",
+    "Add minimum signal threshold for position changes",
+    "Consider sector-selective trading (top 4-5 sectors only)",
+    "Test position sizing based on prediction confidence",
+    "Validate on extended out-of-sample period beyond 2026"
+  ],
+  "visualizations_generated": [
+    "executive_summary.png",
+    "model_comparison.png",
+    "sector_accuracy_heatmap.png",
+    "walk_forward_timeline.png",
+    "parameter_sensitivity.png",
+    "cfull_comparison.png",
+    "optimization_evolution.png",
+    "cumulative_returns.png",
+    "phase_progression.png"
+  ]
+}

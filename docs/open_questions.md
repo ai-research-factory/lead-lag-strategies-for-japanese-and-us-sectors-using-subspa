@@ -94,3 +94,22 @@
     - Steel & Nonferrous (55% accuracy), Energy Resources (53%), and Pharmaceuticals
       (52%) show strongest signals. Trading only high-signal sectors would reduce
       turnover and concentrate on the most predictable cross-market relationships.
+
+### Phase 10: Final Report and Visualization
+
+15. **RESOLVED**: Can all research phases be consolidated into a reproducible report?
+    - Yes. Phase 10 generates 9 publication-quality visualizations and an integrated
+      summary. All charts are saved as PNG files in reports/cycle_10/ and the full
+      metrics are consolidated into a single metrics.json covering all phases.
+
+16. **OPEN**: Can the gross-to-net gap be closed?
+    - The optimized PCA_SUB achieves 2.18 gross Sharpe but -1.24 net Sharpe. The
+      76% daily turnover is the sole cause. Three approaches to investigate:
+      (a) EMA smoothing on predictions (target <10% turnover)
+      (b) Minimum signal threshold for position changes
+      (c) Sector-selective trading on top 4-5 predictable sectors
+
+17. **OPEN**: Is the optimized parameter set (K=5, L=120, λ=1.0) stable going forward?
+    - Inner-loop Sharpe has been trending upward (from 1.5 to 4.4) over 2023-2026
+      folds, but this may reflect regime-specific fitting. True forward validation
+      on post-2026 data is needed to confirm parameter stability.
