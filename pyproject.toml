@@ -1,0 +1,6 @@
+[project]
+name = "lead-lag-strategies-for-japanese-and-us-sectors-using-subspa"
+version = "0.1.0"
+description = "Lead-lag strategies for Japanese and U.S. sectors using subspace regularization PCA"
+requires-python = ">=3.10"
+dependencies = ["numpy", "pandas", "scikit-learn", "torch", "matplotlib", "tqdm"]
