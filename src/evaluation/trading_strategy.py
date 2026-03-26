@@ -60,6 +60,10 @@ class TradingStrategy:
         cost_bps / 10000 * multiplier. Higher values are more
         conservative (skip more trades). Default 2.0 means we require
         the signal change to be at least 2x the one-way cost.
+    sector_ema_halflifes : ndarray or None
+        Per-sector EMA half-lives of shape (n_jp,). When set, each sector
+        uses its own smoothing period instead of the uniform ema_halflife.
+        Overrides ema_halflife for the sectors where values are provided.
     """
 
     def __init__(
@@ -78,6 +82,7 @@ class TradingStrategy:
         long_bias: float | None = None,
         cost_aware_rebalance: bool = False,
         cost_aware_multiplier: float = 2.0,
+        sector_ema_halflifes: np.ndarray | None = None,
     ):
         self.ema_halflife = ema_halflife
         self.signal_threshold = signal_threshold
@@ -93,10 +98,12 @@ class TradingStrategy:
         self.long_bias = long_bias
         self.cost_aware_rebalance = cost_aware_rebalance
         self.cost_aware_multiplier = cost_aware_multiplier
+        self.sector_ema_halflifes = sector_ema_halflifes
 
     def _ema_smooth(self, predictions: np.ndarray, actuals: np.ndarray | None = None) -> np.ndarray:
         """Apply exponential moving average smoothing to predictions.
 
+        When sector_ema_halflifes is set, each sector uses its own half-life.
         When adaptive_ema=True, the half-life scales with realized volatility:
         higher volatility -> longer half-life (smoother signals to avoid
         whipsaws), lower volatility -> shorter half-life (faster reaction).
@@ -111,14 +118,22 @@ class TradingStrategy:
         -------
         smoothed : ndarray of shape (T, n_jp)
         """
-        if self.ema_halflife is None:
+        if self.ema_halflife is None and self.sector_ema_halflifes is None:
             return predictions.copy()
 
-        T = len(predictions)
+        T, n_jp = predictions.shape
         smoothed = np.zeros_like(predictions)
         smoothed[0] = predictions[0]
 
-        if self.adaptive_ema and actuals is not None:
+        if self.sector_ema_halflifes is not None:
+            # Per-sector EMA: each sector has its own half-life
+            alphas = np.array([
+                1 - np.exp(-np.log(2) / max(hl, 1.0))
+                for hl in self.sector_ema_halflifes
+            ])
+            for t in range(1, T):
+                smoothed[t] = alphas * predictions[t] + (1 - alphas) * smoothed[t - 1]
+        elif self.adaptive_ema and actuals is not None:
             # Compute rolling realized volatility of portfolio returns
             port_returns = actuals.mean(axis=1)  # equal-weight proxy
             vol_window = self.adaptive_vol_window

@@ -1,0 +1,260 @@
+{
+  "phase": 18,
+  "description": "Sector-specific EMA, expanding parameter sweep, and rolling+expanding ensemble",
+  "timestamp": "2026-03-27",
+  "c17_baseline": {
+    "config": "expanding, L=full, K=5, lambda=1.0, EMA-20, top-5",
+    "sharpe_net": 0.8682,
+    "return_net": 0.405125,
+    "max_dd_net": -0.132809,
+    "avg_turnover": 0.0239,
+    "direction_accuracy": 0.5147
+  },
+  "c12_rolling_baseline": {
+    "sharpe_net": 0.6349,
+    "return_net": 0.234944
+  },
+  "sector_specific_ema": {
+    "per_sector_results": {
+      "1629.T": {
+        "name": "Trading Companies",
+        "best_hl": 20,
+        "best_sr": 0.3465
+      },
+      "1617.T": {
+        "name": "Foods",
+        "best_hl": 20,
+        "best_sr": 0.895
+      },
+      "1621.T": {
+        "name": "Pharmaceuticals",
+        "best_hl": 5,
+        "best_sr": 1.2686
+      },
+      "1627.T": {
+        "name": "Electric Power & Gas",
+        "best_hl": 10,
+        "best_sr": 0.6256
+      },
+      "1630.T": {
+        "name": "Finance (ex Banks)",
+        "best_hl": 5,
+        "best_sr": 0.8396
+      }
+    },
+    "combined_metrics": {
+      "sharpe_net": 1.2361,
+      "return_net": 0.602641,
+      "max_dd_net": -0.125087,
+      "avg_turnover": 0.0596
+    },
+    "improvement_over_c17": 0.3679
+  },
+  "expanding_param_sweep": {
+    "configs_tested": 15,
+    "results": [
+      {
+        "K": 7,
+        "lambda_decay": 1.0,
+        "sharpe_net": 0.9686,
+        "return_net": 0.469255,
+        "max_dd_net": -0.14089,
+        "avg_turnover": 0.0312,
+        "direction_accuracy": 0.5161
+      },
+      {
+        "K": 5,
+        "lambda_decay": 1.0,
+        "sharpe_net": 0.8682,
+        "return_net": 0.405125,
+        "max_dd_net": -0.132809,
+        "avg_turnover": 0.0239,
+        "direction_accuracy": 0.5147
+      },
+      {
+        "K": 4,
+        "lambda_decay": 1.0,
+        "sharpe_net": 0.7776,
+        "return_net": 0.345529,
+        "max_dd_net": -0.135619,
+        "avg_turnover": 0.043,
+        "direction_accuracy": 0.5172
+      },
+      {
+        "K": 6,
+        "lambda_decay": 1.0,
+        "sharpe_net": 0.415,
+        "return_net": 0.150613,
+        "max_dd_net": -0.132908,
+        "avg_turnover": 0.0442,
+        "direction_accuracy": 0.5173
+      },
+      {
+        "K": 4,
+        "lambda_decay": 0.95,
+        "sharpe_net": 0.1296,
+        "return_net": 0.030385,
+        "max_dd_net": -0.161952,
+        "avg_turnover": 0.0609,
+        "direction_accuracy": 0.5042
+      },
+      {
+        "K": 7,
+        "lambda_decay": 0.9,
+        "sharpe_net": 0.0026,
+        "return_net": -0.013168,
+        "max_dd_net": -0.200952,
+        "avg_turnover": 0.071,
+        "direction_accuracy": 0.4999
+      },
+      {
+        "K": 3,
+        "lambda_decay": 1.0,
+        "sharpe_net": -0.0494,
+        "return_net": -0.032261,
+        "max_dd_net": -0.182393,
+        "avg_turnover": 0.0795,
+        "direction_accuracy": 0.5125
+      },
+      {
+        "K": 4,
+        "lambda_decay": 0.9,
+        "sharpe_net": -0.0907,
+        "return_net": -0.048104,
+        "max_dd_net": -0.227203,
+        "avg_turnover": 0.0548,
+        "direction_accuracy": 0.501
+      },
+      {
+        "K": 6,
+        "lambda_decay": 0.9,
+        "sharpe_net": -0.2666,
+        "return_net": -0.119298,
+        "max_dd_net": -0.239057,
+        "avg_turnover": 0.0734,
+        "direction_accuracy": 0.5043
+      },
+      {
+        "K": 6,
+        "lambda_decay": 0.95,
+        "sharpe_net": -0.3359,
+        "return_net": -0.132385,
+        "max_dd_net": -0.209526,
+        "avg_turnover": 0.0682,
+        "direction_accuracy": 0.5058
+      }
+    ],
+    "best": {
+      "K": 7,
+      "lambda_decay": 1.0,
+      "sharpe_net": 0.9686,
+      "return_net": 0.469255,
+      "direction_accuracy": 0.5161
+    },
+    "improvement_over_c17": 0.1004
+  },
+  "rolling_expanding_ensemble": {
+    "configs_tested": 8,
+    "results": [
+      {
+        "w_expand": 0.9,
+        "w_roll": 0.1,
+        "sharpe_net": 0.8921,
+        "return_net": 0.405297,
+        "max_dd_net": -0.148526,
+        "avg_turnover": 0.0377
+      },
+      {
+        "w_expand": 1.0,
+        "w_roll": 0.0,
+        "sharpe_net": 0.8682,
+        "return_net": 0.405125,
+        "max_dd_net": -0.132809,
+        "avg_turnover": 0.0239
+      },
+      {
+        "w_expand": 0.8,
+        "w_roll": 0.2,
+        "sharpe_net": 0.794,
+        "return_net": 0.330908,
+        "max_dd_net": -0.121797,
+        "avg_turnover": 0.0467
+      },
+      {
+        "w_expand": 0.7,
+        "w_roll": 0.3,
+        "sharpe_net": 0.6811,
+        "return_net": 0.262352,
+        "max_dd_net": -0.113158,
+        "avg_turnover": 0.0499
+      },
+      {
+        "w_expand": 0.6,
+        "w_roll": 0.4,
+        "sharpe_net": 0.6501,
+        "return_net": 0.251466,
+        "max_dd_net": -0.114045,
+        "avg_turnover": 0.0462
+      },
+      {
+        "w_expand": 0.5,
+        "w_roll": 0.5,
+        "sharpe_net": 0.5335,
+        "return_net": 0.194349,
+        "max_dd_net": -0.111049,
+        "avg_turnover": 0.0454
+      },
+      {
+        "w_expand": 0.4,
+        "w_roll": 0.6,
+        "sharpe_net": 0.1882,
+        "return_net": 0.052363,
+        "max_dd_net": -0.128549,
+        "avg_turnover": 0.0462
+      },
+      {
+        "w_expand": 0.3,
+        "w_roll": 0.7,
+        "sharpe_net": 0.1419,
+        "return_net": 0.034622,
+        "max_dd_net": -0.133702,
+        "avg_turnover": 0.0491
+      }
+    ],
+    "best": {
+      "w_expand": 0.9,
+      "w_roll": 0.1,
+      "sharpe_net": 0.8921,
+      "return_net": 0.405297
+    },
+    "improvement_over_c17": 0.0239
+  },
+  "combined_best": {
+    "best_k_lambda_uniform_ema": {
+      "sharpe_net": 0.9686,
+      "return_net": 0.469255,
+      "max_dd_net": -0.14089,
+      "avg_turnover": 0.0312
+    },
+    "best_k_lambda_sector_ema": {
+      "sharpe_net": 1.4736,
+      "return_net": 0.758372,
+      "max_dd_net": -0.131019,
+      "avg_turnover": 0.1018
+    }
+  },
+  "overall_best": {
+    "config": "best_k_lambda_sector_ema",
+    "sharpe_net": 1.4736,
+    "improvement_over_c17": 0.6054
+  },
+  "walk_forward_params": {
+    "train_window": 252,
+    "test_window": 21,
+    "n_folds": 47,
+    "total_test_samples": 987
+  },
+  "cost_assumptions": {
+    "one_way_transaction_bps": 10.0
+  }
+}

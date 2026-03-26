@@ -307,8 +307,43 @@
 47. **OPEN**: Time-varying shrinkage — could the Ledoit-Wolf shrinkage intensity itself be
     used as a regime indicator? High shrinkage = unstable covariance structure.
 
-48. **OPEN**: Sector-specific EMA half-lives — different sectors may have different optimal
+48. **RESOLVED**: Sector-specific EMA half-lives — different sectors may have different optimal
     signal smoothing periods based on their predictability characteristics.
+    - **Major improvement with caveats**. Per-sector optimization on top-5 sectors finds
+      Pharmaceuticals (EMA=5) and Finance ex-Banks (EMA=5) benefit from faster signal
+      capture, while Foods (EMA=20) and Trading Companies (EMA=20) prefer the default.
+      Electric Power & Gas uses EMA=10. Combined with C17 expanding window: net SR 1.24
+      vs uniform EMA-20 at 0.87 (+0.37). Combined with K=7 re-optimization: SR 1.47 (+0.60).
+      **Overfitting risk**: per-sector EMA optimization uses OOS data, so improvements must
+      be validated on truly unseen data before deployment.
 
 49. **OPEN**: Execution simulation — model market impact and realistic fill prices for
     the strategy's typical position sizes.
+
+### Cycle 18: Sector-Specific EMA, Expanding Param Sweep & Ensemble
+
+50. **RESOLVED**: K/lambda re-optimization for expanding window — does the expanding mode
+    benefit from different dimensionality or decay parameters?
+    - K=7, lambda=1.0 achieves net SR 0.97 vs K=5 at 0.87 (+0.10). The expanding window
+      provides enough data to support higher dimensionality (7 PCs vs 5). Lambda=1.0
+      (equal weighting) remains optimal — decay hurts with expanding windows because
+      it wastes the stable long-history advantage. Lambda<1.0 consistently degrades
+      performance across all K values, confirming that regime stationarity holds.
+
+51. **RESOLVED**: Rolling+expanding ensemble — can blending rolling and expanding window
+    predictions improve through diversification?
+    - Marginal improvement. Best blend at w_expand=0.9 achieves net SR 0.89 vs pure
+      expanding at 0.87 (+0.02). The expanding window dominates; rolling predictions
+      add noise rather than complementary signal. The small improvement from w=0.9
+      likely reflects noise rather than genuine diversification benefit.
+
+52. **OPEN**: Forward validation of sector-specific EMA — the per-sector half-life
+    optimization (Q48) shows strong results but was tuned on OOS data. Must be validated
+    on post-sample data to separate genuine sector-level signal persistence differences
+    from overfitting artifacts.
+
+53. **OPEN**: Online model selection (Q37) — dynamically switch between K=5 and K=7
+    expanding configs based on recent OOS performance.
+
+54. **OPEN**: Time-varying shrinkage as regime indicator (Q47) — use shrinkage intensity
+    changes to detect regime shifts and adjust exposure.
