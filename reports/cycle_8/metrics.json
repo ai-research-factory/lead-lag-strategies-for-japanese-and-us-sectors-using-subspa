@@ -1,0 +1,4000 @@
+{
+  "phase": 8,
+  "description": "Principal component interpretability analysis",
+  "baseline_params": {
+    "K": 3,
+    "L": 60,
+    "lambda_decay": 0.9
+  },
+  "optimized_params": {
+    "K": 5,
+    "L": 120,
+    "lambda_decay": 1.0
+  },
+  "baseline_results": {
+    "n_folds": 47,
+    "K": 3,
+    "mean_loadings": {
+      "PC1": {
+        "XLE": {
+          "name": "Energy",
+          "mean_loading": 0.177676,
+          "std_loading": 0.188091
+        },
+        "XLF": {
+          "name": "Financials",
+          "mean_loading": 0.280034,
+          "std_loading": 0.107029
+        },
+        "XLU": {
+          "name": "Utilities",
+          "mean_loading": 0.190228,
+          "std_loading": 0.14887
+        },
+        "XLI": {
+          "name": "Industrials",
+          "mean_loading": 0.293837,
+          "std_loading": 0.08578
+        },
+        "XLK": {
+          "name": "Technology",
+          "mean_loading": 0.369109,
+          "std_loading": 0.120479
+        },
+        "XLV": {
+          "name": "Health Care",
+          "mean_loading": 0.189321,
+          "std_loading": 0.108507
+        },
+        "XLY": {
+          "name": "Consumer Discretionary",
+          "mean_loading": 0.393498,
+          "std_loading": 0.094243
+        },
+        "XLP": {
+          "name": "Consumer Staples",
+          "mean_loading": 0.138819,
+          "std_loading": 0.081001
+        },
+        "XLB": {
+          "name": "Materials",
+          "mean_loading": 0.304415,
+          "std_loading": 0.095965
+        },
+        "XLRE": {
+          "name": "Real Estate",
+          "mean_loading": 0.282763,
+          "std_loading": 0.136585
+        },
+        "XLC": {
+          "name": "Communication Services",
+          "mean_loading": 0.300825,
+          "std_loading": 0.110549
+        }
+      },
+      "PC2": {
+        "XLE": {
+          "name": "Energy",
+          "mean_loading": 0.488215,
+          "std_loading": 0.336439
+        },
+        "XLF": {
+          "name": "Financials",
+          "mean_loading": 0.08412,
+          "std_loading": 0.130772
+        },
+        "XLU": {
+          "name": "Utilities",
+          "mean_loading": 0.099695,
+          "std_loading": 0.294014
+        },
+        "XLI": {
+          "name": "Industrials",
+          "mean_loading": 0.037371,
+          "std_loading": 0.121599
+        },
+        "XLK": {
+          "name": "Technology",
+          "mean_loading": -0.241279,
+          "std_loading": 0.297962
+        },
+        "XLV": {
+          "name": "Health Care",
+          "mean_loading": 0.04174,
+          "std_loading": 0.232031
+        },
+        "XLY": {
+          "name": "Consumer Discretionary",
+          "mean_loading": -0.101213,
+          "std_loading": 0.239392
+        },
+        "XLP": {
+          "name": "Consumer Staples",
+          "mean_loading": 0.081935,
+          "std_loading": 0.228193
+        },
+        "XLB": {
+          "name": "Materials",
+          "mean_loading": 0.108874,
+          "std_loading": 0.128398
+        },
+        "XLRE": {
+          "name": "Real Estate",
+          "mean_loading": 0.094267,
+          "std_loading": 0.276908
+        },
+        "XLC": {
+          "name": "Communication Services",
+          "mean_loading": -0.117586,
+          "std_loading": 0.23466
+        }
+      },
+      "PC3": {
+        "XLE": {
+          "name": "Energy",
+          "mean_loading": 0.298679,
+          "std_loading": 0.452801
+        },
+        "XLF": {
+          "name": "Financials",
+          "mean_loading": -0.040894,
+          "std_loading": 0.16588
+        },
+        "XLU": {
+          "name": "Utilities",
+          "mean_loading": -0.279443,
+          "std_loading": 0.292732
+        },
+        "XLI": {
+          "name": "Industrials",
+          "mean_loading": -0.03493,
+          "std_loading": 0.127806
+        },
+        "XLK": {
+          "name": "Technology",
+          "mean_loading": 0.172775,
+          "std_loading": 0.249239
+        },
+        "XLV": {
+          "name": "Health Care",
+          "mean_loading": -0.174322,
+          "std_loading": 0.184412
+        },
+        "XLY": {
+          "name": "Consumer Discretionary",
+          "mean_loading": 0.076021,
+          "std_loading": 0.235079
+        },
+        "XLP": {
+          "name": "Consumer Staples",
+          "mean_loading": -0.160907,
+          "std_loading": 0.190128
+        },
+        "XLB": {
+          "name": "Materials",
+          "mean_loading": -0.008017,
+          "std_loading": 0.15119
+        },
+        "XLRE": {
+          "name": "Real Estate",
+          "mean_loading": -0.187812,
+          "std_loading": 0.250252
+        },
+        "XLC": {
+          "name": "Communication Services",
+          "mean_loading": 0.146394,
+          "std_loading": 0.271177
+        }
+      }
+    },
+    "loading_stability": {
+      "PC1": {
+        "mean_std_across_sectors": 0.1161,
+        "max_std": 0.188091,
+        "per_sector": {
+          "XLE": 0.188091,
+          "XLF": 0.107029,
+          "XLU": 0.14887,
+          "XLI": 0.08578,
+          "XLK": 0.120479,
+          "XLV": 0.108507,
+          "XLY": 0.094243,
+          "XLP": 0.081001,
+          "XLB": 0.095965,
+          "XLRE": 0.136585,
+          "XLC": 0.110549
+        }
+      },
+      "PC2": {
+        "mean_std_across_sectors": 0.229124,
+        "max_std": 0.336439,
+        "per_sector": {
+          "XLE": 0.336439,
+          "XLF": 0.130772,
+          "XLU": 0.294014,
+          "XLI": 0.121599,
+          "XLK": 0.297962,
+          "XLV": 0.232031,
+          "XLY": 0.239392,
+          "XLP": 0.228193,
+          "XLB": 0.128398,
+          "XLRE": 0.276908,
+          "XLC": 0.23466
+        }
+      },
+      "PC3": {
+        "mean_std_across_sectors": 0.2337,
+        "max_std": 0.452801,
+        "per_sector": {
+          "XLE": 0.452801,
+          "XLF": 0.16588,
+          "XLU": 0.292732,
+          "XLI": 0.127806,
+          "XLK": 0.249239,
+          "XLV": 0.184412,
+          "XLY": 0.235079,
+          "XLP": 0.190128,
+          "XLB": 0.15119,
+          "XLRE": 0.250252,
+          "XLC": 0.271177
+        }
+      }
+    },
+    "pc_sector_associations": {
+      "PC1": [
+        {
+          "ticker": "XLY",
+          "name": "Consumer Discretionary",
+          "mean_loading": 0.393498,
+          "abs_loading": 0.393498
+        },
+        {
+          "ticker": "XLK",
+          "name": "Technology",
+          "mean_loading": 0.369109,
+          "abs_loading": 0.369109
+        },
+        {
+          "ticker": "XLB",
+          "name": "Materials",
+          "mean_loading": 0.304415,
+          "abs_loading": 0.304415
+        },
+        {
+          "ticker": "XLC",
+          "name": "Communication Services",
+          "mean_loading": 0.300825,
+          "abs_loading": 0.300825
+        },
+        {
+          "ticker": "XLI",
+          "name": "Industrials",
+          "mean_loading": 0.293837,
+          "abs_loading": 0.293837
+        },
+        {
+          "ticker": "XLRE",
+          "name": "Real Estate",
+          "mean_loading": 0.282763,
+          "abs_loading": 0.282763
+        },
+        {
+          "ticker": "XLF",
+          "name": "Financials",
+          "mean_loading": 0.280034,
+          "abs_loading": 0.280034
+        },
+        {
+          "ticker": "XLU",
+          "name": "Utilities",
+          "mean_loading": 0.190228,
+          "abs_loading": 0.190228
+        },
+        {
+          "ticker": "XLV",
+          "name": "Health Care",
+          "mean_loading": 0.189321,
+          "abs_loading": 0.189321
+        },
+        {
+          "ticker": "XLE",
+          "name": "Energy",
+          "mean_loading": 0.177676,
+          "abs_loading": 0.177676
+        },
+        {
+          "ticker": "XLP",
+          "name": "Consumer Staples",
+          "mean_loading": 0.138819,
+          "abs_loading": 0.138819
+        }
+      ],
+      "PC2": [
+        {
+          "ticker": "XLE",
+          "name": "Energy",
+          "mean_loading": 0.488215,
+          "abs_loading": 0.488215
+        },
+        {
+          "ticker": "XLK",
+          "name": "Technology",
+          "mean_loading": -0.241279,
+          "abs_loading": 0.241279
+        },
+        {
+          "ticker": "XLC",
+          "name": "Communication Services",
+          "mean_loading": -0.117586,
+          "abs_loading": 0.117586
+        },
+        {
+          "ticker": "XLB",
+          "name": "Materials",
+          "mean_loading": 0.108874,
+          "abs_loading": 0.108874
+        },
+        {
+          "ticker": "XLY",
+          "name": "Consumer Discretionary",
+          "mean_loading": -0.101213,
+          "abs_loading": 0.101213
+        },
+        {
+          "ticker": "XLU",
+          "name": "Utilities",
+          "mean_loading": 0.099695,
+          "abs_loading": 0.099695
+        },
+        {
+          "ticker": "XLRE",
+          "name": "Real Estate",
+          "mean_loading": 0.094267,
+          "abs_loading": 0.094267
+        },
+        {
+          "ticker": "XLF",
+          "name": "Financials",
+          "mean_loading": 0.08412,
+          "abs_loading": 0.08412
+        },
+        {
+          "ticker": "XLP",
+          "name": "Consumer Staples",
+          "mean_loading": 0.081935,
+          "abs_loading": 0.081935
+        },
+        {
+          "ticker": "XLV",
+          "name": "Health Care",
+          "mean_loading": 0.04174,
+          "abs_loading": 0.04174
+        },
+        {
+          "ticker": "XLI",
+          "name": "Industrials",
+          "mean_loading": 0.037371,
+          "abs_loading": 0.037371
+        }
+      ],
+      "PC3": [
+        {
+          "ticker": "XLE",
+          "name": "Energy",
+          "mean_loading": 0.298679,
+          "abs_loading": 0.298679
+        },
+        {
+          "ticker": "XLU",
+          "name": "Utilities",
+          "mean_loading": -0.279443,
+          "abs_loading": 0.279443
+        },
+        {
+          "ticker": "XLRE",
+          "name": "Real Estate",
+          "mean_loading": -0.187812,
+          "abs_loading": 0.187812
+        },
+        {
+          "ticker": "XLV",
+          "name": "Health Care",
+          "mean_loading": -0.174322,
+          "abs_loading": 0.174322
+        },
+        {
+          "ticker": "XLK",
+          "name": "Technology",
+          "mean_loading": 0.172775,
+          "abs_loading": 0.172775
+        },
+        {
+          "ticker": "XLP",
+          "name": "Consumer Staples",
+          "mean_loading": -0.160907,
+          "abs_loading": 0.160907
+        },
+        {
+          "ticker": "XLC",
+          "name": "Communication Services",
+          "mean_loading": 0.146394,
+          "abs_loading": 0.146394
+        },
+        {
+          "ticker": "XLY",
+          "name": "Consumer Discretionary",
+          "mean_loading": 0.076021,
+          "abs_loading": 0.076021
+        },
+        {
+          "ticker": "XLF",
+          "name": "Financials",
+          "mean_loading": -0.040894,
+          "abs_loading": 0.040894
+        },
+        {
+          "ticker": "XLI",
+          "name": "Industrials",
+          "mean_loading": -0.03493,
+          "abs_loading": 0.03493
+        },
+        {
+          "ticker": "XLB",
+          "name": "Materials",
+          "mean_loading": -0.008017,
+          "abs_loading": 0.008017
+        }
+      ]
+    },
+    "mean_variance_explained": [
+      {
+        "pc": "PC1",
+        "mean_variance_explained": 0.567885,
+        "std_variance_explained": 0.134314,
+        "min": 0.30376,
+        "max": 0.842999
+      },
+      {
+        "pc": "PC2",
+        "mean_variance_explained": 0.182536,
+        "std_variance_explained": 0.059616,
+        "min": 0.060269,
+        "max": 0.342383
+      },
+      {
+        "pc": "PC3",
+        "mean_variance_explained": 0.091993,
+        "std_variance_explained": 0.032549,
+        "min": 0.042542,
+        "max": 0.174126
+      }
+    ],
+    "cumulative_variance_explained": [
+      {
+        "pc": "PC1-1",
+        "cumulative_variance": 0.567885
+      },
+      {
+        "pc": "PC1-2",
+        "cumulative_variance": 0.750421
+      },
+      {
+        "pc": "PC1-3",
+        "cumulative_variance": 0.842414
+      }
+    ],
+    "mean_beta": {
+      "PC1": {
+        "1617.T": {
+          "name": "Foods",
+          "mean_beta": 0.019527,
+          "std_beta": 0.091942,
+          "t_stat": 0.2124
+        },
+        "1618.T": {
+          "name": "Energy Resources",
+          "mean_beta": 0.01479,
+          "std_beta": 0.111207,
+          "t_stat": 0.133
+        },
+        "1619.T": {
+          "name": "Construction & Materials",
+          "mean_beta": 0.010001,
+          "std_beta": 0.093312,
+          "t_stat": 0.1072
+        },
+        "1620.T": {
+          "name": "Raw Materials & Chemicals",
+          "mean_beta": -0.005245,
+          "std_beta": 0.067845,
+          "t_stat": -0.0773
+        },
+        "1621.T": {
+          "name": "Pharmaceuticals",
+          "mean_beta": 0.01219,
+          "std_beta": 0.091224,
+          "t_stat": 0.1336
+        },
+        "1622.T": {
+          "name": "Automobiles & Transport",
+          "mean_beta": 0.007369,
+          "std_beta": 0.107777,
+          "t_stat": 0.0684
+        },
+        "1623.T": {
+          "name": "Steel & Nonferrous",
+          "mean_beta": 0.015475,
+          "std_beta": 0.095554,
+          "t_stat": 0.1619
+        },
+        "1624.T": {
+          "name": "Machinery",
+          "mean_beta": 0.001147,
+          "std_beta": 0.093593,
+          "t_stat": 0.0123
+        },
+        "1625.T": {
+          "name": "Electric & Precision",
+          "mean_beta": 0.005566,
+          "std_beta": 0.085715,
+          "t_stat": 0.0649
+        },
+        "1626.T": {
+          "name": "IT & Services",
+          "mean_beta": 0.01084,
+          "std_beta": 0.075802,
+          "t_stat": 0.143
+        },
+        "1627.T": {
+          "name": "Electric Power & Gas",
+          "mean_beta": -0.00162,
+          "std_beta": 0.121896,
+          "t_stat": -0.0133
+        },
+        "1628.T": {
+          "name": "Transportation & Logistics",
+          "mean_beta": 0.024694,
+          "std_beta": 0.076999,
+          "t_stat": 0.3207
+        },
+        "1629.T": {
+          "name": "Trading Companies",
+          "mean_beta": 0.014437,
+          "std_beta": 0.097556,
+          "t_stat": 0.148
+        },
+        "1630.T": {
+          "name": "Finance (ex Banks)",
+          "mean_beta": 0.019583,
+          "std_beta": 0.105312,
+          "t_stat": 0.1859
+        },
+        "1631.T": {
+          "name": "Real Estate",
+          "mean_beta": 0.015148,
+          "std_beta": 0.127239,
+          "t_stat": 0.119
+        },
+        "1632.T": {
+          "name": "Banks",
+          "mean_beta": 0.024359,
+          "std_beta": 0.118717,
+          "t_stat": 0.2052
+        },
+        "1633.T": {
+          "name": "Retail",
+          "mean_beta": 0.01373,
+          "std_beta": 0.117472,
+          "t_stat": 0.1169
+        }
+      },
+      "PC2": {
+        "1617.T": {
+          "name": "Foods",
+          "mean_beta": -0.000823,
+          "std_beta": 0.17277,
+          "t_stat": -0.0048
+        },
+        "1618.T": {
+          "name": "Energy Resources",
+          "mean_beta": -0.047665,
+          "std_beta": 0.241315,
+          "t_stat": -0.1975
+        },
+        "1619.T": {
+          "name": "Construction & Materials",
+          "mean_beta": -0.020835,
+          "std_beta": 0.142219,
+          "t_stat": -0.1465
+        },
+        "1620.T": {
+          "name": "Raw Materials & Chemicals",
+          "mean_beta": -0.005358,
+          "std_beta": 0.134101,
+          "t_stat": -0.04
+        },
+        "1621.T": {
+          "name": "Pharmaceuticals",
+          "mean_beta": -0.030621,
+          "std_beta": 0.132772,
+          "t_stat": -0.2306
+        },
+        "1622.T": {
+          "name": "Automobiles & Transport",
+          "mean_beta": 0.0059,
+          "std_beta": 0.201304,
+          "t_stat": 0.0293
+        },
+        "1623.T": {
+          "name": "Steel & Nonferrous",
+          "mean_beta": -0.041169,
+          "std_beta": 0.225476,
+          "t_stat": -0.1826
+        },
+        "1624.T": {
+          "name": "Machinery",
+          "mean_beta": -0.015892,
+          "std_beta": 0.175491,
+          "t_stat": -0.0906
+        },
+        "1625.T": {
+          "name": "Electric & Precision",
+          "mean_beta": -0.002541,
+          "std_beta": 0.146315,
+          "t_stat": -0.0174
+        },
+        "1626.T": {
+          "name": "IT & Services",
+          "mean_beta": -0.004394,
+          "std_beta": 0.107635,
+          "t_stat": -0.0408
+        },
+        "1627.T": {
+          "name": "Electric Power & Gas",
+          "mean_beta": -0.013755,
+          "std_beta": 0.191608,
+          "t_stat": -0.0718
+        },
+        "1628.T": {
+          "name": "Transportation & Logistics",
+          "mean_beta": 0.000328,
+          "std_beta": 0.134313,
+          "t_stat": 0.0024
+        },
+        "1629.T": {
+          "name": "Trading Companies",
+          "mean_beta": -0.031315,
+          "std_beta": 0.172772,
+          "t_stat": -0.1813
+        },
+        "1630.T": {
+          "name": "Finance (ex Banks)",
+          "mean_beta": -0.004539,
+          "std_beta": 0.156937,
+          "t_stat": -0.0289
+        },
+        "1631.T": {
+          "name": "Real Estate",
+          "mean_beta": -0.030419,
+          "std_beta": 0.191391,
+          "t_stat": -0.1589
+        },
+        "1632.T": {
+          "name": "Banks",
+          "mean_beta": -0.02648,
+          "std_beta": 0.156697,
+          "t_stat": -0.169
+        },
+        "1633.T": {
+          "name": "Retail",
+          "mean_beta": -0.040378,
+          "std_beta": 0.195889,
+          "t_stat": -0.2061
+        }
+      },
+      "PC3": {
+        "1617.T": {
+          "name": "Foods",
+          "mean_beta": -0.013493,
+          "std_beta": 0.168222,
+          "t_stat": -0.0802
+        },
+        "1618.T": {
+          "name": "Energy Resources",
+          "mean_beta": 0.024931,
+          "std_beta": 0.277572,
+          "t_stat": 0.0898
+        },
+        "1619.T": {
+          "name": "Construction & Materials",
+          "mean_beta": 0.004805,
+          "std_beta": 0.148132,
+          "t_stat": 0.0324
+        },
+        "1620.T": {
+          "name": "Raw Materials & Chemicals",
+          "mean_beta": 0.009215,
+          "std_beta": 0.151852,
+          "t_stat": 0.0607
+        },
+        "1621.T": {
+          "name": "Pharmaceuticals",
+          "mean_beta": -0.02812,
+          "std_beta": 0.171917,
+          "t_stat": -0.1636
+        },
+        "1622.T": {
+          "name": "Automobiles & Transport",
+          "mean_beta": 0.027201,
+          "std_beta": 0.183673,
+          "t_stat": 0.1481
+        },
+        "1623.T": {
+          "name": "Steel & Nonferrous",
+          "mean_beta": -0.022466,
+          "std_beta": 0.249266,
+          "t_stat": -0.0901
+        },
+        "1624.T": {
+          "name": "Machinery",
+          "mean_beta": -0.016147,
+          "std_beta": 0.236325,
+          "t_stat": -0.0683
+        },
+        "1625.T": {
+          "name": "Electric & Precision",
+          "mean_beta": -0.003751,
+          "std_beta": 0.157555,
+          "t_stat": -0.0238
+        },
+        "1626.T": {
+          "name": "IT & Services",
+          "mean_beta": 0.001747,
+          "std_beta": 0.140848,
+          "t_stat": 0.0124
+        },
+        "1627.T": {
+          "name": "Electric Power & Gas",
+          "mean_beta": 0.023761,
+          "std_beta": 0.272408,
+          "t_stat": 0.0872
+        },
+        "1628.T": {
+          "name": "Transportation & Logistics",
+          "mean_beta": 0.004615,
+          "std_beta": 0.156265,
+          "t_stat": 0.0295
+        },
+        "1629.T": {
+          "name": "Trading Companies",
+          "mean_beta": 0.00749,
+          "std_beta": 0.229065,
+          "t_stat": 0.0327
+        },
+        "1630.T": {
+          "name": "Finance (ex Banks)",
+          "mean_beta": -0.0116,
+          "std_beta": 0.155223,
+          "t_stat": -0.0747
+        },
+        "1631.T": {
+          "name": "Real Estate",
+          "mean_beta": 0.017241,
+          "std_beta": 0.217702,
+          "t_stat": 0.0792
+        },
+        "1632.T": {
+          "name": "Banks",
+          "mean_beta": 0.062291,
+          "std_beta": 0.215978,
+          "t_stat": 0.2884
+        },
+        "1633.T": {
+          "name": "Retail",
+          "mean_beta": 0.040275,
+          "std_beta": 0.224295,
+          "t_stat": 0.1796
+        }
+      }
+    },
+    "beta_stability": {
+      "PC1": {
+        "mean_std": 0.098774,
+        "max_std": 0.127239
+      },
+      "PC2": {
+        "mean_std": 0.169353,
+        "max_std": 0.241315
+      },
+      "PC3": {
+        "mean_std": 0.197429,
+        "max_std": 0.277572
+      }
+    },
+    "transmission_channels": [
+      {
+        "pc": "PC1",
+        "interpretation": "Market factor (all sectors move together)",
+        "top_us_contributors": [
+          {
+            "ticker": "XLY",
+            "name": "Consumer Discretionary",
+            "loading": 0.393498
+          },
+          {
+            "ticker": "XLK",
+            "name": "Technology",
+            "loading": 0.369109
+          },
+          {
+            "ticker": "XLB",
+            "name": "Materials",
+            "loading": 0.304415
+          },
+          {
+            "ticker": "XLC",
+            "name": "Communication Services",
+            "loading": 0.300825
+          },
+          {
+            "ticker": "XLI",
+            "name": "Industrials",
+            "loading": 0.293837
+          }
+        ],
+        "top_jp_recipients": [
+          {
+            "ticker": "1628.T",
+            "name": "Transportation & Logistics",
+            "beta": 0.024694
+          },
+          {
+            "ticker": "1632.T",
+            "name": "Banks",
+            "beta": 0.024359
+          },
+          {
+            "ticker": "1630.T",
+            "name": "Finance (ex Banks)",
+            "beta": 0.019583
+          },
+          {
+            "ticker": "1617.T",
+            "name": "Foods",
+            "beta": 0.019527
+          },
+          {
+            "ticker": "1623.T",
+            "name": "Steel & Nonferrous",
+            "beta": 0.015475
+          }
+        ]
+      },
+      {
+        "pc": "PC2",
+        "interpretation": "Value vs growth factor",
+        "top_us_contributors": [
+          {
+            "ticker": "XLE",
+            "name": "Energy",
+            "loading": 0.488215
+          },
+          {
+            "ticker": "XLK",
+            "name": "Technology",
+            "loading": -0.241279
+          },
+          {
+            "ticker": "XLC",
+            "name": "Communication Services",
+            "loading": -0.117586
+          },
+          {
+            "ticker": "XLB",
+            "name": "Materials",
+            "loading": 0.108874
+          },
+          {
+            "ticker": "XLY",
+            "name": "Consumer Discretionary",
+            "loading": -0.101213
+          }
+        ],
+        "top_jp_recipients": [
+          {
+            "ticker": "1618.T",
+            "name": "Energy Resources",
+            "beta": -0.047665
+          },
+          {
+            "ticker": "1623.T",
+            "name": "Steel & Nonferrous",
+            "beta": -0.041169
+          },
+          {
+            "ticker": "1633.T",
+            "name": "Retail",
+            "beta": -0.040378
+          },
+          {
+            "ticker": "1629.T",
+            "name": "Trading Companies",
+            "beta": -0.031315
+          },
+          {
+            "ticker": "1621.T",
+            "name": "Pharmaceuticals",
+            "beta": -0.030621
+          }
+        ]
+      },
+      {
+        "pc": "PC3",
+        "interpretation": "Growth vs value factor",
+        "top_us_contributors": [
+          {
+            "ticker": "XLE",
+            "name": "Energy",
+            "loading": 0.298679
+          },
+          {
+            "ticker": "XLU",
+            "name": "Utilities",
+            "loading": -0.279443
+          },
+          {
+            "ticker": "XLRE",
+            "name": "Real Estate",
+            "loading": -0.187812
+          },
+          {
+            "ticker": "XLV",
+            "name": "Health Care",
+            "loading": -0.174322
+          },
+          {
+            "ticker": "XLK",
+            "name": "Technology",
+            "loading": 0.172775
+          }
+        ],
+        "top_jp_recipients": [
+          {
+            "ticker": "1632.T",
+            "name": "Banks",
+            "beta": 0.062291
+          },
+          {
+            "ticker": "1633.T",
+            "name": "Retail",
+            "beta": 0.040275
+          },
+          {
+            "ticker": "1621.T",
+            "name": "Pharmaceuticals",
+            "beta": -0.02812
+          },
+          {
+            "ticker": "1622.T",
+            "name": "Automobiles & Transport",
+            "beta": 0.027201
+          },
+          {
+            "ticker": "1618.T",
+            "name": "Energy Resources",
+            "beta": 0.024931
+          }
+        ]
+      },
+      {
+        "type": "direct_transmission_matrix",
+        "top_20_pairs": [
+          {
+            "us_ticker": "XLK",
+            "us_name": "Technology",
+            "jp_ticker": "1632.T",
+            "jp_name": "Banks",
+            "transmission_strength": 0.02614235,
+            "abs_strength": 0.02614235
+          },
+          {
+            "us_ticker": "XLE",
+            "us_name": "Energy",
+            "jp_ticker": "1623.T",
+            "jp_name": "Steel & Nonferrous",
+            "transmission_strength": -0.02406001,
+            "abs_strength": 0.02406001
+          },
+          {
+            "us_ticker": "XLK",
+            "us_name": "Technology",
+            "jp_ticker": "1633.T",
+            "jp_name": "Retail",
+            "transmission_strength": 0.02176886,
+            "abs_strength": 0.02176886
+          },
+          {
+            "us_ticker": "XLK",
+            "us_name": "Technology",
+            "jp_ticker": "1618.T",
+            "jp_name": "Energy Resources",
+            "transmission_strength": 0.0212671,
+            "abs_strength": 0.0212671
+          },
+          {
+            "us_ticker": "XLE",
+            "us_name": "Energy",
+            "jp_ticker": "1621.T",
+            "jp_name": "Pharmaceuticals",
+            "transmission_strength": -0.0211825,
+            "abs_strength": 0.0211825
+          },
+          {
+            "us_ticker": "XLC",
+            "us_name": "Communication Services",
+            "jp_ticker": "1632.T",
+            "jp_name": "Banks",
+            "transmission_strength": 0.01956042,
+            "abs_strength": 0.01956042
+          },
+          {
+            "us_ticker": "XLY",
+            "us_name": "Consumer Discretionary",
+            "jp_ticker": "1632.T",
+            "jp_name": "Banks",
+            "transmission_strength": 0.01700066,
+            "abs_strength": 0.01700066
+          },
+          {
+            "us_ticker": "XLK",
+            "us_name": "Technology",
+            "jp_ticker": "1631.T",
+            "jp_name": "Real Estate",
+            "transmission_strength": 0.01590958,
+            "abs_strength": 0.01590958
+          },
+          {
+            "us_ticker": "XLU",
+            "us_name": "Utilities",
+            "jp_ticker": "1632.T",
+            "jp_name": "Banks",
+            "transmission_strength": -0.01541283,
+            "abs_strength": 0.01541283
+          },
+          {
+            "us_ticker": "XLC",
+            "us_name": "Communication Services",
+            "jp_ticker": "1633.T",
+            "jp_name": "Retail",
+            "transmission_strength": 0.01477434,
+            "abs_strength": 0.01477434
+          },
+          {
+            "us_ticker": "XLK",
+            "us_name": "Technology",
+            "jp_ticker": "1629.T",
+            "jp_name": "Trading Companies",
+            "transmission_strength": 0.01417872,
+            "abs_strength": 0.01417872
+          },
+          {
+            "us_ticker": "XLC",
+            "us_name": "Communication Services",
+            "jp_ticker": "1618.T",
+            "jp_name": "Energy Resources",
+            "transmission_strength": 0.01370364,
+            "abs_strength": 0.01370364
+          },
+          {
+            "us_ticker": "XLE",
+            "us_name": "Energy",
+            "jp_ticker": "1618.T",
+            "jp_name": "Energy Resources",
+            "transmission_strength": -0.01319679,
+            "abs_strength": 0.01319679
+          },
+          {
+            "us_ticker": "XLU",
+            "us_name": "Utilities",
+            "jp_ticker": "1633.T",
+            "jp_name": "Retail",
+            "transmission_strength": -0.01266821,
+            "abs_strength": 0.01266821
+          },
+          {
+            "us_ticker": "XLY",
+            "us_name": "Consumer Discretionary",
+            "jp_ticker": "1633.T",
+            "jp_name": "Retail",
+            "transmission_strength": 0.01255136,
+            "abs_strength": 0.01255136
+          },
+          {
+            "us_ticker": "XLY",
+            "us_name": "Consumer Discretionary",
+            "jp_ticker": "1618.T",
+            "jp_name": "Energy Resources",
+            "transmission_strength": 0.01253934,
+            "abs_strength": 0.01253934
+          },
+          {
+            "us_ticker": "XLE",
+            "us_name": "Energy",
+            "jp_ticker": "1624.T",
+            "jp_name": "Machinery",
+            "transmission_strength": -0.01237761,
+            "abs_strength": 0.01237761
+          },
+          {
+            "us_ticker": "XLE",
+            "us_name": "Energy",
+            "jp_ticker": "1622.T",
+            "jp_name": "Automobiles & Transport",
+            "transmission_strength": 0.012314,
+            "abs_strength": 0.012314
+          },
+          {
+            "us_ticker": "XLK",
+            "us_name": "Technology",
+            "jp_ticker": "1623.T",
+            "jp_name": "Steel & Nonferrous",
+            "transmission_strength": 0.0117637,
+            "abs_strength": 0.0117637
+          },
+          {
+            "us_ticker": "XLC",
+            "us_name": "Communication Services",
+            "jp_ticker": "1631.T",
+            "jp_name": "Real Estate",
+            "transmission_strength": 0.01065773,
+            "abs_strength": 0.01065773
+          }
+        ]
+      }
+    ],
+    "temporal_cosine_similarity": {
+      "PC1": {
+        "values": [
+          0.942116,
+          0.966394,
+          0.987041,
+          0.952499,
+          0.950175,
+          0.932299,
+          0.981113,
+          0.975432,
+          0.984077,
+          0.986789,
+          0.964361,
+          0.853973,
+          0.908619,
+          0.955682,
+          0.906203,
+          0.896666,
+          0.952553,
+          0.944097,
+          0.944283,
+          0.944163,
+          0.970503,
+          0.969699,
+          0.945269,
+          0.961701,
+          0.909349,
+          0.898138,
+          -0.559234,
+          0.081514,
+          0.942676,
+          0.96683,
+          0.606032,
+          0.75845,
+          0.894565,
+          0.868963,
+          0.643652,
+          0.915546,
+          0.961537,
+          0.990249,
+          0.869157,
+          0.862105,
+          0.955188,
+          0.696882,
+          0.660552,
+          0.981053,
+          0.987652,
+          0.9433
+        ],
+        "mean": 0.861084,
+        "min": -0.559234,
+        "std": 0.260527
+      },
+      "PC2": {
+        "values": [
+          0.861955,
+          0.789344,
+          0.387626,
+          0.867277,
+          0.7969,
+          0.922339,
+          0.853769,
+          0.93243,
+          0.671017,
+          0.81685,
+          0.795923,
+          0.560331,
+          0.449156,
+          0.855135,
+          0.679024,
+          0.803636,
+          0.944849,
+          0.116035,
+          -0.326884,
+          0.471966,
+          0.435534,
+          0.207366,
+          0.754455,
+          0.961209,
+          0.741219,
+          0.217385,
+          -0.09337,
+          0.047825,
+          0.921104,
+          0.91501,
+          -0.17796,
+          0.361593,
+          -0.24334,
+          0.392699,
+          0.741655,
+          0.78399,
+          0.956587,
+          0.905182,
+          0.055876,
+          -0.073653,
+          -0.923137,
+          -0.270992,
+          -0.067376,
+          0.874679,
+          0.556856,
+          0.781722
+        ],
+        "mean": 0.500235,
+        "min": -0.923137,
+        "std": 0.444813
+      },
+      "PC3": {
+        "values": [
+          0.783611,
+          0.712108,
+          0.120967,
+          0.655449,
+          0.740394,
+          0.866573,
+          -0.055505,
+          0.476319,
+          0.431488,
+          0.6124,
+          0.718151,
+          0.693408,
+          0.461027,
+          0.79692,
+          0.418488,
+          0.394591,
+          0.783662,
+          0.170704,
+          -0.249829,
+          0.517357,
+          0.801251,
+          0.429902,
+          0.495149,
+          0.425111,
+          -0.110672,
+          0.474354,
+          0.384471,
+          0.515608,
+          0.889253,
+          0.612561,
+          -0.382879,
+          0.349211,
+          -0.408312,
+          -0.179334,
+          -0.183278,
+          0.301102,
+          0.712964,
+          0.874872,
+          0.087304,
+          0.148907,
+          0.72956,
+          -0.525961,
+          -0.749968,
+          0.523416,
+          0.419832,
+          0.530673
+        ],
+        "mean": 0.374204,
+        "min": -0.749968,
+        "std": 0.401918
+      }
+    },
+    "loading_evolution_summary": {
+      "PC1": {
+        "XLE": {
+          "name": "Energy",
+          "first_loading": -0.209623,
+          "last_loading": -0.068292,
+          "mean_loading": 0.177676,
+          "std_loading": 0.188091
+        },
+        "XLF": {
+          "name": "Financials",
+          "first_loading": 0.357489,
+          "last_loading": 0.358857,
+          "mean_loading": 0.280034,
+          "std_loading": 0.107029
+        },
+        "XLU": {
+          "name": "Utilities",
+          "first_loading": 0.02315,
+          "last_loading": 0.072002,
+          "mean_loading": 0.190228,
+          "std_loading": 0.14887
+        },
+        "XLI": {
+          "name": "Industrials",
+          "first_loading": 0.233281,
+          "last_loading": 0.430271,
+          "mean_loading": 0.293837,
+          "std_loading": 0.08578
+        },
+        "XLK": {
+          "name": "Technology",
+          "first_loading": 0.467931,
+          "last_loading": 0.505467,
+          "mean_loading": 0.369109,
+          "std_loading": 0.120479
+        },
+        "XLV": {
+          "name": "Health Care",
+          "first_loading": 0.238869,
+          "last_loading": 0.127664,
+          "mean_loading": 0.189321,
+          "std_loading": 0.108507
+        },
+        "XLY": {
+          "name": "Consumer Discretionary",
+          "first_loading": 0.453097,
+          "last_loading": 0.421885,
+          "mean_loading": 0.393498,
+          "std_loading": 0.094243
+        },
+        "XLP": {
+          "name": "Consumer Staples",
+          "first_loading": 0.172355,
+          "last_loading": -0.019312,
+          "mean_loading": 0.138819,
+          "std_loading": 0.081001
+        },
+        "XLB": {
+          "name": "Materials",
+          "first_loading": 0.277395,
+          "last_loading": 0.429653,
+          "mean_loading": 0.304415,
+          "std_loading": 0.095965
+        },
+        "XLRE": {
+          "name": "Real Estate",
+          "first_loading": 0.19752,
+          "last_loading": 0.105899,
+          "mean_loading": 0.282763,
+          "std_loading": 0.136585
+        },
+        "XLC": {
+          "name": "Communication Services",
+          "first_loading": 0.38252,
+          "last_loading": 0.173984,
+          "mean_loading": 0.300825,
+          "std_loading": 0.110549
+        }
+      },
+      "PC2": {
+        "XLE": {
+          "name": "Energy",
+          "first_loading": 0.902751,
+          "last_loading": 0.708365,
+          "mean_loading": 0.488215,
+          "std_loading": 0.336439
+        },
+        "XLF": {
+          "name": "Financials",
+          "first_loading": 0.062427,
+          "last_loading": 0.05952,
+          "mean_loading": 0.08412,
+          "std_loading": 0.130772
+        },
+        "XLU": {
+          "name": "Utilities",
+          "first_loading": 0.227367,
+          "last_loading": 0.277526,
+          "mean_loading": 0.099695,
+          "std_loading": 0.294014
+        },
+        "XLI": {
+          "name": "Industrials",
+          "first_loading": 0.121593,
+          "last_loading": 0.118599,
+          "mean_loading": 0.037371,
+          "std_loading": 0.121599
+        },
+        "XLK": {
+          "name": "Technology",
+          "first_loading": -0.034907,
+          "last_loading": -0.337441,
+          "mean_loading": -0.241279,
+          "std_loading": 0.297962
+        },
+        "XLV": {
+          "name": "Health Care",
+          "first_loading": 0.094548,
+          "last_loading": -0.03322,
+          "mean_loading": 0.04174,
+          "std_loading": 0.232031
+        },
+        "XLY": {
+          "name": "Consumer Discretionary",
+          "first_loading": 0.003797,
+          "last_loading": 0.030943,
+          "mean_loading": -0.101213,
+          "std_loading": 0.239392
+        },
+        "XLP": {
+          "name": "Consumer Staples",
+          "first_loading": 0.072734,
+          "last_loading": 0.077235,
+          "mean_loading": 0.081935,
+          "std_loading": 0.228193
+        },
+        "XLB": {
+          "name": "Materials",
+          "first_loading": 0.245324,
+          "last_loading": 0.042573,
+          "mean_loading": 0.108874,
+          "std_loading": 0.128398
+        },
+        "XLRE": {
+          "name": "Real Estate",
+          "first_loading": 0.196934,
+          "last_loading": 0.415685,
+          "mean_loading": 0.094267,
+          "std_loading": 0.276908
+        },
+        "XLC": {
+          "name": "Communication Services",
+          "first_loading": 0.015254,
+          "last_loading": 0.327247,
+          "mean_loading": -0.117586,
+          "std_loading": 0.23466
+        }
+      },
+      "PC3": {
+        "XLE": {
+          "name": "Energy",
+          "first_loading": 0.288747,
+          "last_loading": 0.287367,
+          "mean_loading": 0.298679,
+          "std_loading": 0.452801
+        },
+        "XLF": {
+          "name": "Financials",
+          "first_loading": -0.236355,
+          "last_loading": -0.39503,
+          "mean_loading": -0.040894,
+          "std_loading": 0.16588
+        },
+        "XLU": {
+          "name": "Utilities",
+          "first_loading": -0.404084,
+          "last_loading": 0.405242,
+          "mean_loading": -0.279443,
+          "std_loading": 0.292732
+        },
+        "XLI": {
+          "name": "Industrials",
+          "first_loading": -0.102659,
+          "last_loading": -0.106844,
+          "mean_loading": -0.03493,
+          "std_loading": 0.127806
+        },
+        "XLK": {
+          "name": "Technology",
+          "first_loading": 0.248125,
+          "last_loading": 0.502768,
+          "mean_loading": 0.172775,
+          "std_loading": 0.249239
+        },
+        "XLV": {
+          "name": "Health Care",
+          "first_loading": -0.330589,
+          "last_loading": -0.405151,
+          "mean_loading": -0.174322,
+          "std_loading": 0.184412
+        },
+        "XLY": {
+          "name": "Consumer Discretionary",
+          "first_loading": 0.465956,
+          "last_loading": -0.029038,
+          "mean_loading": 0.076021,
+          "std_loading": 0.235079
+        },
+        "XLP": {
+          "name": "Consumer Staples",
+          "first_loading": -0.433005,
+          "last_loading": -0.156413,
+          "mean_loading": -0.160907,
+          "std_loading": 0.190128
+        },
+        "XLB": {
+          "name": "Materials",
+          "first_loading": -0.141253,
+          "last_loading": 0.109917,
+          "mean_loading": -0.008017,
+          "std_loading": 0.15119
+        },
+        "XLRE": {
+          "name": "Real Estate",
+          "first_loading": -0.20633,
+          "last_loading": 0.007839,
+          "mean_loading": -0.187812,
+          "std_loading": 0.250252
+        },
+        "XLC": {
+          "name": "Communication Services",
+          "first_loading": 0.221248,
+          "last_loading": -0.362436,
+          "mean_loading": 0.146394,
+          "std_loading": 0.271177
+        }
+      }
+    }
+  },
+  "optimized_results": {
+    "n_folds": 47,
+    "K": 5,
+    "mean_loadings": {
+      "PC1": {
+        "XLE": {
+          "name": "Energy",
+          "mean_loading": 0.250417,
+          "std_loading": 0.063994
+        },
+        "XLF": {
+          "name": "Financials",
+          "mean_loading": 0.305922,
+          "std_loading": 0.029695
+        },
+        "XLU": {
+          "name": "Utilities",
+          "mean_loading": 0.196828,
+          "std_loading": 0.064077
+        },
+        "XLI": {
+          "name": "Industrials",
+          "mean_loading": 0.30753,
+          "std_loading": 0.026209
+        },
+        "XLK": {
+          "name": "Technology",
+          "mean_loading": 0.396222,
+          "std_loading": 0.070966
+        },
+        "XLV": {
+          "name": "Health Care",
+          "mean_loading": 0.194402,
+          "std_loading": 0.032702
+        },
+        "XLY": {
+          "name": "Consumer Discretionary",
+          "mean_loading": 0.412259,
+          "std_loading": 0.039324
+        },
+        "XLP": {
+          "name": "Consumer Staples",
+          "mean_loading": 0.144399,
+          "std_loading": 0.032631
+        },
+        "XLB": {
+          "name": "Materials",
+          "mean_loading": 0.322009,
+          "std_loading": 0.028338
+        },
+        "XLRE": {
+          "name": "Real Estate",
+          "mean_loading": 0.297507,
+          "std_loading": 0.08061
+        },
+        "XLC": {
+          "name": "Communication Services",
+          "mean_loading": 0.324837,
+          "std_loading": 0.035882
+        }
+      },
+      "PC2": {
+        "XLE": {
+          "name": "Energy",
+          "mean_loading": 0.523894,
+          "std_loading": 0.315437
+        },
+        "XLF": {
+          "name": "Financials",
+          "mean_loading": 0.090776,
+          "std_loading": 0.078789
+        },
+        "XLU": {
+          "name": "Utilities",
+          "mean_loading": 0.21502,
+          "std_loading": 0.234171
+        },
+        "XLI": {
+          "name": "Industrials",
+          "mean_loading": 0.03046,
+          "std_loading": 0.065293
+        },
+        "XLK": {
+          "name": "Technology",
+          "mean_loading": -0.388641,
+          "std_loading": 0.220755
+        },
+        "XLV": {
+          "name": "Health Care",
+          "mean_loading": 0.096212,
+          "std_loading": 0.170166
+        },
+        "XLY": {
+          "name": "Consumer Discretionary",
+          "mean_loading": -0.231369,
+          "std_loading": 0.099221
+        },
+        "XLP": {
+          "name": "Consumer Staples",
+          "mean_loading": 0.12832,
+          "std_loading": 0.182077
+        },
+        "XLB": {
+          "name": "Materials",
+          "mean_loading": 0.118429,
+          "std_loading": 0.062082
+        },
+        "XLRE": {
+          "name": "Real Estate",
+          "mean_loading": 0.145383,
+          "std_loading": 0.233618
+        },
+        "XLC": {
+          "name": "Communication Services",
+          "mean_loading": -0.214333,
+          "std_loading": 0.121705
+        }
+      },
+      "PC3": {
+        "XLE": {
+          "name": "Energy",
+          "mean_loading": -0.52658,
+          "std_loading": 0.391449
+        },
+        "XLF": {
+          "name": "Financials",
+          "mean_loading": -0.018032,
+          "std_loading": 0.101994
+        },
+        "XLU": {
+          "name": "Utilities",
+          "mean_loading": 0.349125,
+          "std_loading": 0.219885
+        },
+        "XLI": {
+          "name": "Industrials",
+          "mean_loading": 0.0092,
+          "std_loading": 0.093287
+        },
+        "XLK": {
+          "name": "Technology",
+          "mean_loading": -0.104794,
+          "std_loading": 0.144262
+        },
+        "XLV": {
+          "name": "Health Care",
+          "mean_loading": 0.188973,
+          "std_loading": 0.09646
+        },
+        "XLY": {
+          "name": "Consumer Discretionary",
+          "mean_loading": -0.060758,
+          "std_loading": 0.200953
+        },
+        "XLP": {
+          "name": "Consumer Staples",
+          "mean_loading": 0.223661,
+          "std_loading": 0.111203
+        },
+        "XLB": {
+          "name": "Materials",
+          "mean_loading": 0.028727,
+          "std_loading": 0.07414
+        },
+        "XLRE": {
+          "name": "Real Estate",
+          "mean_loading": 0.316052,
+          "std_loading": 0.131028
+        },
+        "XLC": {
+          "name": "Communication Services",
+          "mean_loading": -0.129122,
+          "std_loading": 0.237496
+        }
+      },
+      "PC4": {
+        "XLE": {
+          "name": "Energy",
+          "mean_loading": -0.088619,
+          "std_loading": 0.159661
+        },
+        "XLF": {
+          "name": "Financials",
+          "mean_loading": 0.217542,
+          "std_loading": 0.23359
+        },
+        "XLU": {
+          "name": "Utilities",
+          "mean_loading": -0.412472,
+          "std_loading": 0.227896
+        },
+        "XLI": {
+          "name": "Industrials",
+          "mean_loading": 0.114953,
+          "std_loading": 0.118608
+        },
+        "XLK": {
+          "name": "Technology",
+          "mean_loading": -0.151245,
+          "std_loading": 0.238768
+        },
+        "XLV": {
+          "name": "Health Care",
+          "mean_loading": 0.031467,
+          "std_loading": 0.278524
+        },
+        "XLY": {
+          "name": "Consumer Discretionary",
+          "mean_loading": 0.071845,
+          "std_loading": 0.284303
+        },
+        "XLP": {
+          "name": "Consumer Staples",
+          "mean_loading": -0.076917,
+          "std_loading": 0.226874
+        },
+        "XLB": {
+          "name": "Materials",
+          "mean_loading": 0.198387,
+          "std_loading": 0.154654
+        },
+        "XLRE": {
+          "name": "Real Estate",
+          "mean_loading": 0.016854,
+          "std_loading": 0.330115
+        },
+        "XLC": {
+          "name": "Communication Services",
+          "mean_loading": -0.12403,
+          "std_loading": 0.354496
+        }
+      },
+      "PC5": {
+        "XLE": {
+          "name": "Energy",
+          "mean_loading": 0.02334,
+          "std_loading": 0.140073
+        },
+        "XLF": {
+          "name": "Financials",
+          "mean_loading": -0.099428,
+          "std_loading": 0.253263
+        },
+        "XLU": {
+          "name": "Utilities",
+          "mean_loading": 0.065935,
+          "std_loading": 0.318156
+        },
+        "XLI": {
+          "name": "Industrials",
+          "mean_loading": -0.025674,
+          "std_loading": 0.167061
+        },
+        "XLK": {
+          "name": "Technology",
+          "mean_loading": 0.157889,
+          "std_loading": 0.270326
+        },
+        "XLV": {
+          "name": "Health Care",
+          "mean_loading": 0.133858,
+          "std_loading": 0.375956
+        },
+        "XLY": {
+          "name": "Consumer Discretionary",
+          "mean_loading": -0.342443,
+          "std_loading": 0.1902
+        },
+        "XLP": {
+          "name": "Consumer Staples",
+          "mean_loading": -0.129833,
+          "std_loading": 0.223028
+        },
+        "XLB": {
+          "name": "Materials",
+          "mean_loading": 0.054874,
+          "std_loading": 0.242671
+        },
+        "XLRE": {
+          "name": "Real Estate",
+          "mean_loading": 0.000901,
+          "std_loading": 0.290796
+        },
+        "XLC": {
+          "name": "Communication Services",
+          "mean_loading": 0.173633,
+          "std_loading": 0.343144
+        }
+      }
+    },
+    "loading_stability": {
+      "PC1": {
+        "mean_std_across_sectors": 0.045857,
+        "max_std": 0.08061,
+        "per_sector": {
+          "XLE": 0.063994,
+          "XLF": 0.029695,
+          "XLU": 0.064077,
+          "XLI": 0.026209,
+          "XLK": 0.070966,
+          "XLV": 0.032702,
+          "XLY": 0.039324,
+          "XLP": 0.032631,
+          "XLB": 0.028338,
+          "XLRE": 0.08061,
+          "XLC": 0.035882
+        }
+      },
+      "PC2": {
+        "mean_std_across_sectors": 0.162119,
+        "max_std": 0.315437,
+        "per_sector": {
+          "XLE": 0.315437,
+          "XLF": 0.078789,
+          "XLU": 0.234171,
+          "XLI": 0.065293,
+          "XLK": 0.220755,
+          "XLV": 0.170166,
+          "XLY": 0.099221,
+          "XLP": 0.182077,
+          "XLB": 0.062082,
+          "XLRE": 0.233618,
+          "XLC": 0.121705
+        }
+      },
+      "PC3": {
+        "mean_std_across_sectors": 0.163832,
+        "max_std": 0.391449,
+        "per_sector": {
+          "XLE": 0.391449,
+          "XLF": 0.101994,
+          "XLU": 0.219885,
+          "XLI": 0.093287,
+          "XLK": 0.144262,
+          "XLV": 0.09646,
+          "XLY": 0.200953,
+          "XLP": 0.111203,
+          "XLB": 0.07414,
+          "XLRE": 0.131028,
+          "XLC": 0.237496
+        }
+      },
+      "PC4": {
+        "mean_std_across_sectors": 0.237044,
+        "max_std": 0.354496,
+        "per_sector": {
+          "XLE": 0.159661,
+          "XLF": 0.23359,
+          "XLU": 0.227896,
+          "XLI": 0.118608,
+          "XLK": 0.238768,
+          "XLV": 0.278524,
+          "XLY": 0.284303,
+          "XLP": 0.226874,
+          "XLB": 0.154654,
+          "XLRE": 0.330115,
+          "XLC": 0.354496
+        }
+      },
+      "PC5": {
+        "mean_std_across_sectors": 0.25588,
+        "max_std": 0.375956,
+        "per_sector": {
+          "XLE": 0.140073,
+          "XLF": 0.253263,
+          "XLU": 0.318156,
+          "XLI": 0.167061,
+          "XLK": 0.270326,
+          "XLV": 0.375956,
+          "XLY": 0.1902,
+          "XLP": 0.223028,
+          "XLB": 0.242671,
+          "XLRE": 0.290796,
+          "XLC": 0.343144
+        }
+      }
+    },
+    "pc_sector_associations": {
+      "PC1": [
+        {
+          "ticker": "XLY",
+          "name": "Consumer Discretionary",
+          "mean_loading": 0.412259,
+          "abs_loading": 0.412259
+        },
+        {
+          "ticker": "XLK",
+          "name": "Technology",
+          "mean_loading": 0.396222,
+          "abs_loading": 0.396222
+        },
+        {
+          "ticker": "XLC",
+          "name": "Communication Services",
+          "mean_loading": 0.324837,
+          "abs_loading": 0.324837
+        },
+        {
+          "ticker": "XLB",
+          "name": "Materials",
+          "mean_loading": 0.322009,
+          "abs_loading": 0.322009
+        },
+        {
+          "ticker": "XLI",
+          "name": "Industrials",
+          "mean_loading": 0.30753,
+          "abs_loading": 0.30753
+        },
+        {
+          "ticker": "XLF",
+          "name": "Financials",
+          "mean_loading": 0.305922,
+          "abs_loading": 0.305922
+        },
+        {
+          "ticker": "XLRE",
+          "name": "Real Estate",
+          "mean_loading": 0.297507,
+          "abs_loading": 0.297507
+        },
+        {
+          "ticker": "XLE",
+          "name": "Energy",
+          "mean_loading": 0.250417,
+          "abs_loading": 0.250417
+        },
+        {
+          "ticker": "XLU",
+          "name": "Utilities",
+          "mean_loading": 0.196828,
+          "abs_loading": 0.196828
+        },
+        {
+          "ticker": "XLV",
+          "name": "Health Care",
+          "mean_loading": 0.194402,
+          "abs_loading": 0.194402
+        },
+        {
+          "ticker": "XLP",
+          "name": "Consumer Staples",
+          "mean_loading": 0.144399,
+          "abs_loading": 0.144399
+        }
+      ],
+      "PC2": [
+        {
+          "ticker": "XLE",
+          "name": "Energy",
+          "mean_loading": 0.523894,
+          "abs_loading": 0.523894
+        },
+        {
+          "ticker": "XLK",
+          "name": "Technology",
+          "mean_loading": -0.388641,
+          "abs_loading": 0.388641
+        },
+        {
+          "ticker": "XLY",
+          "name": "Consumer Discretionary",
+          "mean_loading": -0.231369,
+          "abs_loading": 0.231369
+        },
+        {
+          "ticker": "XLU",
+          "name": "Utilities",
+          "mean_loading": 0.21502,
+          "abs_loading": 0.21502
+        },
+        {
+          "ticker": "XLC",
+          "name": "Communication Services",
+          "mean_loading": -0.214333,
+          "abs_loading": 0.214333
+        },
+        {
+          "ticker": "XLRE",
+          "name": "Real Estate",
+          "mean_loading": 0.145383,
+          "abs_loading": 0.145383
+        },
+        {
+          "ticker": "XLP",
+          "name": "Consumer Staples",
+          "mean_loading": 0.12832,
+          "abs_loading": 0.12832
+        },
+        {
+          "ticker": "XLB",
+          "name": "Materials",
+          "mean_loading": 0.118429,
+          "abs_loading": 0.118429
+        },
+        {
+          "ticker": "XLV",
+          "name": "Health Care",
+          "mean_loading": 0.096212,
+          "abs_loading": 0.096212
+        },
+        {
+          "ticker": "XLF",
+          "name": "Financials",
+          "mean_loading": 0.090776,
+          "abs_loading": 0.090776
+        },
+        {
+          "ticker": "XLI",
+          "name": "Industrials",
+          "mean_loading": 0.03046,
+          "abs_loading": 0.03046
+        }
+      ],
+      "PC3": [
+        {
+          "ticker": "XLE",
+          "name": "Energy",
+          "mean_loading": -0.52658,
+          "abs_loading": 0.52658
+        },
+        {
+          "ticker": "XLU",
+          "name": "Utilities",
+          "mean_loading": 0.349125,
+          "abs_loading": 0.349125
+        },
+        {
+          "ticker": "XLRE",
+          "name": "Real Estate",
+          "mean_loading": 0.316052,
+          "abs_loading": 0.316052
+        },
+        {
+          "ticker": "XLP",
+          "name": "Consumer Staples",
+          "mean_loading": 0.223661,
+          "abs_loading": 0.223661
+        },
+        {
+          "ticker": "XLV",
+          "name": "Health Care",
+          "mean_loading": 0.188973,
+          "abs_loading": 0.188973
+        },
+        {
+          "ticker": "XLC",
+          "name": "Communication Services",
+          "mean_loading": -0.129122,
+          "abs_loading": 0.129122
+        },
+        {
+          "ticker": "XLK",
+          "name": "Technology",
+          "mean_loading": -0.104794,
+          "abs_loading": 0.104794
+        },
+        {
+          "ticker": "XLY",
+          "name": "Consumer Discretionary",
+          "mean_loading": -0.060758,
+          "abs_loading": 0.060758
+        },
+        {
+          "ticker": "XLB",
+          "name": "Materials",
+          "mean_loading": 0.028727,
+          "abs_loading": 0.028727
+        },
+        {
+          "ticker": "XLF",
+          "name": "Financials",
+          "mean_loading": -0.018032,
+          "abs_loading": 0.018032
+        },
+        {
+          "ticker": "XLI",
+          "name": "Industrials",
+          "mean_loading": 0.0092,
+          "abs_loading": 0.0092
+        }
+      ],
+      "PC4": [
+        {
+          "ticker": "XLU",
+          "name": "Utilities",
+          "mean_loading": -0.412472,
+          "abs_loading": 0.412472
+        },
+        {
+          "ticker": "XLF",
+          "name": "Financials",
+          "mean_loading": 0.217542,
+          "abs_loading": 0.217542
+        },
+        {
+          "ticker": "XLB",
+          "name": "Materials",
+          "mean_loading": 0.198387,
+          "abs_loading": 0.198387
+        },
+        {
+          "ticker": "XLK",
+          "name": "Technology",
+          "mean_loading": -0.151245,
+          "abs_loading": 0.151245
+        },
+        {
+          "ticker": "XLC",
+          "name": "Communication Services",
+          "mean_loading": -0.12403,
+          "abs_loading": 0.12403
+        },
+        {
+          "ticker": "XLI",
+          "name": "Industrials",
+          "mean_loading": 0.114953,
+          "abs_loading": 0.114953
+        },
+        {
+          "ticker": "XLE",
+          "name": "Energy",
+          "mean_loading": -0.088619,
+          "abs_loading": 0.088619
+        },
+        {
+          "ticker": "XLP",
+          "name": "Consumer Staples",
+          "mean_loading": -0.076917,
+          "abs_loading": 0.076917
+        },
+        {
+          "ticker": "XLY",
+          "name": "Consumer Discretionary",
+          "mean_loading": 0.071845,
+          "abs_loading": 0.071845
+        },
+        {
+          "ticker": "XLV",
+          "name": "Health Care",
+          "mean_loading": 0.031467,
+          "abs_loading": 0.031467
+        },
+        {
+          "ticker": "XLRE",
+          "name": "Real Estate",
+          "mean_loading": 0.016854,
+          "abs_loading": 0.016854
+        }
+      ],
+      "PC5": [
+        {
+          "ticker": "XLY",
+          "name": "Consumer Discretionary",
+          "mean_loading": -0.342443,
+          "abs_loading": 0.342443
+        },
+        {
+          "ticker": "XLC",
+          "name": "Communication Services",
+          "mean_loading": 0.173633,
+          "abs_loading": 0.173633
+        },
+        {
+          "ticker": "XLK",
+          "name": "Technology",
+          "mean_loading": 0.157889,
+          "abs_loading": 0.157889
+        },
+        {
+          "ticker": "XLV",
+          "name": "Health Care",
+          "mean_loading": 0.133858,
+          "abs_loading": 0.133858
+        },
+        {
+          "ticker": "XLP",
+          "name": "Consumer Staples",
+          "mean_loading": -0.129833,
+          "abs_loading": 0.129833
+        },
+        {
+          "ticker": "XLF",
+          "name": "Financials",
+          "mean_loading": -0.099428,
+          "abs_loading": 0.099428
+        },
+        {
+          "ticker": "XLU",
+          "name": "Utilities",
+          "mean_loading": 0.065935,
+          "abs_loading": 0.065935
+        },
+        {
+          "ticker": "XLB",
+          "name": "Materials",
+          "mean_loading": 0.054874,
+          "abs_loading": 0.054874
+        },
+        {
+          "ticker": "XLI",
+          "name": "Industrials",
+          "mean_loading": -0.025674,
+          "abs_loading": 0.025674
+        },
+        {
+          "ticker": "XLE",
+          "name": "Energy",
+          "mean_loading": 0.02334,
+          "abs_loading": 0.02334
+        },
+        {
+          "ticker": "XLRE",
+          "name": "Real Estate",
+          "mean_loading": 0.000901,
+          "abs_loading": 0.000901
+        }
+      ]
+    },
+    "mean_variance_explained": [
+      {
+        "pc": "PC1",
+        "mean_variance_explained": 0.579628,
+        "std_variance_explained": 0.107413,
+        "min": 0.406701,
+        "max": 0.764122
+      },
+      {
+        "pc": "PC2",
+        "mean_variance_explained": 0.153474,
+        "std_variance_explained": 0.034569,
+        "min": 0.08067,
+        "max": 0.222069
+      },
+      {
+        "pc": "PC3",
+        "mean_variance_explained": 0.090308,
+        "std_variance_explained": 0.02198,
+        "min": 0.049471,
+        "max": 0.128024
+      },
+      {
+        "pc": "PC4",
+        "mean_variance_explained": 0.043441,
+        "std_variance_explained": 0.014647,
+        "min": 0.020627,
+        "max": 0.077213
+      },
+      {
+        "pc": "PC5",
+        "mean_variance_explained": 0.034061,
+        "std_variance_explained": 0.011728,
+        "min": 0.018255,
+        "max": 0.059491
+      }
+    ],
+    "cumulative_variance_explained": [
+      {
+        "pc": "PC1-1",
+        "cumulative_variance": 0.579628
+      },
+      {
+        "pc": "PC1-2",
+        "cumulative_variance": 0.733103
+      },
+      {
+        "pc": "PC1-3",
+        "cumulative_variance": 0.823411
+      },
+      {
+        "pc": "PC1-4",
+        "cumulative_variance": 0.866852
+      },
+      {
+        "pc": "PC1-5",
+        "cumulative_variance": 0.900913
+      }
+    ],
+    "mean_beta": {
+      "PC1": {
+        "1617.T": {
+          "name": "Foods",
+          "mean_beta": 0.021038,
+          "std_beta": 0.038073,
+          "t_stat": 0.5526
+        },
+        "1618.T": {
+          "name": "Energy Resources",
+          "mean_beta": 0.004189,
+          "std_beta": 0.034615,
+          "t_stat": 0.121
+        },
+        "1619.T": {
+          "name": "Construction & Materials",
+          "mean_beta": 0.017347,
+          "std_beta": 0.042251,
+          "t_stat": 0.4106
+        },
+        "1620.T": {
+          "name": "Raw Materials & Chemicals",
+          "mean_beta": -0.005285,
+          "std_beta": 0.022554,
+          "t_stat": -0.2343
+        },
+        "1621.T": {
+          "name": "Pharmaceuticals",
+          "mean_beta": -0.005684,
+          "std_beta": 0.02672,
+          "t_stat": -0.2127
+        },
+        "1622.T": {
+          "name": "Automobiles & Transport",
+          "mean_beta": 0.011302,
+          "std_beta": 0.047645,
+          "t_stat": 0.2372
+        },
+        "1623.T": {
+          "name": "Steel & Nonferrous",
+          "mean_beta": -0.017364,
+          "std_beta": 0.042463,
+          "t_stat": -0.4089
+        },
+        "1624.T": {
+          "name": "Machinery",
+          "mean_beta": -0.028033,
+          "std_beta": 0.037518,
+          "t_stat": -0.7472
+        },
+        "1625.T": {
+          "name": "Electric & Precision",
+          "mean_beta": -0.008823,
+          "std_beta": 0.039211,
+          "t_stat": -0.225
+        },
+        "1626.T": {
+          "name": "IT & Services",
+          "mean_beta": -0.005107,
+          "std_beta": 0.039309,
+          "t_stat": -0.1299
+        },
+        "1627.T": {
+          "name": "Electric Power & Gas",
+          "mean_beta": 0.023301,
+          "std_beta": 0.046014,
+          "t_stat": 0.5064
+        },
+        "1628.T": {
+          "name": "Transportation & Logistics",
+          "mean_beta": 0.012832,
+          "std_beta": 0.04562,
+          "t_stat": 0.2813
+        },
+        "1629.T": {
+          "name": "Trading Companies",
+          "mean_beta": -0.00618,
+          "std_beta": 0.045046,
+          "t_stat": -0.1372
+        },
+        "1630.T": {
+          "name": "Finance (ex Banks)",
+          "mean_beta": 0.031794,
+          "std_beta": 0.044459,
+          "t_stat": 0.7151
+        },
+        "1631.T": {
+          "name": "Real Estate",
+          "mean_beta": -0.013471,
+          "std_beta": 0.081561,
+          "t_stat": -0.1652
+        },
+        "1632.T": {
+          "name": "Banks",
+          "mean_beta": -0.002003,
+          "std_beta": 0.047354,
+          "t_stat": -0.0423
+        },
+        "1633.T": {
+          "name": "Retail",
+          "mean_beta": 0.001551,
+          "std_beta": 0.054516,
+          "t_stat": 0.0285
+        }
+      },
+      "PC2": {
+        "1617.T": {
+          "name": "Foods",
+          "mean_beta": 0.054915,
+          "std_beta": 0.106157,
+          "t_stat": 0.5173
+        },
+        "1618.T": {
+          "name": "Energy Resources",
+          "mean_beta": 0.023753,
+          "std_beta": 0.115654,
+          "t_stat": 0.2054
+        },
+        "1619.T": {
+          "name": "Construction & Materials",
+          "mean_beta": 0.015357,
+          "std_beta": 0.071765,
+          "t_stat": 0.214
+        },
+        "1620.T": {
+          "name": "Raw Materials & Chemicals",
+          "mean_beta": 0.015739,
+          "std_beta": 0.049791,
+          "t_stat": 0.3161
+        },
+        "1621.T": {
+          "name": "Pharmaceuticals",
+          "mean_beta": 0.012,
+          "std_beta": 0.086214,
+          "t_stat": 0.1392
+        },
+        "1622.T": {
+          "name": "Automobiles & Transport",
+          "mean_beta": -0.003234,
+          "std_beta": 0.086631,
+          "t_stat": -0.0373
+        },
+        "1623.T": {
+          "name": "Steel & Nonferrous",
+          "mean_beta": -0.024998,
+          "std_beta": 0.09123,
+          "t_stat": -0.274
+        },
+        "1624.T": {
+          "name": "Machinery",
+          "mean_beta": -0.025878,
+          "std_beta": 0.035957,
+          "t_stat": -0.7197
+        },
+        "1625.T": {
+          "name": "Electric & Precision",
+          "mean_beta": 0.013112,
+          "std_beta": 0.061682,
+          "t_stat": 0.2126
+        },
+        "1626.T": {
+          "name": "IT & Services",
+          "mean_beta": 0.023862,
+          "std_beta": 0.04378,
+          "t_stat": 0.545
+        },
+        "1627.T": {
+          "name": "Electric Power & Gas",
+          "mean_beta": 0.014258,
+          "std_beta": 0.099103,
+          "t_stat": 0.1439
+        },
+        "1628.T": {
+          "name": "Transportation & Logistics",
+          "mean_beta": 0.018325,
+          "std_beta": 0.069059,
+          "t_stat": 0.2653
+        },
+        "1629.T": {
+          "name": "Trading Companies",
+          "mean_beta": 0.015326,
+          "std_beta": 0.092694,
+          "t_stat": 0.1653
+        },
+        "1630.T": {
+          "name": "Finance (ex Banks)",
+          "mean_beta": 0.038268,
+          "std_beta": 0.092512,
+          "t_stat": 0.4137
+        },
+        "1631.T": {
+          "name": "Real Estate",
+          "mean_beta": 0.024874,
+          "std_beta": 0.095981,
+          "t_stat": 0.2592
+        },
+        "1632.T": {
+          "name": "Banks",
+          "mean_beta": 0.016694,
+          "std_beta": 0.088525,
+          "t_stat": 0.1886
+        },
+        "1633.T": {
+          "name": "Retail",
+          "mean_beta": 0.027658,
+          "std_beta": 0.104363,
+          "t_stat": 0.265
+        }
+      },
+      "PC3": {
+        "1617.T": {
+          "name": "Foods",
+          "mean_beta": 0.010657,
+          "std_beta": 0.078368,
+          "t_stat": 0.136
+        },
+        "1618.T": {
+          "name": "Energy Resources",
+          "mean_beta": -0.016561,
+          "std_beta": 0.246674,
+          "t_stat": -0.0671
+        },
+        "1619.T": {
+          "name": "Construction & Materials",
+          "mean_beta": -0.012822,
+          "std_beta": 0.055796,
+          "t_stat": -0.2298
+        },
+        "1620.T": {
+          "name": "Raw Materials & Chemicals",
+          "mean_beta": -0.013602,
+          "std_beta": 0.065696,
+          "t_stat": -0.207
+        },
+        "1621.T": {
+          "name": "Pharmaceuticals",
+          "mean_beta": -0.005521,
+          "std_beta": 0.071114,
+          "t_stat": -0.0776
+        },
+        "1622.T": {
+          "name": "Automobiles & Transport",
+          "mean_beta": -0.029801,
+          "std_beta": 0.113194,
+          "t_stat": -0.2633
+        },
+        "1623.T": {
+          "name": "Steel & Nonferrous",
+          "mean_beta": 0.002348,
+          "std_beta": 0.148532,
+          "t_stat": 0.0158
+        },
+        "1624.T": {
+          "name": "Machinery",
+          "mean_beta": -0.007237,
+          "std_beta": 0.095869,
+          "t_stat": -0.0755
+        },
+        "1625.T": {
+          "name": "Electric & Precision",
+          "mean_beta": -0.003993,
+          "std_beta": 0.100676,
+          "t_stat": -0.0397
+        },
+        "1626.T": {
+          "name": "IT & Services",
+          "mean_beta": 0.010304,
+          "std_beta": 0.082047,
+          "t_stat": 0.1256
+        },
+        "1627.T": {
+          "name": "Electric Power & Gas",
+          "mean_beta": -0.007755,
+          "std_beta": 0.147035,
+          "t_stat": -0.0527
+        },
+        "1628.T": {
+          "name": "Transportation & Logistics",
+          "mean_beta": -0.009867,
+          "std_beta": 0.0845,
+          "t_stat": -0.1168
+        },
+        "1629.T": {
+          "name": "Trading Companies",
+          "mean_beta": -0.014887,
+          "std_beta": 0.13976,
+          "t_stat": -0.1065
+        },
+        "1630.T": {
+          "name": "Finance (ex Banks)",
+          "mean_beta": 0.0078,
+          "std_beta": 0.06658,
+          "t_stat": 0.1171
+        },
+        "1631.T": {
+          "name": "Real Estate",
+          "mean_beta": -0.012593,
+          "std_beta": 0.115093,
+          "t_stat": -0.1094
+        },
+        "1632.T": {
+          "name": "Banks",
+          "mean_beta": -0.038598,
+          "std_beta": 0.124857,
+          "t_stat": -0.3091
+        },
+        "1633.T": {
+          "name": "Retail",
+          "mean_beta": 0.000926,
+          "std_beta": 0.14159,
+          "t_stat": 0.0065
+        }
+      },
+      "PC4": {
+        "1617.T": {
+          "name": "Foods",
+          "mean_beta": -0.010491,
+          "std_beta": 0.142445,
+          "t_stat": -0.0736
+        },
+        "1618.T": {
+          "name": "Energy Resources",
+          "mean_beta": -0.022072,
+          "std_beta": 0.151168,
+          "t_stat": -0.146
+        },
+        "1619.T": {
+          "name": "Construction & Materials",
+          "mean_beta": 0.006771,
+          "std_beta": 0.113352,
+          "t_stat": 0.0597
+        },
+        "1620.T": {
+          "name": "Raw Materials & Chemicals",
+          "mean_beta": -0.020556,
+          "std_beta": 0.112324,
+          "t_stat": -0.183
+        },
+        "1621.T": {
+          "name": "Pharmaceuticals",
+          "mean_beta": 0.043913,
+          "std_beta": 0.180892,
+          "t_stat": 0.2428
+        },
+        "1622.T": {
+          "name": "Automobiles & Transport",
+          "mean_beta": -0.03347,
+          "std_beta": 0.200547,
+          "t_stat": -0.1669
+        },
+        "1623.T": {
+          "name": "Steel & Nonferrous",
+          "mean_beta": -0.051445,
+          "std_beta": 0.208474,
+          "t_stat": -0.2468
+        },
+        "1624.T": {
+          "name": "Machinery",
+          "mean_beta": -0.022156,
+          "std_beta": 0.155368,
+          "t_stat": -0.1426
+        },
+        "1625.T": {
+          "name": "Electric & Precision",
+          "mean_beta": 2.7e-05,
+          "std_beta": 0.125017,
+          "t_stat": 0.0002
+        },
+        "1626.T": {
+          "name": "IT & Services",
+          "mean_beta": 0.008771,
+          "std_beta": 0.111406,
+          "t_stat": 0.0787
+        },
+        "1627.T": {
+          "name": "Electric Power & Gas",
+          "mean_beta": 0.031459,
+          "std_beta": 0.177302,
+          "t_stat": 0.1774
+        },
+        "1628.T": {
+          "name": "Transportation & Logistics",
+          "mean_beta": -0.018876,
+          "std_beta": 0.116769,
+          "t_stat": -0.1616
+        },
+        "1629.T": {
+          "name": "Trading Companies",
+          "mean_beta": -0.012206,
+          "std_beta": 0.13953,
+          "t_stat": -0.0875
+        },
+        "1630.T": {
+          "name": "Finance (ex Banks)",
+          "mean_beta": 0.021295,
+          "std_beta": 0.07473,
+          "t_stat": 0.285
+        },
+        "1631.T": {
+          "name": "Real Estate",
+          "mean_beta": -0.066475,
+          "std_beta": 0.194313,
+          "t_stat": -0.3421
+        },
+        "1632.T": {
+          "name": "Banks",
+          "mean_beta": -0.042097,
+          "std_beta": 0.205415,
+          "t_stat": -0.2049
+        },
+        "1633.T": {
+          "name": "Retail",
+          "mean_beta": 0.002232,
+          "std_beta": 0.19108,
+          "t_stat": 0.0117
+        }
+      },
+      "PC5": {
+        "1617.T": {
+          "name": "Foods",
+          "mean_beta": 0.011287,
+          "std_beta": 0.113895,
+          "t_stat": 0.0991
+        },
+        "1618.T": {
+          "name": "Energy Resources",
+          "mean_beta": 0.004812,
+          "std_beta": 0.147809,
+          "t_stat": 0.0326
+        },
+        "1619.T": {
+          "name": "Construction & Materials",
+          "mean_beta": -0.002073,
+          "std_beta": 0.130732,
+          "t_stat": -0.0159
+        },
+        "1620.T": {
+          "name": "Raw Materials & Chemicals",
+          "mean_beta": 0.013214,
+          "std_beta": 0.156497,
+          "t_stat": 0.0844
+        },
+        "1621.T": {
+          "name": "Pharmaceuticals",
+          "mean_beta": -0.017679,
+          "std_beta": 0.174209,
+          "t_stat": -0.1015
+        },
+        "1622.T": {
+          "name": "Automobiles & Transport",
+          "mean_beta": -0.008793,
+          "std_beta": 0.169252,
+          "t_stat": -0.052
+        },
+        "1623.T": {
+          "name": "Steel & Nonferrous",
+          "mean_beta": -0.017382,
+          "std_beta": 0.165906,
+          "t_stat": -0.1048
+        },
+        "1624.T": {
+          "name": "Machinery",
+          "mean_beta": -0.002657,
+          "std_beta": 0.1753,
+          "t_stat": -0.0152
+        },
+        "1625.T": {
+          "name": "Electric & Precision",
+          "mean_beta": -0.009152,
+          "std_beta": 0.168844,
+          "t_stat": -0.0542
+        },
+        "1626.T": {
+          "name": "IT & Services",
+          "mean_beta": 0.01328,
+          "std_beta": 0.11866,
+          "t_stat": 0.1119
+        },
+        "1627.T": {
+          "name": "Electric Power & Gas",
+          "mean_beta": 0.016992,
+          "std_beta": 0.154303,
+          "t_stat": 0.1101
+        },
+        "1628.T": {
+          "name": "Transportation & Logistics",
+          "mean_beta": 0.018785,
+          "std_beta": 0.140393,
+          "t_stat": 0.1338
+        },
+        "1629.T": {
+          "name": "Trading Companies",
+          "mean_beta": -0.007312,
+          "std_beta": 0.154113,
+          "t_stat": -0.0474
+        },
+        "1630.T": {
+          "name": "Finance (ex Banks)",
+          "mean_beta": -0.003184,
+          "std_beta": 0.095886,
+          "t_stat": -0.0332
+        },
+        "1631.T": {
+          "name": "Real Estate",
+          "mean_beta": 0.029078,
+          "std_beta": 0.17928,
+          "t_stat": 0.1622
+        },
+        "1632.T": {
+          "name": "Banks",
+          "mean_beta": 0.01249,
+          "std_beta": 0.159457,
+          "t_stat": 0.0783
+        },
+        "1633.T": {
+          "name": "Retail",
+          "mean_beta": -0.024391,
+          "std_beta": 0.176047,
+          "t_stat": -0.1385
+        }
+      }
+    },
+    "beta_stability": {
+      "PC1": {
+        "mean_std": 0.043231,
+        "max_std": 0.081561
+      },
+      "PC2": {
+        "mean_std": 0.081829,
+        "max_std": 0.115654
+      },
+      "PC3": {
+        "mean_std": 0.110434,
+        "max_std": 0.246674
+      },
+      "PC4": {
+        "mean_std": 0.152949,
+        "max_std": 0.208474
+      },
+      "PC5": {
+        "mean_std": 0.151799,
+        "max_std": 0.17928
+      }
+    },
+    "transmission_channels": [
+      {
+        "pc": "PC1",
+        "interpretation": "Market factor (all sectors move together)",
+        "top_us_contributors": [
+          {
+            "ticker": "XLY",
+            "name": "Consumer Discretionary",
+            "loading": 0.412259
+          },
+          {
+            "ticker": "XLK",
+            "name": "Technology",
+            "loading": 0.396222
+          },
+          {
+            "ticker": "XLC",
+            "name": "Communication Services",
+            "loading": 0.324837
+          },
+          {
+            "ticker": "XLB",
+            "name": "Materials",
+            "loading": 0.322009
+          },
+          {
+            "ticker": "XLI",
+            "name": "Industrials",
+            "loading": 0.30753
+          }
+        ],
+        "top_jp_recipients": [
+          {
+            "ticker": "1630.T",
+            "name": "Finance (ex Banks)",
+            "beta": 0.031794
+          },
+          {
+            "ticker": "1624.T",
+            "name": "Machinery",
+            "beta": -0.028033
+          },
+          {
+            "ticker": "1627.T",
+            "name": "Electric Power & Gas",
+            "beta": 0.023301
+          },
+          {
+            "ticker": "1617.T",
+            "name": "Foods",
+            "beta": 0.021038
+          },
+          {
+            "ticker": "1623.T",
+            "name": "Steel & Nonferrous",
+            "beta": -0.017364
+          }
+        ]
+      },
+      {
+        "pc": "PC2",
+        "interpretation": "Value vs growth factor",
+        "top_us_contributors": [
+          {
+            "ticker": "XLE",
+            "name": "Energy",
+            "loading": 0.523894
+          },
+          {
+            "ticker": "XLK",
+            "name": "Technology",
+            "loading": -0.388641
+          },
+          {
+            "ticker": "XLY",
+            "name": "Consumer Discretionary",
+            "loading": -0.231369
+          },
+          {
+            "ticker": "XLU",
+            "name": "Utilities",
+            "loading": 0.21502
+          },
+          {
+            "ticker": "XLC",
+            "name": "Communication Services",
+            "loading": -0.214333
+          }
+        ],
+        "top_jp_recipients": [
+          {
+            "ticker": "1617.T",
+            "name": "Foods",
+            "beta": 0.054915
+          },
+          {
+            "ticker": "1630.T",
+            "name": "Finance (ex Banks)",
+            "beta": 0.038268
+          },
+          {
+            "ticker": "1633.T",
+            "name": "Retail",
+            "beta": 0.027658
+          },
+          {
+            "ticker": "1624.T",
+            "name": "Machinery",
+            "beta": -0.025878
+          },
+          {
+            "ticker": "1623.T",
+            "name": "Steel & Nonferrous",
+            "beta": -0.024998
+          }
+        ]
+      },
+      {
+        "pc": "PC3",
+        "interpretation": "Defensive rotation factor (defensive vs cyclical)",
+        "top_us_contributors": [
+          {
+            "ticker": "XLE",
+            "name": "Energy",
+            "loading": -0.52658
+          },
+          {
+            "ticker": "XLU",
+            "name": "Utilities",
+            "loading": 0.349125
+          },
+          {
+            "ticker": "XLRE",
+            "name": "Real Estate",
+            "loading": 0.316052
+          },
+          {
+            "ticker": "XLP",
+            "name": "Consumer Staples",
+            "loading": 0.223661
+          },
+          {
+            "ticker": "XLV",
+            "name": "Health Care",
+            "loading": 0.188973
+          }
+        ],
+        "top_jp_recipients": [
+          {
+            "ticker": "1632.T",
+            "name": "Banks",
+            "beta": -0.038598
+          },
+          {
+            "ticker": "1622.T",
+            "name": "Automobiles & Transport",
+            "beta": -0.029801
+          },
+          {
+            "ticker": "1618.T",
+            "name": "Energy Resources",
+            "beta": -0.016561
+          },
+          {
+            "ticker": "1629.T",
+            "name": "Trading Companies",
+            "beta": -0.014887
+          },
+          {
+            "ticker": "1620.T",
+            "name": "Raw Materials & Chemicals",
+            "beta": -0.013602
+          }
+        ]
+      },
+      {
+        "pc": "PC4",
+        "interpretation": "Risk-on/risk-off factor (cyclical vs defensive)",
+        "top_us_contributors": [
+          {
+            "ticker": "XLU",
+            "name": "Utilities",
+            "loading": -0.412472
+          },
+          {
+            "ticker": "XLF",
+            "name": "Financials",
+            "loading": 0.217542
+          },
+          {
+            "ticker": "XLB",
+            "name": "Materials",
+            "loading": 0.198387
+          },
+          {
+            "ticker": "XLK",
+            "name": "Technology",
+            "loading": -0.151245
+          },
+          {
+            "ticker": "XLC",
+            "name": "Communication Services",
+            "loading": -0.12403
+          }
+        ],
+        "top_jp_recipients": [
+          {
+            "ticker": "1631.T",
+            "name": "Real Estate",
+            "beta": -0.066475
+          },
+          {
+            "ticker": "1623.T",
+            "name": "Steel & Nonferrous",
+            "beta": -0.051445
+          },
+          {
+            "ticker": "1621.T",
+            "name": "Pharmaceuticals",
+            "beta": 0.043913
+          },
+          {
+            "ticker": "1632.T",
+            "name": "Banks",
+            "beta": -0.042097
+          },
+          {
+            "ticker": "1622.T",
+            "name": "Automobiles & Transport",
+            "beta": -0.03347
+          }
+        ]
+      },
+      {
+        "pc": "PC5",
+        "interpretation": "Defensive rotation factor (defensive vs cyclical)",
+        "top_us_contributors": [
+          {
+            "ticker": "XLY",
+            "name": "Consumer Discretionary",
+            "loading": -0.342443
+          },
+          {
+            "ticker": "XLC",
+            "name": "Communication Services",
+            "loading": 0.173633
+          },
+          {
+            "ticker": "XLK",
+            "name": "Technology",
+            "loading": 0.157889
+          },
+          {
+            "ticker": "XLV",
+            "name": "Health Care",
+            "loading": 0.133858
+          },
+          {
+            "ticker": "XLP",
+            "name": "Consumer Staples",
+            "loading": -0.129833
+          }
+        ],
+        "top_jp_recipients": [
+          {
+            "ticker": "1631.T",
+            "name": "Real Estate",
+            "beta": 0.029078
+          },
+          {
+            "ticker": "1633.T",
+            "name": "Retail",
+            "beta": -0.024391
+          },
+          {
+            "ticker": "1628.T",
+            "name": "Transportation & Logistics",
+            "beta": 0.018785
+          },
+          {
+            "ticker": "1621.T",
+            "name": "Pharmaceuticals",
+            "beta": -0.017679
+          },
+          {
+            "ticker": "1623.T",
+            "name": "Steel & Nonferrous",
+            "beta": -0.017382
+          }
+        ]
+      },
+      {
+        "type": "direct_transmission_matrix",
+        "top_20_pairs": [
+          {
+            "us_ticker": "XLE",
+            "us_name": "Energy",
+            "jp_ticker": "1632.T",
+            "jp_name": "Banks",
+            "transmission_strength": 0.03259134,
+            "abs_strength": 0.03259134
+          },
+          {
+            "us_ticker": "XLE",
+            "us_name": "Energy",
+            "jp_ticker": "1617.T",
+            "jp_name": "Foods",
+            "transmission_strength": 0.02961916,
+            "abs_strength": 0.02961916
+          },
+          {
+            "us_ticker": "XLU",
+            "us_name": "Utilities",
+            "jp_ticker": "1631.T",
+            "jp_name": "Real Estate",
+            "transmission_strength": 0.02763668,
+            "abs_strength": 0.02763668
+          },
+          {
+            "us_ticker": "XLY",
+            "us_name": "Consumer Discretionary",
+            "jp_ticker": "1631.T",
+            "jp_name": "Real Estate",
+            "transmission_strength": -0.02527678,
+            "abs_strength": 0.02527678
+          },
+          {
+            "us_ticker": "XLU",
+            "us_name": "Utilities",
+            "jp_ticker": "1617.T",
+            "jp_name": "Foods",
+            "transmission_strength": 0.0247406,
+            "abs_strength": 0.0247406
+          },
+          {
+            "us_ticker": "XLE",
+            "us_name": "Energy",
+            "jp_ticker": "1618.T",
+            "jp_name": "Energy Resources",
+            "transmission_strength": 0.02428236,
+            "abs_strength": 0.02428236
+          },
+          {
+            "us_ticker": "XLE",
+            "us_name": "Energy",
+            "jp_ticker": "1631.T",
+            "jp_name": "Real Estate",
+            "transmission_strength": 0.02285909,
+            "abs_strength": 0.02285909
+          },
+          {
+            "us_ticker": "XLE",
+            "us_name": "Energy",
+            "jp_ticker": "1630.T",
+            "jp_name": "Finance (ex Banks)",
+            "transmission_strength": 0.02194146,
+            "abs_strength": 0.02194146
+          },
+          {
+            "us_ticker": "XLE",
+            "us_name": "Energy",
+            "jp_ticker": "1628.T",
+            "jp_name": "Transportation & Logistics",
+            "transmission_strength": 0.02012065,
+            "abs_strength": 0.02012065
+          },
+          {
+            "us_ticker": "XLU",
+            "us_name": "Utilities",
+            "jp_ticker": "1621.T",
+            "jp_name": "Pharmaceuticals",
+            "transmission_strength": -0.01974463,
+            "abs_strength": 0.01974463
+          },
+          {
+            "us_ticker": "XLB",
+            "us_name": "Materials",
+            "jp_ticker": "1623.T",
+            "jp_name": "Steel & Nonferrous",
+            "transmission_strength": -0.01964447,
+            "abs_strength": 0.01964447
+          },
+          {
+            "us_ticker": "XLE",
+            "us_name": "Energy",
+            "jp_ticker": "1622.T",
+            "jp_name": "Automobiles & Transport",
+            "transmission_strength": 0.01958945,
+            "abs_strength": 0.01958945
+          },
+          {
+            "us_ticker": "XLB",
+            "us_name": "Materials",
+            "jp_ticker": "1630.T",
+            "jp_name": "Finance (ex Banks)",
+            "transmission_strength": 0.01904393,
+            "abs_strength": 0.01904393
+          },
+          {
+            "us_ticker": "XLF",
+            "us_name": "Financials",
+            "jp_ticker": "1631.T",
+            "jp_name": "Real Estate",
+            "transmission_strength": -0.01898823,
+            "abs_strength": 0.01898823
+          },
+          {
+            "us_ticker": "XLE",
+            "us_name": "Energy",
+            "jp_ticker": "1619.T",
+            "jp_name": "Construction & Materials",
+            "transmission_strength": 0.01849277,
+            "abs_strength": 0.01849277
+          },
+          {
+            "us_ticker": "XLF",
+            "us_name": "Financials",
+            "jp_ticker": "1630.T",
+            "jp_name": "Finance (ex Banks)",
+            "transmission_strength": 0.01800877,
+            "abs_strength": 0.01800877
+          },
+          {
+            "us_ticker": "XLRE",
+            "us_name": "Real Estate",
+            "jp_ticker": "1630.T",
+            "jp_name": "Finance (ex Banks)",
+            "transmission_strength": 0.01784348,
+            "abs_strength": 0.01784348
+          },
+          {
+            "us_ticker": "XLRE",
+            "us_name": "Real Estate",
+            "jp_ticker": "1617.T",
+            "jp_name": "Foods",
+            "transmission_strength": 0.01744408,
+            "abs_strength": 0.01744408
+          },
+          {
+            "us_ticker": "XLF",
+            "us_name": "Financials",
+            "jp_ticker": "1623.T",
+            "jp_name": "Steel & Nonferrous",
+            "transmission_strength": -0.01708702,
+            "abs_strength": 0.01708702
+          },
+          {
+            "us_ticker": "XLB",
+            "us_name": "Materials",
+            "jp_ticker": "1624.T",
+            "jp_name": "Machinery",
+            "transmission_strength": -0.01684085,
+            "abs_strength": 0.01684085
+          }
+        ]
+      }
+    ],
+    "temporal_cosine_similarity": {
+      "PC1": {
+        "values": [
+          0.99947,
+          0.997112,
+          0.9986,
+          0.999755,
+          0.999746,
+          0.996527,
+          0.998628,
+          0.998635,
+          0.999736,
+          0.99929,
+          0.999654,
+          0.998841,
+          0.998678,
+          0.997714,
+          0.998543,
+          0.994031,
+          0.999151,
+          0.991386,
+          0.993523,
+          0.993982,
+          0.998703,
+          0.999477,
+          0.999172,
+          0.999675,
+          0.998297,
+          0.997682,
+          0.999051,
+          0.989529,
+          0.987559,
+          0.995502,
+          0.998012,
+          0.99348,
+          0.995996,
+          0.995553,
+          0.99677,
+          0.99741,
+          0.989978,
+          0.999805,
+          0.999921,
+          0.999901,
+          0.999848,
+          0.99096,
+          0.994328,
+          0.994907,
+          0.995301,
+          0.996091
+        ],
+        "mean": 0.996868,
+        "min": 0.987559,
+        "std": 0.003123
+      },
+      "PC2": {
+        "values": [
+          0.995437,
+          0.989959,
+          0.997612,
+          0.994087,
+          0.990778,
+          0.994609,
+          0.986974,
+          0.988452,
+          0.98547,
+          0.997488,
+          0.987308,
+          0.9756,
+          0.991148,
+          0.986869,
+          0.983282,
+          0.985106,
+          0.98463,
+          0.97688,
+          0.990321,
+          0.996929,
+          0.991114,
+          0.988643,
+          0.987179,
+          0.988349,
+          0.986619,
+          0.995859,
+          0.985402,
+          0.980765,
+          0.982265,
+          0.993863,
+          0.998147,
+          0.995087,
+          0.98359,
+          0.991498,
+          0.991822,
+          0.993269,
+          0.9914,
+          0.992323,
+          0.992799,
+          0.992108,
+          0.996226,
+          -0.949324,
+          -0.983849,
+          0.952101,
+          0.987655,
+          0.923563
+        ],
+        "mean": 0.902335,
+        "min": -0.983849,
+        "std": 0.398655
+      },
+      "PC3": {
+        "values": [
+          0.989401,
+          0.991147,
+          0.992818,
+          0.990708,
+          0.987189,
+          0.996101,
+          0.973318,
+          0.97918,
+          0.976751,
+          0.991896,
+          0.978924,
+          0.993515,
+          0.97653,
+          0.975942,
+          0.98703,
+          0.976829,
+          0.984492,
+          0.951101,
+          0.98051,
+          0.985933,
+          0.993319,
+          0.987988,
+          0.985404,
+          0.98136,
+          0.973928,
+          0.982736,
+          0.957578,
+          0.956835,
+          0.954191,
+          0.991056,
+          0.983891,
+          0.966691,
+          0.994544,
+          0.982135,
+          0.988832,
+          0.966563,
+          0.983626,
+          0.964801,
+          0.98671,
+          0.991962,
+          0.991077,
+          -0.950929,
+          -0.978242,
+          0.960197,
+          0.973017,
+          0.913384
+        ],
+        "mean": 0.894391,
+        "min": -0.978242,
+        "std": 0.396629
+      },
+      "PC4": {
+        "values": [
+          0.997445,
+          0.986487,
+          0.989607,
+          0.980771,
+          0.843556,
+          0.88481,
+          0.979858,
+          -0.017248,
+          -0.882603,
+          0.365888,
+          0.871143,
+          -0.487472,
+          0.93616,
+          0.955528,
+          0.941413,
+          0.963161,
+          0.910089,
+          0.893873,
+          0.71866,
+          0.936767,
+          0.962265,
+          0.986715,
+          0.990767,
+          0.967234,
+          0.895571,
+          0.968891,
+          0.925386,
+          0.925356,
+          -0.949092,
+          0.828979,
+          0.626602,
+          0.912181,
+          0.932988,
+          0.792251,
+          0.994755,
+          0.964842,
+          0.991759,
+          0.881194,
+          0.995038,
+          0.867504,
+          0.875412,
+          0.983083,
+          0.920288,
+          0.767969,
+          0.990062,
+          0.951045
+        ],
+        "mean": 0.776455,
+        "min": -0.949092,
+        "std": 0.447796
+      },
+      "PC5": {
+        "values": [
+          0.925798,
+          0.930429,
+          0.975729,
+          0.965801,
+          0.808201,
+          0.906055,
+          0.927366,
+          -0.123215,
+          0.013809,
+          0.259063,
+          0.862751,
+          -0.28367,
+          0.912,
+          0.820506,
+          0.793619,
+          -0.889034,
+          0.665681,
+          0.50488,
+          0.167157,
+          0.393464,
+          0.967377,
+          0.890885,
+          0.975402,
+          0.908184,
+          0.891256,
+          0.968327,
+          0.583168,
+          0.835291,
+          0.978878,
+          0.797676,
+          -0.529602,
+          0.937608,
+          0.916873,
+          0.812472,
+          0.956982,
+          0.984515,
+          0.982973,
+          0.606712,
+          0.93656,
+          0.84712,
+          0.844035,
+          0.875381,
+          0.89118,
+          0.7821,
+          0.975075,
+          0.934731
+        ],
+        "mean": 0.697555,
+        "min": -0.889034,
+        "std": 0.425435
+      }
+    },
+    "loading_evolution_summary": {
+      "PC1": {
+        "XLE": {
+          "name": "Energy",
+          "first_loading": 0.119617,
+          "last_loading": 0.226103,
+          "mean_loading": 0.250417,
+          "std_loading": 0.063994
+        },
+        "XLF": {
+          "name": "Financials",
+          "first_loading": 0.337078,
+          "last_loading": 0.324395,
+          "mean_loading": 0.305922,
+          "std_loading": 0.029695
+        },
+        "XLU": {
+          "name": "Utilities",
+          "first_loading": 0.117438,
+          "last_loading": 0.176708,
+          "mean_loading": 0.196828,
+          "std_loading": 0.064077
+        },
+        "XLI": {
+          "name": "Industrials",
+          "first_loading": 0.289464,
+          "last_loading": 0.368711,
+          "mean_loading": 0.30753,
+          "std_loading": 0.026209
+        },
+        "XLK": {
+          "name": "Technology",
+          "first_loading": 0.449466,
+          "last_loading": 0.380387,
+          "mean_loading": 0.396222,
+          "std_loading": 0.070966
+        },
+        "XLV": {
+          "name": "Health Care",
+          "first_loading": 0.208991,
+          "last_loading": 0.199592,
+          "mean_loading": 0.194402,
+          "std_loading": 0.032702
+        },
+        "XLY": {
+          "name": "Consumer Discretionary",
+          "first_loading": 0.445251,
+          "last_loading": 0.452957,
+          "mean_loading": 0.412259,
+          "std_loading": 0.039324
+        },
+        "XLP": {
+          "name": "Consumer Staples",
+          "first_loading": 0.141868,
+          "last_loading": 0.085074,
+          "mean_loading": 0.144399,
+          "std_loading": 0.032631
+        },
+        "XLB": {
+          "name": "Materials",
+          "first_loading": 0.306831,
+          "last_loading": 0.394881,
+          "mean_loading": 0.32201,
+          "std_loading": 0.028338
+        },
+        "XLRE": {
+          "name": "Real Estate",
+          "first_loading": 0.262512,
+          "last_loading": 0.23109,
+          "mean_loading": 0.297507,
+          "std_loading": 0.08061
+        },
+        "XLC": {
+          "name": "Communication Services",
+          "first_loading": 0.383874,
+          "last_loading": 0.264951,
+          "mean_loading": 0.324837,
+          "std_loading": 0.035881
+        }
+      },
+      "PC2": {
+        "XLE": {
+          "name": "Energy",
+          "first_loading": 0.9208,
+          "last_loading": 0.489574,
+          "mean_loading": 0.523894,
+          "std_loading": 0.315437
+        },
+        "XLF": {
+          "name": "Financials",
+          "first_loading": 0.161474,
+          "last_loading": 0.098278,
+          "mean_loading": 0.090776,
+          "std_loading": 0.078789
+        },
+        "XLU": {
+          "name": "Utilities",
+          "first_loading": 0.07526,
+          "last_loading": 0.090372,
+          "mean_loading": 0.21502,
+          "std_loading": 0.234171
+        },
+        "XLI": {
+          "name": "Industrials",
+          "first_loading": 0.099552,
+          "last_loading": -0.054809,
+          "mean_loading": 0.03046,
+          "std_loading": 0.065293
+        },
+        "XLK": {
+          "name": "Technology",
+          "first_loading": -0.242515,
+          "last_loading": -0.632783,
+          "mean_loading": -0.388641,
+          "std_loading": 0.220755
+        },
+        "XLV": {
+          "name": "Health Care",
+          "first_loading": -0.069182,
+          "last_loading": 0.177276,
+          "mean_loading": 0.096213,
+          "std_loading": 0.170165
+        },
+        "XLY": {
+          "name": "Consumer Discretionary",
+          "first_loading": -0.170527,
+          "last_loading": -0.180453,
+          "mean_loading": -0.231369,
+          "std_loading": 0.099221
+        },
+        "XLP": {
+          "name": "Consumer Staples",
+          "first_loading": 0.032066,
+          "last_loading": 0.394889,
+          "mean_loading": 0.12832,
+          "std_loading": 0.182077
+        },
+        "XLB": {
+          "name": "Materials",
+          "first_loading": 0.07998,
+          "last_loading": 0.151205,
+          "mean_loading": 0.118429,
+          "std_loading": 0.062082
+        },
+        "XLRE": {
+          "name": "Real Estate",
+          "first_loading": 0.023347,
+          "last_loading": 0.305035,
+          "mean_loading": 0.145383,
+          "std_loading": 0.233618
+        },
+        "XLC": {
+          "name": "Communication Services",
+          "first_loading": -0.099141,
+          "last_loading": -0.056886,
+          "mean_loading": -0.214333,
+          "std_loading": 0.121705
+        }
+      },
+      "PC3": {
+        "XLE": {
+          "name": "Energy",
+          "first_loading": -0.246266,
+          "last_loading": -0.803002,
+          "mean_loading": -0.52658,
+          "std_loading": 0.391449
+        },
+        "XLF": {
+          "name": "Financials",
+          "first_loading": 0.081946,
+          "last_loading": 0.086361,
+          "mean_loading": -0.018032,
+          "std_loading": 0.101994
+        },
+        "XLU": {
+          "name": "Utilities",
+          "first_loading": 0.503019,
+          "last_loading": 0.081388,
+          "mean_loading": 0.349125,
+          "std_loading": 0.219885
+        },
+        "XLI": {
+          "name": "Industrials",
+          "first_loading": 0.117663,
+          "last_loading": 0.01586,
+          "mean_loading": 0.0092,
+          "std_loading": 0.093287
+        },
+        "XLK": {
+          "name": "Technology",
+          "first_loading": -0.233274,
+          "last_loading": -0.223113,
+          "mean_loading": -0.104794,
+          "std_loading": 0.144262
+        },
+        "XLV": {
+          "name": "Health Care",
+          "first_loading": 0.267556,
+          "last_loading": 0.429724,
+          "mean_loading": 0.188973,
+          "std_loading": 0.09646
+        },
+        "XLY": {
+          "name": "Consumer Discretionary",
+          "first_loading": -0.455277,
+          "last_loading": 0.028015,
+          "mean_loading": -0.060758,
+          "std_loading": 0.200953
+        },
+        "XLP": {
+          "name": "Consumer Staples",
+          "first_loading": 0.417409,
+          "last_loading": 0.240358,
+          "mean_loading": 0.223661,
+          "std_loading": 0.111203
+        },
+        "XLB": {
+          "name": "Materials",
+          "first_loading": 0.196673,
+          "last_loading": 0.137513,
+          "mean_loading": 0.028727,
+          "std_loading": 0.07414
+        },
+        "XLRE": {
+          "name": "Real Estate",
+          "first_loading": 0.325607,
+          "last_loading": 0.168614,
+          "mean_loading": 0.316052,
+          "std_loading": 0.131028
+        },
+        "XLC": {
+          "name": "Communication Services",
+          "first_loading": -0.116423,
+          "last_loading": 0.022691,
+          "mean_loading": -0.129122,
+          "std_loading": 0.237496
+        }
+      },
+      "PC4": {
+        "XLE": {
+          "name": "Energy",
+          "first_loading": -0.210351,
+          "last_loading": 0.026349,
+          "mean_loading": -0.088619,
+          "std_loading": 0.159661
+        },
+        "XLF": {
+          "name": "Financials",
+          "first_loading": 0.673762,
+          "last_loading": 0.155229,
+          "mean_loading": 0.217543,
+          "std_loading": 0.23359
+        },
+        "XLU": {
+          "name": "Utilities",
+          "first_loading": -0.394541,
+          "last_loading": -0.705512,
+          "mean_loading": -0.412472,
+          "std_loading": 0.227896
+        },
+        "XLI": {
+          "name": "Industrials",
+          "first_loading": 0.140988,
+          "last_loading": -0.199105,
+          "mean_loading": 0.114953,
+          "std_loading": 0.118608
+        },
+        "XLK": {
+          "name": "Technology",
+          "first_loading": -0.226127,
+          "last_loading": -0.280146,
+          "mean_loading": -0.151245,
+          "std_loading": 0.238768
+        },
+        "XLV": {
+          "name": "Health Care",
+          "first_loading": 0.003957,
+          "last_loading": 0.042414,
+          "mean_loading": 0.031467,
+          "std_loading": 0.278524
+        },
+        "XLY": {
+          "name": "Consumer Discretionary",
+          "first_loading": -0.047304,
+          "last_loading": 0.465431,
+          "mean_loading": 0.071845,
+          "std_loading": 0.284303
+        },
+        "XLP": {
+          "name": "Consumer Staples",
+          "first_loading": 0.094875,
+          "last_loading": 0.023711,
+          "mean_loading": -0.076917,
+          "std_loading": 0.226874
+        },
+        "XLB": {
+          "name": "Materials",
+          "first_loading": 0.288869,
+          "last_loading": -0.004367,
+          "mean_loading": 0.198387,
+          "std_loading": 0.154654
+        },
+        "XLRE": {
+          "name": "Real Estate",
+          "first_loading": -0.371338,
+          "last_loading": -0.221743,
+          "mean_loading": 0.016854,
+          "std_loading": 0.330115
+        },
+        "XLC": {
+          "name": "Communication Services",
+          "first_loading": -0.206232,
+          "last_loading": 0.30193,
+          "mean_loading": -0.12403,
+          "std_loading": 0.354496
+        }
+      },
+      "PC5": {
+        "XLE": {
+          "name": "Energy",
+          "first_loading": -0.002385,
+          "last_loading": 0.153831,
+          "mean_loading": 0.02334,
+          "std_loading": 0.140073
+        },
+        "XLF": {
+          "name": "Financials",
+          "first_loading": -0.124194,
+          "last_loading": 0.028629,
+          "mean_loading": -0.099428,
+          "std_loading": 0.253263
+        },
+        "XLU": {
+          "name": "Utilities",
+          "first_loading": -0.134297,
+          "last_loading": -0.371042,
+          "mean_loading": 0.065935,
+          "std_loading": 0.318156
+        },
+        "XLI": {
+          "name": "Industrials",
+          "first_loading": 0.057204,
+          "last_loading": 0.136,
+          "mean_loading": -0.025674,
+          "std_loading": 0.167061
+        },
+        "XLK": {
+          "name": "Technology",
+          "first_loading": -0.030095,
+          "last_loading": 0.174372,
+          "mean_loading": 0.157889,
+          "std_loading": 0.270326
+        },
+        "XLV": {
+          "name": "Health Care",
+          "first_loading": -0.003472,
+          "last_loading": 0.60086,
+          "mean_loading": 0.133858,
+          "std_loading": 0.375956
+        },
+        "XLY": {
+          "name": "Consumer Discretionary",
+          "first_loading": -0.506424,
+          "last_loading": -0.313305,
+          "mean_loading": -0.342443,
+          "std_loading": 0.1902
+        },
+        "XLP": {
+          "name": "Consumer Staples",
+          "first_loading": -0.088612,
+          "last_loading": -0.203358,
+          "mean_loading": -0.129833,
+          "std_loading": 0.223028
+        },
+        "XLB": {
+          "name": "Materials",
+          "first_loading": 0.217852,
+          "last_loading": 0.267063,
+          "mean_loading": 0.054874,
+          "std_loading": 0.242671
+        },
+        "XLRE": {
+          "name": "Real Estate",
+          "first_loading": -0.254939,
+          "last_loading": -0.23835,
+          "mean_loading": 0.000901,
+          "std_loading": 0.290796
+        },
+        "XLC": {
+          "name": "Communication Services",
+          "first_loading": 0.765228,
+          "last_loading": -0.400327,
+          "mean_loading": 0.173633,
+          "std_loading": 0.343144
+        }
+      }
+    }
+  }
+}

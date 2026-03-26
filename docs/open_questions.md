@@ -55,3 +55,18 @@
 22. **Optimized vs baseline gap**: Optimized params (K=5, L=120, λ=1.0) deliver SR=2.18 vs baseline SR=0.54, but this may reflect in-sample fitting to the 2021–2026 period. True out-of-sample validation on new data is needed to confirm the improvement is genuine.
 
 23. **Selective sector strategy**: Given consistent sector-level variation, a strategy that only trades the most predictable sectors (Foods, Finance ex-Banks, Energy Resources, Trading Companies) could improve risk-adjusted returns and reduce noise from unpredictable sectors.
+
+### Phase 8: PC Interpretability
+8. **RESOLVED**: What do the principal components represent economically?
+   - PC1: Broad market factor (explains largest variance share)
+   - PC2-3: Sector rotation factors (risk-on/risk-off, growth/value)
+   - PC4-5: Finer sector-specific dynamics (in K=5 model)
+   - Loading stability confirmed via high cosine similarity across folds
+
+9. **OPEN**: Could factor rotation (e.g., varimax) improve interpretability?
+   - Current PCA extracts orthogonal components; rotated factors might align
+     more clearly with economic themes but would change the regression structure.
+
+10. **OPEN**: Do transmission channel strengths predict strategy performance?
+    - Periods with stronger, more stable transmission may correspond to
+      higher strategy returns — worth investigating in future cycles.
