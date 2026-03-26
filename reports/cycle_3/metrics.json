@@ -1,0 +1,42 @@
+{
+  "phase": 2,
+  "description": "Real data pipeline with proper return calculations and lead-lag alignment",
+  "data": {
+    "n_us_sectors": 11,
+    "n_jp_sectors": 17,
+    "n_aligned_pairs": 1254,
+    "date_range_start": "2021-03-29",
+    "date_range_end": "2026-03-25",
+    "us_return_type": "close-to-close",
+    "jp_return_type": "open-to-close",
+    "lag_days_avg": 1.518341307814992,
+    "lag_days_min": 1,
+    "lag_days_max": 7
+  },
+  "return_stats": {
+    "us_mean": 0.00045718448745428594,
+    "us_std": 0.012469095630503375,
+    "jp_mean": -0.0003198014836962283,
+    "jp_std": 0.01094171465398461
+  },
+  "model_integration": {
+    "direction_accuracy": 0.4988235294117647,
+    "mean_correlation": 0.13582510534817085
+  },
+  "validation": {
+    "us_all_tickers_fetched": true,
+    "jp_all_tickers_fetched": true,
+    "us_close_to_close_correct": true,
+    "jp_open_to_close_correct": true,
+    "no_lookahead_bias": true,
+    "lag_range_reasonable": true,
+    "no_nan": true,
+    "no_inf": true,
+    "returns_in_range": true,
+    "model_integration_shape": true,
+    "model_integration_finite": true,
+    "direction_accuracy": 0.4988235294117647,
+    "mean_correlation": 0.13582510534817085
+  },
+  "status": "PASS"
+}
