@@ -155,15 +155,48 @@
       53%, Pharmaceuticals 52%, Finance ex-Banks 52%) concentrate the strongest signals.
     - Combined with EMA smoothing, sector selection is the most effective approach.
 
-24. **OPEN**: Signal-weighted positions — could prediction magnitude size positions instead
-    of equal-weight long/short? Higher-conviction trades would receive larger allocations.
+24. **RESOLVED**: Signal-weighted positions — could prediction magnitude size positions instead
+    of equal-weight long/short?
+    - No improvement. Signal-weighted positions (EMA-20, top-5) achieve net Sharpe 0.05 vs
+      equal-weight 0.63. The magnitude-based sizing increases turnover from 5.4% to 10.1%
+      without proportional signal improvement. The PCA_SUB model's directional signal is
+      stronger than its magnitude signal — knowing the sign matters more than the size.
 
-25. **OPEN**: Adaptive smoothing — could EMA half-life adapt to market regime (longer in
-    volatile periods, shorter in trending markets)?
+25. **RESOLVED**: Adaptive smoothing — could EMA half-life adapt to market regime?
+    - Modest improvement in specific configurations. Adaptive EMA-20 with vol_window=10
+      achieves net Sharpe 0.68 vs fixed EMA-20 at 0.63 (+0.05). The adaptive approach
+      lengthens smoothing in high-vol periods (reducing whipsaw losses) and shortens it
+      in calm periods (faster signal capture). However, the improvement is small and
+      the best non-adaptive config (EMA-20, top-5, equal-weight) remains competitive.
 
 26. **OPEN**: Out-of-sample parameter stability — the optimal strategy parameters (EMA-20,
     top-5 sectors) were selected on the 2021-2026 walk-forward window. Forward validation
     on post-2026 data is needed to confirm stability.
 
-27. **OPEN**: Borrowing costs — short positions incur borrowing costs not modeled here.
-    For Japanese ETFs, these can be 50-100 bps annually, which would reduce net returns.
+27. **RESOLVED**: Borrowing costs — how much do short-selling costs reduce net returns?
+    - At 75 bps annualized (realistic for Japanese ETFs), net Sharpe drops from 0.63 to
+      0.59 (a reduction of 0.05). Total return drops from +23.5% to +21.4%. The strategy
+      remains profitable even at 100 bps borrow costs (net Sharpe 0.57). Short exposure
+      is roughly 50% of portfolio, so daily borrow impact is ~0.15 bps/day — modest
+      relative to the 10 bps one-way transaction cost.
+
+### Cycle 13: Advanced Strategy Enhancements
+
+28. **RESOLVED**: Does the Cycle 12 optimal config (EMA-20, top-5, equal-weight) remain
+    best after adding new strategy dimensions?
+    - Yes. Across 24 configurations tested (EMA x signal-weighted x adaptive x borrow),
+      the original EMA-20, top-5, equal-weight, fixed-EMA remains the top performer
+      with net Sharpe 0.63 (0.59 with 75 bps borrow costs). Signal-weighting and adaptive
+      EMA do not improve upon the simple configuration.
+
+29. **OPEN**: Dynamic sector selection — could the set of traded sectors change over time
+    based on rolling predictability scores instead of fixed top-5?
+
+30. **OPEN**: Multi-horizon signals — could combining predictions at different horizons
+    (1-day, 5-day, 21-day) improve signal quality?
+
+31. **OPEN**: Factor-timing overlay — could timing exposure to specific PCA factors based
+    on regime indicators improve returns?
+
+32. **OPEN**: Intraday execution — could splitting orders across the trading day reduce
+    market impact and improve fill prices?

@@ -1,8 +1,8 @@
 """Cost-aware trading strategy with turnover reduction.
 
-Implements signal smoothing, threshold-based positioning, and selective
-sector trading to address the critical turnover problem identified in
-Phases 1-11 (76% daily turnover destroying all gross alpha).
+Implements signal smoothing, threshold-based positioning, selective
+sector trading, signal-weighted positions, regime-adaptive EMA, and
+borrowing cost modeling.
 """
 
 import numpy as np
@@ -27,6 +27,18 @@ class TradingStrategy:
     max_position_change : float or None
         Maximum allowed position change per sector per day (0 to 1 scale).
         None means no limit.
+    signal_weighted : bool
+        If True, use prediction magnitude to size positions (higher conviction
+        = larger allocation). If False, use equal-weight sign-based positions.
+    adaptive_ema : bool
+        If True, adapt EMA half-life based on realized volatility of actuals.
+        Requires ema_halflife to be set as the base half-life.
+    adaptive_vol_window : int
+        Lookback window for realized volatility estimation (used when
+        adaptive_ema=True).
+    borrow_cost_bps : float
+        Annualized borrowing cost for short positions in basis points.
+        Applied daily as borrow_cost_bps / 252 / 10000 to short exposure.
     """
 
     def __init__(
@@ -36,19 +48,33 @@ class TradingStrategy:
         sector_mask: np.ndarray | None = None,
         cost_bps: float = 10.0,
         max_position_change: float | None = None,
+        signal_weighted: bool = False,
+        adaptive_ema: bool = False,
+        adaptive_vol_window: int = 21,
+        borrow_cost_bps: float = 0.0,
     ):
         self.ema_halflife = ema_halflife
         self.signal_threshold = signal_threshold
         self.sector_mask = sector_mask
         self.cost_bps = cost_bps
         self.max_position_change = max_position_change
+        self.signal_weighted = signal_weighted
+        self.adaptive_ema = adaptive_ema
+        self.adaptive_vol_window = adaptive_vol_window
+        self.borrow_cost_bps = borrow_cost_bps
 
-    def _ema_smooth(self, predictions: np.ndarray) -> np.ndarray:
+    def _ema_smooth(self, predictions: np.ndarray, actuals: np.ndarray | None = None) -> np.ndarray:
         """Apply exponential moving average smoothing to predictions.
+
+        When adaptive_ema=True, the half-life scales with realized volatility:
+        higher volatility -> longer half-life (smoother signals to avoid
+        whipsaws), lower volatility -> shorter half-life (faster reaction).
 
         Parameters
         ----------
         predictions : ndarray of shape (T, n_jp)
+        actuals : ndarray of shape (T, n_jp), optional
+            Required when adaptive_ema=True, used for volatility estimation.
 
         Returns
         -------
@@ -57,12 +83,40 @@ class TradingStrategy:
         if self.ema_halflife is None:
             return predictions.copy()
 
-        alpha = 1 - np.exp(-np.log(2) / self.ema_halflife)
+        T = len(predictions)
         smoothed = np.zeros_like(predictions)
         smoothed[0] = predictions[0]
 
-        for t in range(1, len(predictions)):
-            smoothed[t] = alpha * predictions[t] + (1 - alpha) * smoothed[t - 1]
+        if self.adaptive_ema and actuals is not None:
+            # Compute rolling realized volatility of portfolio returns
+            port_returns = actuals.mean(axis=1)  # equal-weight proxy
+            vol_window = self.adaptive_vol_window
+
+            for t in range(1, T):
+                # Realized vol over lookback window
+                start_idx = max(0, t - vol_window)
+                window_rets = port_returns[start_idx:t]
+                if len(window_rets) >= 2:
+                    realized_vol = np.std(window_rets)
+                else:
+                    realized_vol = np.std(port_returns[:t]) if t > 0 else 0.01
+
+                # Scale half-life: vol_ratio > 1 means higher vol -> longer HL
+                long_term_vol = np.std(port_returns[:t]) if t > 1 else realized_vol
+                if long_term_vol > 1e-12:
+                    vol_ratio = realized_vol / long_term_vol
+                else:
+                    vol_ratio = 1.0
+
+                # Clamp scaling factor between 0.5x and 2x base half-life
+                scale = np.clip(vol_ratio, 0.5, 2.0)
+                adaptive_hl = self.ema_halflife * scale
+                alpha = 1 - np.exp(-np.log(2) / max(adaptive_hl, 1.0))
+                smoothed[t] = alpha * predictions[t] + (1 - alpha) * smoothed[t - 1]
+        else:
+            alpha = 1 - np.exp(-np.log(2) / self.ema_halflife)
+            for t in range(1, T):
+                smoothed[t] = alpha * predictions[t] + (1 - alpha) * smoothed[t - 1]
 
         return smoothed
 
@@ -90,7 +144,11 @@ class TradingStrategy:
         return masked
 
     def _compute_positions(self, signals: np.ndarray) -> np.ndarray:
-        """Convert signals to normalized equal-weight positions.
+        """Convert signals to normalized positions.
+
+        When signal_weighted=True, position sizes are proportional to the
+        absolute prediction magnitude (higher conviction = larger allocation).
+        Otherwise, uses equal-weight sign-based positions.
 
         Parameters
         ----------
@@ -101,10 +159,15 @@ class TradingStrategy:
         weights : ndarray of shape (T, n_jp)
             Position weights normalized to sum of abs weights = 1.
         """
-        positions = np.sign(signals)
-        n_active = np.abs(positions).sum(axis=1, keepdims=True)
-        n_active = np.where(n_active == 0, 1, n_active)
-        return positions / n_active
+        if self.signal_weighted:
+            # Magnitude-weighted: positions proportional to |signal|
+            positions = signals.copy()
+        else:
+            positions = np.sign(signals)
+
+        total_abs = np.abs(positions).sum(axis=1, keepdims=True)
+        total_abs = np.where(total_abs < 1e-12, 1.0, total_abs)
+        return positions / total_abs
 
     def _apply_position_limits(self, weights: np.ndarray) -> np.ndarray:
         """Limit position changes between consecutive days."""
@@ -143,8 +206,8 @@ class TradingStrategy:
         """
         T, n_jp = predictions.shape
 
-        # Step 1: EMA smoothing
-        smoothed = self._ema_smooth(predictions)
+        # Step 1: EMA smoothing (pass actuals for adaptive mode)
+        smoothed = self._ema_smooth(predictions, actuals)
 
         # Step 2: Apply sector mask
         smoothed = self._apply_sector_mask(smoothed)
@@ -171,7 +234,16 @@ class TradingStrategy:
         daily_costs = daily_turnover * cost_per_trade
         # Pad costs to match returns length (no cost on first day)
         daily_costs_full = np.concatenate([[0.0], daily_costs])
-        daily_returns_net = daily_returns_gross - daily_costs_full
+
+        # Borrowing costs for short positions
+        if self.borrow_cost_bps > 0:
+            daily_borrow_rate = self.borrow_cost_bps / 10000.0 / 252.0
+            short_exposure = np.abs(np.minimum(weights, 0)).sum(axis=1)
+            daily_borrow_cost = short_exposure * daily_borrow_rate
+        else:
+            daily_borrow_cost = np.zeros(T)
+
+        daily_returns_net = daily_returns_gross - daily_costs_full - daily_borrow_cost
 
         # Metrics
         def _compute_metrics(returns, label):
@@ -207,9 +279,12 @@ class TradingStrategy:
             "avg_active_sectors": round(float(n_active_per_day), 1),
             "n_days": T,
             "cost_bps": self.cost_bps,
+            "borrow_cost_bps": self.borrow_cost_bps,
             "ema_halflife": self.ema_halflife,
             "signal_threshold": self.signal_threshold,
             "max_position_change": self.max_position_change,
+            "signal_weighted": self.signal_weighted,
+            "adaptive_ema": self.adaptive_ema,
             "daily_returns_gross": daily_returns_gross,
             "daily_returns_net": daily_returns_net,
             "weights": weights,
