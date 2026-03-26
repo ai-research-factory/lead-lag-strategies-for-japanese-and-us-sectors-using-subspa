@@ -241,8 +241,39 @@
 37. **OPEN**: Online model selection — could the strategy dynamically switch between PCA_SUB
     and ensemble models based on recent OOS performance, rather than using fixed weights?
 
-38. **OPEN**: Factor timing — could exposure to specific PCA factors (PC1 market, PC2 rotation)
-    be timed based on regime indicators, rather than blanket position scaling?
+38. **RESOLVED**: Factor timing — could exposure to specific PCA factors (PC1 market, PC2
+    rotation) be timed based on recent predictive accuracy?
+    - No improvement. Factor-timed predictions (softmax weighting by per-PC directional accuracy)
+      achieve net Sharpe -0.18 vs C12 baseline 0.63. Weighting PCs unequally disrupts the
+      balanced regression structure. Direction accuracy drops from 51.19% to 50.28%.
+      All 5 PCs contribute complementary information; selective weighting loses signal.
 
 39. **OPEN**: Regime transition smoothing — could position changes during regime transitions
     be smoothed to avoid unnecessary turnover from sudden exposure changes?
+
+### Cycle 16: Factor Timing, Risk-Parity & Long-Bias Strategy
+
+40. **RESOLVED**: Risk-parity position sizing — could inverse-volatility weighting improve
+    risk-adjusted returns by balancing risk contributions across sectors?
+    - No improvement. Best risk-parity config (126-day lookback) achieves net Sharpe 0.57
+      vs C12 0.63. Increased turnover (5.8% vs 5.4%) from changing volatility-weighted
+      positions offsets the diversification benefit. Equal-weight sizing remains optimal
+      for this portfolio of 5 pre-selected sectors.
+
+41. **RESOLVED**: Long-biased strategy — could reducing short exposure exploit the signal
+    asymmetry documented in Phase 7 (up-market SR=1.31 vs down-market SR=-0.18)?
+    - No improvement. All long-bias levels (0.25, 0.5, 0.75, 1.0) strictly underperform
+      standard long-short (bias=0.0). Long-only (bias=1.0) achieves net SR=-0.36.
+      Despite the asymmetry in signal quality, the strategy profits from both correct long
+      AND correct short calls. Removing shorts eliminates half the alpha while the signal
+      asymmetry doesn't compensate. The Phase 7 finding describes conditional performance
+      differences, not a reason to eliminate short exposure.
+
+42. **OPEN**: Sector-specific long bias — could each sector have a different optimal
+    long/short asymmetry based on its individual signal characteristics?
+
+43. **OPEN**: Transaction cost-aware rebalancing — could the strategy skip small position
+    changes when the expected alpha is below the trading cost?
+
+44. **OPEN**: Out-of-sample validation — all improvements (Cycles 12-16) should be tested
+    on truly unseen data (post-2026) to confirm they are not overfit to the 2021-2026 period.

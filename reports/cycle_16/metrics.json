@@ -1,0 +1,333 @@
+{
+  "phase": 16,
+  "description": "Factor timing, risk-parity portfolio construction, and long-bias strategy",
+  "timestamp": "2026-03-27",
+  "c12_baseline": {
+    "sharpe_net": 0.6349,
+    "return_net": 0.234944,
+    "avg_turnover": 0.054
+  },
+  "factor_timing": {
+    "configs_tested": 4,
+    "results": [
+      {
+        "factor_ema_hl": 21,
+        "direction_accuracy": 0.5028,
+        "sharpe_net": -0.1819,
+        "return_net": -0.073838,
+        "max_dd_net": -0.186298,
+        "avg_turnover": 0.0183,
+        "avg_final_factor_weights": [
+          0.1878,
+          0.2339,
+          0.2071,
+          0.1435,
+          0.2277
+        ]
+      },
+      {
+        "factor_ema_hl": 42,
+        "direction_accuracy": 0.5028,
+        "sharpe_net": -0.1819,
+        "return_net": -0.073838,
+        "max_dd_net": -0.186298,
+        "avg_turnover": 0.0183,
+        "avg_final_factor_weights": [
+          0.1878,
+          0.2339,
+          0.2071,
+          0.1435,
+          0.2277
+        ]
+      },
+      {
+        "factor_ema_hl": 63,
+        "direction_accuracy": 0.5028,
+        "sharpe_net": -0.1819,
+        "return_net": -0.073838,
+        "max_dd_net": -0.186298,
+        "avg_turnover": 0.0183,
+        "avg_final_factor_weights": [
+          0.1878,
+          0.2339,
+          0.2071,
+          0.1435,
+          0.2277
+        ]
+      },
+      {
+        "factor_ema_hl": 126,
+        "direction_accuracy": 0.5028,
+        "sharpe_net": -0.1819,
+        "return_net": -0.073838,
+        "max_dd_net": -0.186298,
+        "avg_turnover": 0.0183,
+        "avg_final_factor_weights": [
+          0.1878,
+          0.2339,
+          0.2071,
+          0.1435,
+          0.2277
+        ]
+      }
+    ],
+    "best": {
+      "factor_ema_hl": 21,
+      "sharpe_net": -0.1819,
+      "direction_accuracy": 0.5028,
+      "improvement_over_c12": -0.8168
+    }
+  },
+  "risk_parity": {
+    "configs_tested": 4,
+    "results": [
+      {
+        "rp_lookback": 126,
+        "sharpe_net": 0.5668,
+        "return_net": 0.193507,
+        "max_dd_net": -0.117842,
+        "avg_turnover": 0.058,
+        "ann_return_net": 0.048893,
+        "ann_vol_net": 0.086265
+      },
+      {
+        "rp_lookback": 63,
+        "sharpe_net": 0.5041,
+        "return_net": 0.168006,
+        "max_dd_net": -0.121171,
+        "avg_turnover": 0.0635,
+        "ann_return_net": 0.043356,
+        "ann_vol_net": 0.086011
+      },
+      {
+        "rp_lookback": 42,
+        "sharpe_net": 0.4901,
+        "return_net": 0.162132,
+        "max_dd_net": -0.118636,
+        "avg_turnover": 0.0688,
+        "ann_return_net": 0.042051,
+        "ann_vol_net": 0.085802
+      },
+      {
+        "rp_lookback": 21,
+        "sharpe_net": 0.4366,
+        "return_net": 0.142003,
+        "max_dd_net": -0.121359,
+        "avg_turnover": 0.0857,
+        "ann_return_net": 0.03762,
+        "ann_vol_net": 0.086161
+      }
+    ],
+    "best": {
+      "lookback": 126,
+      "sharpe_net": 0.5668,
+      "improvement_over_c12": -0.0681
+    }
+  },
+  "long_bias": {
+    "configs_tested": 5,
+    "results": [
+      {
+        "long_bias": 0.0,
+        "sharpe_net": 0.6349,
+        "return_net": 0.234944,
+        "max_dd_net": -0.112374,
+        "avg_turnover": 0.054,
+        "pct_pos_net": 53.7
+      },
+      {
+        "long_bias": 0.25,
+        "sharpe_net": 0.5224,
+        "return_net": 0.192306,
+        "max_dd_net": -0.119255,
+        "avg_turnover": 0.0607,
+        "pct_pos_net": 52.68
+      },
+      {
+        "long_bias": 0.5,
+        "sharpe_net": 0.3567,
+        "return_net": 0.128067,
+        "max_dd_net": -0.13819,
+        "avg_turnover": 0.0703,
+        "pct_pos_net": 52.38
+      },
+      {
+        "long_bias": 0.75,
+        "sharpe_net": 0.0985,
+        "return_net": 0.018717,
+        "max_dd_net": -0.165914,
+        "avg_turnover": 0.0859,
+        "pct_pos_net": 50.86
+      },
+      {
+        "long_bias": 1.0,
+        "sharpe_net": -0.3637,
+        "return_net": -0.220582,
+        "max_dd_net": -0.256525,
+        "avg_turnover": 0.097,
+        "pct_pos_net": 41.74
+      }
+    ],
+    "best": {
+      "long_bias": 0.0,
+      "sharpe_net": 0.6349,
+      "improvement_over_c12": 0.0
+    }
+  },
+  "combined_approaches": {
+    "configs_tested": 8,
+    "results": [
+      {
+        "config": "RP(lb=126)+LongBias(0.0)",
+        "risk_parity_lookback": 126,
+        "long_bias": 0.0,
+        "factor_timing": false,
+        "sharpe_net": 0.5668,
+        "return_net": 0.193507,
+        "max_dd_net": -0.117842,
+        "avg_turnover": 0.058
+      },
+      {
+        "config": "RP(lb=126)+LongBias(0.25)",
+        "risk_parity_lookback": 126,
+        "long_bias": 0.25,
+        "factor_timing": false,
+        "sharpe_net": 0.4482,
+        "return_net": 0.150212,
+        "max_dd_net": -0.116796,
+        "avg_turnover": 0.0641
+      },
+      {
+        "config": "RP(lb=126)+LongBias(0.5)",
+        "risk_parity_lookback": 126,
+        "long_bias": 0.5,
+        "factor_timing": false,
+        "sharpe_net": 0.2686,
+        "return_net": 0.084677,
+        "max_dd_net": -0.133658,
+        "avg_turnover": 0.0736
+      },
+      {
+        "config": "RP(lb=126)+LongBias(0.75)",
+        "risk_parity_lookback": 126,
+        "long_bias": 0.75,
+        "factor_timing": false,
+        "sharpe_net": -0.0092,
+        "return_net": -0.025415,
+        "max_dd_net": -0.171272,
+        "avg_turnover": 0.0892
+      },
+      {
+        "config": "FT(hl=21)+RP(lb=126)",
+        "risk_parity_lookback": 126,
+        "long_bias": 0.0,
+        "factor_timing": true,
+        "sharpe_net": -0.1451,
+        "return_net": -0.058525,
+        "max_dd_net": -0.175793,
+        "avg_turnover": 0.0246
+      },
+      {
+        "config": "FT(hl=21)",
+        "risk_parity_lookback": null,
+        "long_bias": 0.0,
+        "factor_timing": true,
+        "sharpe_net": -0.1819,
+        "return_net": -0.073838,
+        "max_dd_net": -0.186298,
+        "avg_turnover": 0.0183
+      },
+      {
+        "config": "FT(hl=21)+LB(0.5)",
+        "risk_parity_lookback": null,
+        "long_bias": 0.5,
+        "factor_timing": true,
+        "sharpe_net": -0.4106,
+        "return_net": -0.163956,
+        "max_dd_net": -0.234295,
+        "avg_turnover": 0.0236
+      },
+      {
+        "config": "FT(hl=21)+RP(lb=126)+LB(0.5)",
+        "risk_parity_lookback": 126,
+        "long_bias": 0.5,
+        "factor_timing": true,
+        "sharpe_net": -0.4233,
+        "return_net": -0.15597,
+        "max_dd_net": -0.229548,
+        "avg_turnover": 0.03
+      }
+    ],
+    "best": {
+      "config": "RP(lb=126)+LongBias(0.0)",
+      "sharpe_net": 0.5668,
+      "improvement_over_c12": -0.0681
+    }
+  },
+  "borrowing_cost_impact": {
+    "C12_borrow0": {
+      "sharpe_net": 0.6349,
+      "return_net": 0.234944
+    },
+    "best_RP_borrow0": {
+      "sharpe_net": 0.5668,
+      "return_net": 0.193507
+    },
+    "best_LB(0.0)_borrow0": {
+      "sharpe_net": 0.6349,
+      "return_net": 0.234944
+    },
+    "C12_borrow75": {
+      "sharpe_net": 0.5867,
+      "return_net": 0.213829
+    },
+    "best_RP_borrow75": {
+      "sharpe_net": 0.5139,
+      "return_net": 0.172369
+    },
+    "best_LB(0.0)_borrow75": {
+      "sharpe_net": 0.5867,
+      "return_net": 0.213829
+    }
+  },
+  "walk_forward_params": {
+    "K": 5,
+    "L": 120,
+    "lambda_decay": 1.0,
+    "train_window": 252,
+    "test_window": 21,
+    "n_folds": 47,
+    "total_test_samples": 987
+  },
+  "cost_assumptions": {
+    "one_way_transaction_bps": 10.0,
+    "realistic_borrow_bps": 75
+  },
+  "top5_sectors": [
+    {
+      "ticker": "1623.T",
+      "name": "Steel & Nonferrous",
+      "accuracy": 0.5502
+    },
+    {
+      "ticker": "1618.T",
+      "name": "Energy Resources",
+      "accuracy": 0.5289
+    },
+    {
+      "ticker": "1629.T",
+      "name": "Trading Companies",
+      "accuracy": 0.5279
+    },
+    {
+      "ticker": "1630.T",
+      "name": "Finance (ex Banks)",
+      "accuracy": 0.5228
+    },
+    {
+      "ticker": "1621.T",
+      "name": "Pharmaceuticals",
+      "accuracy": 0.5218
+    }
+  ]
+}

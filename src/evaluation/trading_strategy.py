@@ -1,8 +1,8 @@
 """Cost-aware trading strategy with turnover reduction.
 
 Implements signal smoothing, threshold-based positioning, selective
-sector trading, signal-weighted positions, regime-adaptive EMA, and
-borrowing cost modeling.
+sector trading, signal-weighted positions, regime-adaptive EMA,
+borrowing cost modeling, risk-parity sizing, and long-bias options.
 """
 
 import numpy as np
@@ -39,6 +39,17 @@ class TradingStrategy:
     borrow_cost_bps : float
         Annualized borrowing cost for short positions in basis points.
         Applied daily as borrow_cost_bps / 252 / 10000 to short exposure.
+    risk_parity : bool
+        If True, size positions inversely proportional to each sector's
+        rolling realized volatility (risk-parity weighting).
+    risk_parity_lookback : int
+        Lookback window for estimating per-sector volatility (used when
+        risk_parity=True).
+    long_bias : float or None
+        If set, shifts position weights toward long exposure. A value of
+        0.0 means no bias (standard long-short). A value of 1.0 means
+        long-only. Values between scale the short positions down:
+        short_weight *= (1 - long_bias).
     """
 
     def __init__(
@@ -52,6 +63,9 @@ class TradingStrategy:
         adaptive_ema: bool = False,
         adaptive_vol_window: int = 21,
         borrow_cost_bps: float = 0.0,
+        risk_parity: bool = False,
+        risk_parity_lookback: int = 63,
+        long_bias: float | None = None,
     ):
         self.ema_halflife = ema_halflife
         self.signal_threshold = signal_threshold
@@ -62,6 +76,9 @@ class TradingStrategy:
         self.adaptive_ema = adaptive_ema
         self.adaptive_vol_window = adaptive_vol_window
         self.borrow_cost_bps = borrow_cost_bps
+        self.risk_parity = risk_parity
+        self.risk_parity_lookback = risk_parity_lookback
+        self.long_bias = long_bias
 
     def _ema_smooth(self, predictions: np.ndarray, actuals: np.ndarray | None = None) -> np.ndarray:
         """Apply exponential moving average smoothing to predictions.
@@ -143,16 +160,23 @@ class TradingStrategy:
         masked[:, ~self.sector_mask] = 0.0
         return masked
 
-    def _compute_positions(self, signals: np.ndarray) -> np.ndarray:
+    def _compute_positions(self, signals: np.ndarray, actuals: np.ndarray | None = None) -> np.ndarray:
         """Convert signals to normalized positions.
 
         When signal_weighted=True, position sizes are proportional to the
         absolute prediction magnitude (higher conviction = larger allocation).
         Otherwise, uses equal-weight sign-based positions.
 
+        When risk_parity=True, positions are scaled inversely by each sector's
+        rolling realized volatility, so lower-vol sectors get larger weight.
+
+        When long_bias is set, short positions are scaled down.
+
         Parameters
         ----------
         signals : ndarray of shape (T, n_jp)
+        actuals : ndarray of shape (T, n_jp), optional
+            Required for risk_parity mode.
 
         Returns
         -------
@@ -160,10 +184,27 @@ class TradingStrategy:
             Position weights normalized to sum of abs weights = 1.
         """
         if self.signal_weighted:
-            # Magnitude-weighted: positions proportional to |signal|
             positions = signals.copy()
         else:
             positions = np.sign(signals)
+
+        # Risk-parity: inverse-volatility weighting
+        if self.risk_parity and actuals is not None:
+            T, n_jp = positions.shape
+            inv_vol = np.ones((T, n_jp))
+            for t in range(1, T):
+                start = max(0, t - self.risk_parity_lookback)
+                window = actuals[start:t]
+                if len(window) >= 5:
+                    sector_vol = np.std(window, axis=0)
+                    sector_vol = np.where(sector_vol < 1e-8, 1e-8, sector_vol)
+                    inv_vol[t] = 1.0 / sector_vol
+            positions = positions * inv_vol
+
+        # Long bias: scale down short positions
+        if self.long_bias is not None and self.long_bias > 0:
+            short_mask = positions < 0
+            positions[short_mask] *= (1.0 - self.long_bias)
 
         total_abs = np.abs(positions).sum(axis=1, keepdims=True)
         total_abs = np.where(total_abs < 1e-12, 1.0, total_abs)
@@ -216,7 +257,7 @@ class TradingStrategy:
         filtered = self._apply_threshold(smoothed)
 
         # Step 4: Compute positions
-        weights = self._compute_positions(filtered)
+        weights = self._compute_positions(filtered, actuals)
 
         # Step 5: Apply position change limits
         weights = self._apply_position_limits(weights)
@@ -285,6 +326,8 @@ class TradingStrategy:
             "max_position_change": self.max_position_change,
             "signal_weighted": self.signal_weighted,
             "adaptive_ema": self.adaptive_ema,
+            "risk_parity": self.risk_parity,
+            "long_bias": self.long_bias,
             "daily_returns_gross": daily_returns_gross,
             "daily_returns_net": daily_returns_net,
             "weights": weights,
