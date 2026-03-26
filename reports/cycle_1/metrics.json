@@ -1,0 +1,24 @@
+{
+  "phase": 1,
+  "model": "PCASub",
+  "parameters": {
+    "K": 3,
+    "L": 60,
+    "lambda_decay": 0.9
+  },
+  "data": {
+    "n_us_sectors": 11,
+    "n_jp_sectors": 17,
+    "n_samples_aligned": 1175,
+    "train_size": 200,
+    "test_size": 50
+  },
+  "validation": {
+    "shapes_correct": true,
+    "no_nan_inf": true,
+    "nontrivial_predictions": true,
+    "direction_accuracy": 0.5270588235294118,
+    "mean_correlation": 0.10462427333768858
+  },
+  "status": "PASS"
+}

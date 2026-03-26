@@ -4,8 +4,8 @@ venv/
 .venv/
 data/
 !data/.gitkeep
-models/
-!models/.gitkeep
+/models/
+!/models/.gitkeep
 .env
 *.log
 wandb/
